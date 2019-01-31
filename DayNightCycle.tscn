@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://DayNightCycle.gd" type="Script" id=1]
+
+[node name="DayNightCycle" type="CanvasModulate"]
+
+editor/display_folded = true
+color = Color( 1, 1, 1, 1 )
+script = ExtResource( 1 )
+day_start_hour = 10
+
+[node name="Tween" type="Tween" parent="." index="0"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+
