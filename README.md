@@ -18,7 +18,7 @@ You can change the **Day start hour** right from the Inspector.
 
 ### Tips
 
-Instance one `DayNightCycle.tscn` in your background scene and another `DayNightCycle.tscn` in your main scene or level scene, etc. and set the **Day start hour** in the background scene a little after the **Day start hour** in the main scene to have the effect that the background starts changing before the foreground (as seen on the GIF above).
+Instance one `DayNightCycle.tscn` in your background scene and another `DayNightCycle.tscn` in your main scene or level scene, etc. and set the **Day start hour** in the background scene a little after than the **Day start hour** in the main scene to have the effect that the background starts changing before the foreground (as seen on the GIF above).
 
 ```
 Main
