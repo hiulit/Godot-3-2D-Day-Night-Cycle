@@ -1,6 +1,6 @@
 # Godot 3 2D Day/Night Cycle
 
-A simple 2D Day/Night cycle using `CanvasModulate`.
+A simple 2D ☀️Day / 🌑Night cycle using `CanvasModulate`.
 
 ![Godot 3 2D Day/Night Cycle GIF](day_night_cycle_godot_3.gif)
 
