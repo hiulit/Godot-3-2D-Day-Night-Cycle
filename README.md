@@ -88,6 +88,12 @@ Main
 
 Me 😛 [@hiulit](https://github.com/hiulit).
 
+## Credits
+
+Thanks to:
+
+* **Solo CodeNet** for the [YouTube video tutorial](https://www.youtube.com/watch?v=sz8fyzvB6q0) that inspired me.
+
 ## License
 
 [MIT License](/LICENSE).
