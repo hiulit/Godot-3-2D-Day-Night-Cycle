@@ -19,7 +19,7 @@ var transition_duration_time = 1 # In hours
 var cycle
 enum { NIGHT, DAWN, DAY, DUSK }
 
-var debug_mode = true
+var debug_mode = false
 
 func _ready():
 	day_duration = 60 * 60 * day_duration # Convert 'day_duration' from minutes to seconds
