@@ -30,16 +30,16 @@ func _ready():
 	
 	transition_duration = (((day_duration / 24) * transition_duration_time) / 60)
 	
-	if current_day_hour >= 18 or current_day_hour <= 5:
+	if current_day_hour >= 18 or current_day_hour < 5:
 		cycle = NIGHT
 		color = color_night
-	elif current_day_hour >= 5 and current_day_hour <= 8:
+	elif current_day_hour >= 5 and current_day_hour < 8:
 		cycle = DAWN
 		color = color_dawn
-	elif current_day_hour >= 8 and current_day_hour <= 16:
+	elif current_day_hour >= 8 and current_day_hour < 16:
 		cycle = DAY
 		color = color_day
-	elif current_day_hour >= 16 and current_day_hour <= 18:
+	elif current_day_hour >= 16 and current_day_hour < 18:
 		cycle = DUSK
 		color = color_dusk
 
@@ -57,13 +57,13 @@ func day_cycle():
 		current_day_hour = 0
 		current_day_number += 1
 		
-	if current_day_hour >= 19 or current_day_hour <= 5:
+	if current_day_hour >= 19 or current_day_hour < 5:
 		cycle_test(NIGHT)
-	elif current_day_hour >= 5 and current_day_hour <= 8:
+	elif current_day_hour >= 5 and current_day_hour < 8:
 		cycle_test(DAWN)
-	elif current_day_hour >= 8 and current_day_hour <= 16:
+	elif current_day_hour >= 8 and current_day_hour < 16:
 		cycle_test(DAY)
-	elif current_day_hour >= 16 and current_day_hour <= 19:
+	elif current_day_hour >= 16 and current_day_hour < 19:
 		cycle_test(DUSK)
 
 	if debug_mode == true:
