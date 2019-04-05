@@ -39,50 +39,74 @@ Main
 ### Day duration
 
 | Name | Type | Description |
-| :---: | :---: | :---: |
+| --- | --- | --- |
 | `day_duration` | `float` | The duration of the day **in minutes**. |
 
 ### Day start hour
 
 | Name | Type | Description |
-| :---: | :---: | :---: |
+| --- | --- | --- |
 | `day_start_hour` | `float` | The starting hour of the day. **24 hours time (0-23)**. |
 
 ### Day start number
 
 | Name | Type | Description |
-| :---: | :---: | :---: |
+| --- | --- | --- |
 | `day_start_number` | `int` | The starting day number. |
 
 ### Color (DAWN)
 
 | Name | Type | Description |
-| :---: | :---: | :---: |
+| --- | --- | --- |
 | `color_dawn` | `Color` | The color of the DAWN state **in RGBA**. |
 
 ### Color (DAY)
 
 | Name | Type | Description |
-| :---: | :---: | :---: |
+| --- | --- | --- |
 | `color_day` | `Color` | The color of the DAY state **in RGBA**. |
 
 ### Color (DUSK)
 
 | Name | Type | Description |
-| :---: | :---: | :---: |
+| --- | --- | --- |
 | `color_dusk` | `Color` | The color of the DUSK state **in RGBA**. |
 
 ### Color (NIGHT)
 
 | Name | Type | Description |
-| :---: | :---: | :---: |
+| --- | --- | --- |
 | `color_night` | `Color` | The color of the NIGHT state **in RGBA**. |
+
+### State (DAWN) start hour
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `state_dawn_start_hour` | `float` | The starting hour of the DAWN cycle state. **24 hours time (0-23)**. |
+
+### State (DAY) start hour
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `state_day_start_hour` | `float` | The starting hour of the DAY cycle state. **24 hours time (0-23)**. |
+
+### State (DUSK) start hour
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `state_dusk_start_hour` | `float` | The starting hour of the DUSK cycle state. **24 hours time (0-23)**. |
+
+### State (NIGHT) start hour
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `state_night_start_hour` | `float` | The starting hour of the NIGHT cycle state. **24 hours time (0-23)**. |
 
 ### Debug mode
 
 | Name | Type | Description |
-| :---: | :---: | :---: |
-| `debug_mode` | `bool` | Enable/disable *debug mode*. Prints `current_time`, `current_day_hour`, `cycle`, `current_day_number`|
+| --- | --- | --- |
+| `debug_mode` | `bool` | Enable/disable *debug mode*. Prints `current_day_number`, `current_day_hour` and `cycle_state`|
 
 ## Authors
 
