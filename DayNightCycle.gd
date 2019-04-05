@@ -27,6 +27,8 @@ enum cycle_state { NIGHT, DAWN, DAY, DUSK }
 export (bool) var debug_mode = false
 
 func _ready():
+	# Global.DayNight = self
+	
 	day_duration = 60 * 60 * day_duration # Convert 'day_duration' from minutes to seconds
 
 	current_day_number = day_start_number
@@ -80,21 +82,21 @@ func cycle_test(new_cycle):
 		cycle = new_cycle
 
 		if cycle == cycle_state.NIGHT:
-#			Global.Moon.change_state(1)
+			# Global.Moon.change_state(1)
 			$Tween.interpolate_property(self, "color", color_dusk, color_night, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
 			$Tween.start()
 
 		if cycle == cycle_state.DAWN:
-#			Global.Moon.change_state(0.5)
+			# Global.Moon.change_state(0.5)
 			$Tween.interpolate_property(self, "color", color_night, color_dawn, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
 			$Tween.start()
 
 		if cycle == cycle_state.DAY:
-#			Global.Moon.change_state(0)
+			# Global.Moon.change_state(0)
 			$Tween.interpolate_property(self, "color", color_dawn, color_day, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
 			$Tween.start()
 
 		if cycle == cycle_state.DUSK:
-#			Global.Moon.change_state(0.5)
+			# Global.Moon.change_state(0.5)
 			$Tween.interpolate_property(self, "color", color_day, color_dusk, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
 			$Tween.start()
