@@ -1,18 +1,18 @@
 extends CanvasModulate
 
-var day_duration = 0.5 # In minutes
+export (float) var day_duration = 0.5 # In minutes
 export (float) var day_start_hour = 10 # 24 hours time (0-23)
-var day_start_number = 1
+export (int) var day_start_number = 1
 
 export var color_dawn = Color(0.86, 0.70, 0.70, 1.0)
 export var color_day = Color(1.0, 1.0, 1.0, 1.0)
 export var color_dusk = Color(0.59, 0.66, 0.78, 1.0)
 export var color_night = Color(0.07, 0.09, 0.38, 1.0)
 
-export (float) var dawn_state_start_hour = 5
-export (float) var day_state_start_hour = 8
-export (float) var dusk_state_start_hour = 16
-export (float) var night_state_start_hour = 18
+export (float) var state_dawn_start_hour = 5
+export (float) var state_day_start_hour = 8
+export (float) var state_dusk_start_hour = 16
+export (float) var state_night_start_hour = 18
 
 var current_time
 var current_day_hour
@@ -35,16 +35,16 @@ func _ready():
 
 	transition_duration = (((day_duration / 24) * transition_duration_time) / 60)
 
-	if current_day_hour >= night_state_start_hour or current_day_hour < dawn_state_start_hour:
+	if current_day_hour >= state_night_start_hour or current_day_hour < state_dawn_start_hour:
 		cycle = cycle_state.NIGHT
 		color = color_night
-	elif current_day_hour >= dawn_state_start_hour and current_day_hour < day_state_start_hour:
+	elif current_day_hour >= state_dawn_start_hour and current_day_hour < state_day_start_hour:
 		cycle = cycle_state.DAWN
 		color = color_dawn
-	elif current_day_hour >= day_state_start_hour and current_day_hour < dusk_state_start_hour:
+	elif current_day_hour >= state_day_start_hour and current_day_hour < state_dusk_start_hour:
 		cycle = cycle_state.DAY
 		color = color_day
-	elif current_day_hour >= dusk_state_start_hour and current_day_hour < night_state_start_hour:
+	elif current_day_hour >= state_dusk_start_hour and current_day_hour < state_night_start_hour:
 		cycle = cycle_state.DUSK
 		color = color_dusk
 
@@ -62,13 +62,13 @@ func day_cycle():
 		current_day_hour = 0
 		current_day_number += 1
 		
-	if current_day_hour >= night_state_start_hour or current_day_hour < dawn_state_start_hour:
+	if current_day_hour >= state_night_start_hour or current_day_hour < state_dawn_start_hour:
 		cycle_test(cycle_state.NIGHT)
-	elif current_day_hour >= dawn_state_start_hour and current_day_hour < day_state_start_hour:
+	elif current_day_hour >= state_dawn_start_hour and current_day_hour < state_day_start_hour:
 		cycle_test(cycle_state.DAWN)
-	elif current_day_hour >= day_state_start_hour and current_day_hour < dusk_state_start_hour:
+	elif current_day_hour >= state_day_start_hour and current_day_hour < state_dusk_start_hour:
 		cycle_test(cycle_state.DAY)
-	elif current_day_hour >= dusk_state_start_hour and current_day_hour < night_state_start_hour:
+	elif current_day_hour >= state_dusk_start_hour and current_day_hour < state_night_start_hour:
 		cycle_test(cycle_state.DUSK)
 
 	if debug_mode:
