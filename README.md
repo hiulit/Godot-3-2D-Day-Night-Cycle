@@ -2,7 +2,17 @@
 
 A simple 2D ☀️ Day / 🌑 Night cycle using `CanvasModulate`.
 
-![Godot 3 2D Day/Night Cycle GIF](day_night_cycle_godot_3.gif)
+![Godot 3 2D Day/Night Cycle GIF](images/day_night_cycle_godot_3.gif)
+
+**Now with a Moon effect!**
+
+Without a Moon
+
+![Godot 3 2D Day/Night Cycle GIF](images/day_night_cycle_godot_3-no-moon.gif)
+
+With a Moon
+
+![Godot 3 2D Day/Night Cycle GIF](images/day_night_cycle_godot_3-with-moon.gif)
 
 ## Installation
 
@@ -15,10 +25,12 @@ A simple 2D ☀️ Day / 🌑 Night cycle using `CanvasModulate`.
 
 You can change the **Day start hour** right from the Inspector.
 
+![](images/)
+
 
 ### Tips
 
-Instance one `DayNightCycle.tscn` in your background scene and another `DayNightCycle.tscn` in your main scene or level scene, etc. and set the **Day start hour** in the background scene a little after than the **Day start hour** in the main scene to have the effect that the background starts changing before the foreground (as seen on the GIF above).
+Instance one `DayNightCycle.tscn` in your background scene and another `DayNightCycle.tscn` in your main scene or level scene, etc. and set the **Day start hour** in the background scene a little after than the **Day start hour** in the main scene to have the effect that the background starts changing before the foreground.
 
 ```
 Main
@@ -28,6 +40,8 @@ Main
 ├── OtherStuff
 └── DayNightCycle
 ```
+
+Take into account that when using this effects you can have weird effect if you are using the **Moon**, because it will get called twice.
 
 #### Example
 
