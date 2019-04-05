@@ -2,20 +2,22 @@
 
 [ext_resource path="res://DayNightCycle.gd" type="Script" id=1]
 
-[node name="DayNightCycle" type="CanvasModulate"]
+[node name="DayNightCycle" type="CanvasModulate" index="0"]
 
 editor/display_folded = true
 color = Color( 1, 1, 1, 1 )
 script = ExtResource( 1 )
+day_duration = 0.5
 day_start_hour = 10
+day_start_number = 1
 color_dawn = Color( 0.86, 0.7, 0.7, 1 )
 color_day = Color( 1, 1, 1, 1 )
 color_dusk = Color( 0.59, 0.66, 0.78, 1 )
 color_night = Color( 0.07, 0.09, 0.38, 1 )
-dawn_state_start_hour = 5
-day_state_start_hour = 8
-dusk_state_start_hour = 16
-night_state_start_hour = 18
+state_dawn_start_hour = 5
+state_day_start_hour = 8
+state_dusk_start_hour = 16
+state_night_start_hour = 18
 debug_mode = false
 
 [node name="Tween" type="Tween" parent="." index="0"]

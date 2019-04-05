@@ -12,4 +12,11 @@ texture = ExtResource( 1 )
 
 [node name="DayNightCycle" parent="." index="1" instance=ExtResource( 2 )]
 
+day_duration = 0.5
+day_start_number = 1
+state_dawn_start_hour = 5
+state_day_start_hour = 8
+state_dusk_start_hour = 16
+state_night_start_hour = 18
+
 
