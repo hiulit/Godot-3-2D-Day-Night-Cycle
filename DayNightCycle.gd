@@ -9,10 +9,10 @@ export var color_day = Color(1.0, 1.0, 1.0, 1.0)
 export var color_dusk = Color(0.59, 0.66, 0.78, 1.0)
 export var color_night = Color(0.07, 0.09, 0.38, 1.0)
 
-export var dawn_state_start_hour = 5
-export var day_state_start_hour = 8
-export var dusk_state_start_hour = 16
-export var night_state_start_hour = 18
+export (float) var dawn_state_start_hour = 5
+export (float) var day_state_start_hour = 8
+export (float) var dusk_state_start_hour = 16
+export (float) var night_state_start_hour = 18
 
 var current_time
 var current_day_hour
