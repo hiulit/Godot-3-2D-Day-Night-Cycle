@@ -8,6 +8,15 @@ editor/display_folded = true
 color = Color( 1, 1, 1, 1 )
 script = ExtResource( 1 )
 day_start_hour = 10
+color_dawn = Color( 0.86, 0.7, 0.7, 1 )
+color_day = Color( 1, 1, 1, 1 )
+color_dusk = Color( 0.59, 0.66, 0.78, 1 )
+color_night = Color( 0.07, 0.09, 0.38, 1 )
+dawn_state_start_hour = 5
+day_state_start_hour = 8
+dusk_state_start_hour = 16
+night_state_start_hour = 18
+debug_mode = false
 
 [node name="Tween" type="Tween" parent="." index="0"]
 
