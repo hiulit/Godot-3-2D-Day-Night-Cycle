@@ -28,7 +28,7 @@ A simple 2D ☀️ Day / 🌑 Night cycle using `CanvasModulate`.
 
 You can change all these variables right from the Inspector.
 
-![Inspector](images/inspector.png)
+![Inspector](images/daynight-inspector.png)
 
 ### Tips
 
@@ -77,6 +77,10 @@ if cycle == cycle_state.NIGHT:
 if cycle == cycle_state.DAWN:
     # Global.Moon.change_state(Global.Moon.state_dawn_energy)
 ```
+
+You can change all these variables right from the Inspector.
+
+![Inspector](images/moon-inspector.png)
 
 ## Documentation
 
