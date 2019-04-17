@@ -48,18 +48,20 @@ Main
 * Background scene - **Day start hour**: 10.3
 * Main scene - **Day start hour**: 10
 
-Take into account that when using this effects you can have weird effect if you are using the **Moon**, because it will get called twice.
+It is not encouraged to use that effect if are using the **Moon** because the **Moon** will get called twice, so you'll end up with two **Moons**.
 
 ### Moon
 
 **Warning!**
 
-Before using the **Moon** you should know that it is intrinsically connected with **DayNightCycle**. This is were [singletons](https://docs.godotengine.org/en/3.1/getting_started/step_by_step/singletons_autoload.html) come in handy.
+Before using the **Moon** you should know that it is intrinsically connected with **DayNightCycle**. This is where [singletons](https://docs.godotengine.org/en/3.1/getting_started/step_by_step/singletons_autoload.html) come in handy.
 
-This project has a `Global.gd` that serves as a **singleton**. Its function is to have `DayNight` and `Moon` always and everywhere available.
+This project has a `Global.gd` that serves as a **singleton**. Its function is to have `DayNight` and `Moon` variables available always and from everywhere.
+
+You can copy those variables and add them to your own **singleton**. In that case, you'll have to change all the `Global.xxx` variables accordingly.
 
 * Instance `Moon.tscn` and attach `Moon.gd` as a script.
-* In `DayNightCycle.gd`, uncomment the following lines:
+* In `DayNightCycle.gd`, uncomment the commented following lines:
 
 ```
 func _ready():
@@ -68,37 +70,35 @@ func _ready():
 
 ```
 if cycle == cycle_state.NIGHT:
-    # Global.Moon.change_state(1)
+    # Global.Moon.change_state(Global.Moon.state_night_energy)
 
 ...
 
 if cycle == cycle_state.DAWN:
-    # Global.Moon.change_state(0.5)
-
-etc
+    # Global.Moon.change_state(Global.Moon.state_dawn_energy)
 ```
 
 ## Documentation
 
 ### DayNightCycle
 
-#### Day duration
+#### Day Duration
 
 | Name | Type | Description |
 | --- | --- | --- |
 | `day_duration` | `float` | The duration of the day **in minutes**. |
 
-#### Day start hour
+#### Day Start Hour
 
 | Name | Type | Description |
 | --- | --- | --- |
 | `day_start_hour` | `float` | The starting hour of the day. **24 hours time (0-23)**. |
 
-#### Day start number
+#### Day Start Number
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `day_start_number` | `int` | The starting day number. |
+| `day_start_number` | `float` | The starting day number. |
 
 #### Color (DAWN)
 
@@ -124,29 +124,35 @@ etc
 | --- | --- | --- |
 | `color_night` | `Color` | The color of the NIGHT state **in RGBA**. |
 
-#### State (DAWN) start hour
+#### State (DAWN) Start Hour
 
 | Name | Type | Description |
 | --- | --- | --- |
 | `state_dawn_start_hour` | `float` | The starting hour of the DAWN cycle state. **24 hours time (0-23)**. |
 
-#### State (DAY) start hour
+#### State (DAY) Start Hour
 
 | Name | Type | Description |
 | --- | --- | --- |
 | `state_day_start_hour` | `float` | The starting hour of the DAY cycle state. **24 hours time (0-23)**. |
 
-#### State (DUSK) start hour
+#### State (DUSK) Start Hour
 
 | Name | Type | Description |
 | --- | --- | --- |
 | `state_dusk_start_hour` | `float` | The starting hour of the DUSK cycle state. **24 hours time (0-23)**. |
 
-#### State (NIGHT) start hour
+#### State (NIGHT) Start Hour
 
 | Name | Type | Description |
 | --- | --- | --- |
 | `state_night_start_hour` | `float` | The starting hour of the NIGHT cycle state. **24 hours time (0-23)**. |
+
+#### State Transition Duration
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `state_transition_duration` | `float` | The duration of the transition between cycle states **in hours**. |
 
 #### Debug mode
 
@@ -156,18 +162,35 @@ etc
 
 ### Moon
 
-**Moon** doesn't have any configurable variables.
-
-It only have a function:
-
-#### change_state(energy)
+#### State (DAWN) Energy
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `energy` | `float` | The `Light2D`'s energy value. The larger the value, the stronger the light. |
+| `state_dawn_energy` | `float` | The energy value of the DAWN state. The larger the value, the stronger the light. |
 
-This function should be called in
+#### State (DAY) Energy
 
+| Name | Type | Description |
+| --- | --- | --- |
+| `state_day_energy` | `float` | The energy value of the DAY state. The larger the value, the stronger the light. |
+
+#### State (DUSK) Energy
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `state_dusk_energy` | `float` | The energy value of the DUSK state. The larger the value, the stronger the light. |
+
+#### State (NIGHT) Energy
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `state_night_energy` | `float` | The energy value of the NIGHT state. The larger the value, the stronger the light. |
+
+#### State Transition Duration
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `state_transition_duration` | `float` | The duration of the transition between cycle states **in hours**. |
 
 ## Authors
 
