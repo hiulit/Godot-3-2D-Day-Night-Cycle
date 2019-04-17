@@ -2,7 +2,7 @@ extends CanvasModulate
 
 export (float) var day_duration = 0.5 # In minutes
 export (float) var day_start_hour = 10 # 24 hours time (0-23)
-export (int) var day_start_number = 1
+export (float) var day_start_number = 1
 
 export var color_dawn = Color(0.86, 0.70, 0.70, 1.0)
 export var color_day = Color(1.0, 1.0, 1.0, 1.0)
@@ -14,20 +14,22 @@ export (float) var state_day_start_hour = 8
 export (float) var state_dusk_start_hour = 16
 export (float) var state_night_start_hour = 18
 
+export (float) var state_transition_duration = 1 # In hours
+
+export (bool) var debug_mode = false
+
 var current_time
 var current_day_hour
 var current_day_number
 
 var transition_duration
-var transition_duration_time = 1 # In hours
 
 var cycle
 enum cycle_state { NIGHT, DAWN, DAY, DUSK }
 
-export (bool) var debug_mode = false
 
 func _ready():
-	# Global.DayNight = self
+#	Global.DayNight = self
 	
 	day_duration = 60 * 60 * day_duration # Convert 'day_duration' from minutes to seconds
 
@@ -35,7 +37,7 @@ func _ready():
 	current_time = (day_duration / 24) * day_start_hour
 	current_day_hour = current_time / (day_duration / 24)
 
-	transition_duration = (((day_duration / 24) * transition_duration_time) / 60)
+	transition_duration = (((day_duration / 24) * state_transition_duration) / 60)
 
 	if current_day_hour >= state_night_start_hour or current_day_hour < state_dawn_start_hour:
 		cycle = cycle_state.NIGHT
@@ -63,7 +65,7 @@ func day_cycle():
 		current_time = 0
 		current_day_hour = 0
 		current_day_number += 1
-		
+
 	if current_day_hour >= state_night_start_hour or current_day_hour < state_dawn_start_hour:
 		cycle_test(cycle_state.NIGHT)
 	elif current_day_hour >= state_dawn_start_hour and current_day_hour < state_day_start_hour:
@@ -82,21 +84,21 @@ func cycle_test(new_cycle):
 		cycle = new_cycle
 
 		if cycle == cycle_state.NIGHT:
-			# Global.Moon.change_state(1)
+#			Global.Moon.change_state(Global.Moon.state_night_energy)
 			$Tween.interpolate_property(self, "color", color_dusk, color_night, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
 			$Tween.start()
 
 		if cycle == cycle_state.DAWN:
-			# Global.Moon.change_state(0.5)
+#			Global.Moon.change_state(Global.Moon.state_dawn_energy)
 			$Tween.interpolate_property(self, "color", color_night, color_dawn, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
 			$Tween.start()
 
 		if cycle == cycle_state.DAY:
-			# Global.Moon.change_state(0)
+#			Global.Moon.change_state(Global.Moon.state_day_energy)
 			$Tween.interpolate_property(self, "color", color_dawn, color_day, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
 			$Tween.start()
 
 		if cycle == cycle_state.DUSK:
-			# Global.Moon.change_state(0.5)
+#			Global.Moon.change_state(Global.Moon.state_dusk_energy)
 			$Tween.interpolate_property(self, "color", color_day, color_dusk, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
 			$Tween.start()
