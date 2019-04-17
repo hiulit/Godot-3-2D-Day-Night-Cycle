@@ -4,14 +4,17 @@
 
 * Up to date
 
-## [2.0.0] - 2019-04-05
+## [2.0.0] - 2019-04-17
 
 ### Added
 
-* `Moon.tscn` and `Moon.gd`.
+* `Moon.tscn` and `Moon.gd`. 
 * Better documentation explaining how to use the new **Moon**.
-* Exported the color variables so they can be used right from the Inspector.
-* New exported variables for cycle states: `dawn_state_start_hour`, `day_state_start_hour`, `dusk_state_start_hour` and `night_state_start_hour`.
+* New exported variables so they can be used right from the Inspector:
+    * Day: `day_duration` and `day_start_number`.
+    * Colors: `color_dawn`, `color_day`, `color_dusk` and `color_night`.
+    * Cycle states: `state_dawn_start_hour`, `state_day_start_hour`, `state_dusk_start_hour`, `state_night_start_hour` and `state_transition_duration`.
+    * Debug mode: `debug_mode`.
 
 ### Changed
 
