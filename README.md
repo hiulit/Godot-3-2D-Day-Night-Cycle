@@ -205,6 +205,7 @@ Me 😛 [@hiulit](https://github.com/hiulit).
 Thanks to:
 
 * **Solo CodeNet** for the [YouTube video tutorial](https://www.youtube.com/watch?v=sz8fyzvB6q0) that inspired me.
+* [Terkwood](https://github.com/Terkwood) - For helping with an issue about comparison operators in the cycle state.
 
 ## License
 
