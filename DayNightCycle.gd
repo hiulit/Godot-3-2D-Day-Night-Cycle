@@ -12,7 +12,7 @@ export var color_night = Color(0.07, 0.09, 0.38, 1.0)
 export (float) var state_dawn_start_hour = 5
 export (float) var state_day_start_hour = 8
 export (float) var state_dusk_start_hour = 16
-export (float) var state_night_start_hour = 18
+export (float) var state_night_start_hour = 19
 
 export (float) var state_transition_duration = 1 # In hours
 
@@ -30,7 +30,7 @@ enum cycle_state { NIGHT, DAWN, DAY, DUSK }
 
 func _ready():
 #	Global.DayNight = self
-	
+
 	day_duration = 60 * 60 * day_duration # Convert 'day_duration' from minutes to seconds
 
 	current_day_number = day_start_number
