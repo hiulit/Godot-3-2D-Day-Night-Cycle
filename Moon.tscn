@@ -27,6 +27,11 @@ shadow_filter = 0
 shadow_filter_smooth = 0.0
 shadow_item_cull_mask = 1
 script = ExtResource( 2 )
+state_dawn_energy = 0.5
+state_day_energy = 0
+state_dusk_energy = 0.5
+state_night_energy = 1
+state_transition_duration = 1
 
 [node name="Tween" type="Tween" parent="." index="0"]
 
