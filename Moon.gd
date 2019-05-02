@@ -7,6 +7,8 @@ export (float) var state_night_energy = 1
 
 export (float) var state_transition_duration = 1 # In hours
 
+export (bool) var move = true
+
 var state
 var new_state
 
@@ -55,8 +57,9 @@ func _ready():
 
 
 func _physics_process(delta):
-	if Global.DayNight:
-		move_moon(delta)
+	if move:
+		if Global.DayNight:
+			move_moon(delta)
 
 
 func change_state(new_state):

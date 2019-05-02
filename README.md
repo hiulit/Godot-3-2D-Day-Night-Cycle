@@ -166,7 +166,7 @@ You can change all these variables right from the Inspector.
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `debug_mode` | `bool` | Enable/disable **debug mode**. It prints `current_day_number`, `current_day_hour` and `cycle_state`|
+| `debug_mode` | `bool` | Enables/disables **debug mode**. It prints `current_day_number`, `current_day_hour` and `cycle_state`|
 
 ### Moon
 
@@ -199,6 +199,12 @@ You can change all these variables right from the Inspector.
 | Name | Type | Description |
 | --- | --- | --- |
 | `state_transition_duration` | `float` | The duration of the transition between cycle states **in hours**. |
+
+#### Move
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `move` | `bool` | Enables/disables the Moon movement. |
 
 ## Authors
 
