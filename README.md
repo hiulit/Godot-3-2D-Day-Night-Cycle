@@ -14,6 +14,10 @@ A simple 2D ☀️ Day / 🌑 Night cycle using `CanvasModulate`.
 
 ![Godot 3 2D Day/Night Cycle GIF](example-images/day_night_cycle_godot_3-with-moon.gif)
 
+### With a moving Moon
+
+![Godot 3 2D Day/Night Cycle GIF](example-images/day_night_cycle_godot_3-with-moving-moon.gif)
+
 ## Installation
 
 * [Download](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/archive/master.zip) the repository ZIP file.
