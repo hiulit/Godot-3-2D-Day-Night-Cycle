@@ -49,10 +49,8 @@ Main
 
 #### Example
 
-* Background scene - **Day start hour**: 10.3
+* Background scene - **Day start hour**: 10.2
 * Main scene - **Day start hour**: 10
-
-It is not encouraged to use that effect if you are using the **Moon** because the **Moon** will get called twice, so you'll end up with two **Moons**.
 
 ### Moon
 
