@@ -2,7 +2,12 @@
 
 ## [Unreleased]
 
-* Up to date
+### Added
+
+### Changed
+
+* New `light.png`.
+* `state_night_start_hour` from `18` to `19` in `DayNightCycle.gd`.
 
 ## [2.0.0] - 2019-04-17
 
