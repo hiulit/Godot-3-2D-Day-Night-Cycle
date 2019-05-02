@@ -8,7 +8,7 @@
 
 [node name="icon" type="Sprite" parent="." index="0"]
 
-position = Vector2( 491, 300 )
+position = Vector2( 512, 300 )
 texture = ExtResource( 1 )
 
 [node name="DayNightCycle" parent="." index="1" instance=ExtResource( 2 )]
