@@ -30,6 +30,9 @@ var midnight_step
 var baked_points_pos
 
 func _ready():
+	if !Global.DayNight:
+		return
+
 	Global.Moon = self
 
 	energy = 0
@@ -52,7 +55,8 @@ func _ready():
 
 
 func _physics_process(delta):
-	move_moon(delta)
+	if Global.DayNight:
+		move_moon(delta)
 
 
 func change_state(new_state):
