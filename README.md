@@ -2,17 +2,17 @@
 
 A simple 2D ☀️ Day / 🌑 Night cycle using `CanvasModulate`.
 
-![Godot 3 2D Day/Night Cycle GIF](images/day_night_cycle_godot_3.gif)
+![Godot 3 2D Day/Night Cycle GIF](example-images/day_night_cycle_godot_3.gif)
 
 ## Now with a 🌕 Moon effect using `Light2D`!
 
 ### Without a Moon
 
-![Godot 3 2D Day/Night Cycle GIF](images/day_night_cycle_godot_3-no-moon.gif)
+![Godot 3 2D Day/Night Cycle GIF](example-images/day_night_cycle_godot_3-no-moon.gif)
 
 ### With a Moon
 
-![Godot 3 2D Day/Night Cycle GIF](images/day_night_cycle_godot_3-with-moon.gif)
+![Godot 3 2D Day/Night Cycle GIF](example-images/day_night_cycle_godot_3-with-moon.gif)
 
 ## Installation
 
@@ -28,7 +28,7 @@ A simple 2D ☀️ Day / 🌑 Night cycle using `CanvasModulate`.
 
 You can change all these variables right from the Inspector.
 
-![Inspector](images/daynight-inspector.png)
+![Inspector](example-images/daynight-inspector.png)
 
 ### Tips
 
@@ -80,7 +80,7 @@ if cycle == cycle_state.DAWN:
 
 You can change all these variables right from the Inspector.
 
-![Inspector](images/moon-inspector.png)
+![Inspector](example-images/moon-inspector.png)
 
 ## Documentation
 
