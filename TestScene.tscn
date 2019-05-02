@@ -13,9 +13,6 @@ texture = ExtResource( 1 )
 
 [node name="DayNightCycle" parent="." index="1" instance=ExtResource( 2 )]
 
-state_night_start_hour = 19
-state_transition_duration = 1
-
-[node name="Moon" parent="." index="2" instance=ExtResource( 3 )]
+[node name="MoonLayer" parent="." index="2" instance=ExtResource( 3 )]
 
 
