@@ -2,7 +2,11 @@
 
 ## [Unreleased]
 
+## [2.1.0] - 2019-05-06
+
 ### Added
+
+* New exported variables: `move`. Enables/disables the Moon movement.
 
 ### Changed
 
