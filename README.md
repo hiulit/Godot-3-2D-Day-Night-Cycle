@@ -22,7 +22,7 @@ A simple 2D ☀️ Day / 🌑 Night cycle using `CanvasModulate`.
 
 * [Download](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/archive/master.zip) the repository ZIP file.
 * Copy `DayNightCycle.tscn` and `DayNightCycle.gd` in your project.
-* Copy `Moon.tscn`, `Moon.gd` and `light.ong` in your project.
+* Copy `Moon.tscn`, `Moon.gd` and `light.png` in your project.
 
 ## Usage
 
