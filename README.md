@@ -63,21 +63,11 @@ This project has a `Global.gd` that serves as a **singleton**. Its function is t
 You can copy those variables and add them to your own **singleton**. In that case, you'll have to change all the `Global.xxx` variables accordingly.
 
 * Instance `Moon.tscn` and attach `Moon.gd` as a script.
-* In `DayNightCycle.gd`, uncomment the commented following lines:
+* In `DayNightCycle.gd`, uncomment the commented following line:
 
 ```
 func _ready():
     # Global.DayNight = self
-```
-
-```
-if cycle == cycle_state.NIGHT:
-    # Global.Moon.change_state(Global.Moon.state_night_energy)
-
-...
-
-if cycle == cycle_state.DAWN:
-    # Global.Moon.change_state(Global.Moon.state_dawn_energy)
 ```
 
 You can change all these variables right from the Inspector.

@@ -4,6 +4,12 @@
 
 * Up to date.
 
+## [2.1.1] - 2019-06-12
+
+### Added
+
+* Check if `Global.Moon` exists instead of commenting the code that changes the Moon's state.
+
 ## [2.1.0] - 2019-05-06
 
 ### Added
