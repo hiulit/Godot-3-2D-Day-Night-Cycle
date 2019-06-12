@@ -84,21 +84,25 @@ func cycle_test(new_cycle):
 		cycle = new_cycle
 
 		if cycle == cycle_state.NIGHT:
-#			Global.Moon.change_state(Global.Moon.state_night_energy)
+			if Global.Moon:
+				Global.Moon.change_state(Global.Moon.state_night_energy)
 			$Tween.interpolate_property(self, "color", color_dusk, color_night, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
 			$Tween.start()
 
 		if cycle == cycle_state.DAWN:
-#			Global.Moon.change_state(Global.Moon.state_dawn_energy)
+			if Global.Moon:
+				Global.Moon.change_state(Global.Moon.state_dawn_energy)
 			$Tween.interpolate_property(self, "color", color_night, color_dawn, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
 			$Tween.start()
 
 		if cycle == cycle_state.DAY:
-#			Global.Moon.change_state(Global.Moon.state_day_energy)
+			if Global.Moon:
+				Global.Moon.change_state(Global.Moon.state_day_energy)
 			$Tween.interpolate_property(self, "color", color_dawn, color_day, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
 			$Tween.start()
 
 		if cycle == cycle_state.DUSK:
-#			Global.Moon.change_state(Global.Moon.state_dusk_energy)
+			if Global.Moon:
+				Global.Moon.change_state(Global.Moon.state_dusk_energy)
 			$Tween.interpolate_property(self, "color", color_day, color_dusk, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
 			$Tween.start()
