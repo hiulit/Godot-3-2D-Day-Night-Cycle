@@ -9,6 +9,8 @@ export (float) var state_transition_duration = 1 # In hours
 
 export (bool) var move = true
 
+export (bool) var on = true
+
 var state
 var new_state
 
@@ -32,9 +34,12 @@ var midnight_step
 var baked_points_pos
 
 func _ready():
+	if not on:
+		queue_free()
+
 	if !Global.DayNight:
 		return
-
+	
 	Global.Moon = self
 
 	energy = 0

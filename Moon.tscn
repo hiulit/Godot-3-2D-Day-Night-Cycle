@@ -41,6 +41,7 @@ state_dusk_energy = 0.5
 state_night_energy = 1
 state_transition_duration = 1
 move = true
+on = true
 
 [node name="Tween" type="Tween" parent="Moon" index="0"]
 

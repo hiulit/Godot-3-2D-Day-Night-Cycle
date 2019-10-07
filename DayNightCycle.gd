@@ -18,6 +18,8 @@ export (float) var state_transition_duration = 1 # In hours
 
 export (bool) var debug_mode = false
 
+export (bool) var on = true
+
 var current_time
 var current_day_hour
 var current_day_number
@@ -29,7 +31,10 @@ enum cycle_state { NIGHT, DAWN, DAY, DUSK }
 
 
 func _ready():
-#	Global.DayNight = self
+	if not on:
+		queue_free()
+
+	Global.DayNight = self
 
 	day_duration = 60 * 60 * day_duration # Convert 'day_duration' from minutes to seconds
 
@@ -84,25 +89,32 @@ func cycle_test(new_cycle):
 		cycle = new_cycle
 
 		if cycle == cycle_state.NIGHT:
-			if Global.Moon:
+			if obj_exists(Global.Moon):
 				Global.Moon.change_state(Global.Moon.state_night_energy)
 			$Tween.interpolate_property(self, "color", color_dusk, color_night, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
 			$Tween.start()
 
 		if cycle == cycle_state.DAWN:
-			if Global.Moon:
+			if obj_exists(Global.Moon):
 				Global.Moon.change_state(Global.Moon.state_dawn_energy)
 			$Tween.interpolate_property(self, "color", color_night, color_dawn, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
 			$Tween.start()
 
 		if cycle == cycle_state.DAY:
-			if Global.Moon:
+			if obj_exists(Global.Moon):
 				Global.Moon.change_state(Global.Moon.state_day_energy)
 			$Tween.interpolate_property(self, "color", color_dawn, color_day, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
 			$Tween.start()
 
 		if cycle == cycle_state.DUSK:
-			if Global.Moon:
+			if obj_exists(Global.Moon):
 				Global.Moon.change_state(Global.Moon.state_dusk_energy)
 			$Tween.interpolate_property(self, "color", color_day, color_dusk, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
 			$Tween.start()
+
+
+func obj_exists(obj):
+	if Engine.get_version_info().major >= 3 and Engine.get_version_info().minor == 1:
+		return true if is_instance_valid(obj) else false
+	if Engine.get_version_info().major <= 3 and Engine.get_version_info().minor == 0:
+		return true if weakref(obj).get_ref() != null else false
