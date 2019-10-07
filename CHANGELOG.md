@@ -4,6 +4,18 @@
 
 * Up to date.
 
+## [2.1.2] - 2019-10-07
+
+### Added
+
+* New parameter: `on`. Enables/disables the node.
+* New function `obj_exists()` to check if an object has been deleted.
+* Added a `ColorRect` as background to appreciate the cycles and the Moon better.
+
+### Fixed
+
+* The Moon wasn't moving properly.
+
 ## [2.1.1] - 2019-06-12
 
 ### Added
