@@ -156,6 +156,12 @@ You can change all these variables right from the Inspector.
 | --- | --- | --- |
 | `debug_mode` | `bool` | Enables/disables **debug mode**. It prints `current_day_number`, `current_day_hour` and `cycle_state`|
 
+#### On
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `move` | `bool` | Enables/disables the node. |
+
 ### Moon
 
 #### State (DAWN) Energy
@@ -193,6 +199,12 @@ You can change all these variables right from the Inspector.
 | Name | Type | Description |
 | --- | --- | --- |
 | `move` | `bool` | Enables/disables the Moon movement. |
+
+#### On
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `move` | `bool` | Enables/disables the node. |
 
 ## Authors
 
