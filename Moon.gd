@@ -61,7 +61,7 @@ func _ready():
 
 	Global.Moon = self
 
-	energy = 0
+	energy = 1
 
 	transition_duration = Global.DayNight.transition_duration if Global.DayNight else state_transition_duration
 
@@ -81,9 +81,10 @@ func _ready():
 
 	add_child(tween)
 
-func _physics_process(delta):
-	if move:
-		move_moon(delta)
+func _process(delta):
+	position.x += 10 * delta
+#	if move:
+#		move_moon(delta)
 
 
 func change_state(new_state):
@@ -98,7 +99,7 @@ func change_state(new_state):
 
 
 func move_moon(delta):
-#	print(position)
+	print(position)
 	if baked_points_pos + (delta * speed) >= path.get_baked_points().size():
 		baked_points_pos += (delta * speed) - path.get_baked_points().size()
 	else:

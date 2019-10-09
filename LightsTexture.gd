@@ -1,7 +1,7 @@
 extends Node2D
 
 func _ready():
-	queue_free()
+#	queue_free()
 	for light in get_tree().get_nodes_in_group("lights"):
 		# Duplicate the light
 		var new_light_resource = PackedScene.new()

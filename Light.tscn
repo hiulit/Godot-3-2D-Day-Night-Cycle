@@ -3,4 +3,12 @@
 [ext_resource path="res://Light.gd" type="Script" id=1]
 
 [node name="Light" type="Node2D"]
+
 script = ExtResource( 1 )
+inner_radius = 5.0
+shadow_radius = 50.0
+shadow_threshold = 0.0
+steps = 10.0
+color = Color( 1, 1, 1, 1 )
+
+

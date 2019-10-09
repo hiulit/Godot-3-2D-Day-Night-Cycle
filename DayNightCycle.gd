@@ -71,15 +71,20 @@ var cycles = {
 	}
 }
 
+var window_x = ProjectSettings.get_setting("display/window/size/width")
+var window_y = ProjectSettings.get_setting("display/window/size/height")
+
 
 func _ready():
 	if not on:
 		queue_free()
 
 	Global.DayNight = self
+	
+	rect_size = Vector2(window_x, window_y)
 
 	if material.get_shader_param("use_external_lights_tex") == true:
-		material.set_shader_param("lights_tex", get_parent().get_node("LightsViewport").get_texture())
+		material.set_shader_param("lights_tex", get_tree().get_nodes_in_group("lights_viewport")[0].get_texture())
 		material.set_shader_param("use_external_lights_tex", false)
 
 	day_duration = 60 * 60 * day_duration # Convert 'day_duration' from minutes to seconds
@@ -157,7 +162,7 @@ func cycle(new_cycle):
 	if cycle != new_cycle:
 		cycle = new_cycle
 
-		if obj_exists(Global.Moon):
+		if Global.Moon && obj_exists(Global.Moon):
 			Global.Moon.change_state(Global.Moon.cycles[get_cycle_name(cycle).to_lower()].energy)
 
 		var previous_cycle_props = cycles[get_cycle_name(cycle - 1).to_lower()]

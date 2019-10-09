@@ -1,17 +1,37 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
 
-[node name="DayNightCycle" type="CanvasModulate" index="0"]
+[ext_resource path="res://day-night-cycle.tres" type="Material" id=1]
+[ext_resource path="res://DayNightCycle.gd" type="Script" id=2]
 
-editor/display_folded = true
+[node name="DayNightCycle" type="ColorRect" index="0"]
+
+material = ExtResource( 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
 color = Color( 1, 1, 1, 1 )
-
-[node name="Tween" type="Tween" parent="." index="0"]
-
-repeat = false
-playback_process_mode = 1
-playback_speed = 1.0
-playback/active = false
-playback/repeat = false
-playback/speed = 1.0
+script = ExtResource( 2 )
+_sections_unfolded = [ "Material" ]
+day_duration = 0.1
+day_start_hour = 10
+day_start_number = 1
+color_dawn = Color( 0.86, 0.7, 0.7, 1 )
+color_day = Color( 1, 1, 1, 1 )
+color_dusk = Color( 0.59, 0.66, 0.78, 1 )
+color_night = Color( 0.07, 0.09, 0.38, 1 )
+state_dawn_start_hour = 5
+state_day_start_hour = 8
+state_dusk_start_hour = 16
+state_night_start_hour = 19
+state_transition_duration = 1
+debug_mode = false
+on = true
 
 
