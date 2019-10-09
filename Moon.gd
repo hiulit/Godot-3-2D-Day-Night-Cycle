@@ -33,13 +33,32 @@ var hour_step
 var midnight_step
 var baked_points_pos
 
+var tween = Tween.new()
+
+var cycles = {
+	night = {
+		energy = state_night_energy
+	},
+	dawn = {
+		energy = state_dawn_energy
+	},
+	day = {
+		energy = state_day_energy
+	},
+	dusk = {
+		energy = state_dusk_energy
+	}
+}
+
 func _ready():
+	add_to_group("moons");
+
 	if not on:
 		queue_free()
 
 	if !Global.DayNight:
 		return
-	
+
 	Global.Moon = self
 
 	energy = 0
@@ -60,11 +79,11 @@ func _ready():
 	hour_step = path.get_baked_points().size() / 24
 	baked_points_pos = midnight_step + (hour_step * Global.DayNight.day_start_hour)
 
+	add_child(tween)
 
 func _physics_process(delta):
 	if move:
-		if Global.DayNight:
-			move_moon(delta)
+		move_moon(delta)
 
 
 func change_state(new_state):
@@ -74,11 +93,12 @@ func change_state(new_state):
 
 		state = new_state
 
-		$Tween.interpolate_property(self, "energy", energy_start, energy_end, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
-		$Tween.start()
+		tween.interpolate_property(self, "energy", energy_start, energy_end, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
+		tween.start()
 
 
 func move_moon(delta):
+#	print(position)
 	if baked_points_pos + (delta * speed) >= path.get_baked_points().size():
 		baked_points_pos += (delta * speed) - path.get_baked_points().size()
 	else:

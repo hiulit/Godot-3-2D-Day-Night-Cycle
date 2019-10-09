@@ -35,21 +35,13 @@ shadow_filter = 0
 shadow_filter_smooth = 0.0
 shadow_item_cull_mask = 1
 script = ExtResource( 2 )
+_sections_unfolded = [ "Material" ]
 state_dawn_energy = 0.5
-state_day_energy = 0
+state_day_energy = 1.0
 state_dusk_energy = 0.5
 state_night_energy = 1
 state_transition_duration = 1
 move = true
 on = true
-
-[node name="Tween" type="Tween" parent="Moon" index="0"]
-
-repeat = false
-playback_process_mode = 1
-playback_speed = 1.0
-playback/active = false
-playback/repeat = false
-playback/speed = 1.0
 
 

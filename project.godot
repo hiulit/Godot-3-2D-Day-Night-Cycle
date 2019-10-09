@@ -10,13 +10,22 @@ config_version=3
 
 [application]
 
-config/name="Day-Night cycle"
+config/name="Godot-3-2D-Day-Night-Cycle"
 run/main_scene="res://TestScene.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Global="*res://Global.gd"
+
+[display]
+
+window/size/width=320
+window/size/height=180
+window/size/test_width=640
+window/size/test_height=360
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [rendering]
 

@@ -1,6 +1,6 @@
-extends CanvasModulate
+extends ColorRect
 
-export (float) var day_duration = 0.5 # In minutes
+export (float) var day_duration = 0.1 # In minutes
 export (float) var day_start_hour = 10 # 24 hours time (0-23)
 export (float) var day_start_number = 1
 
@@ -29,12 +29,58 @@ var transition_duration
 var cycle
 enum cycle_state { NIGHT, DAWN, DAY, DUSK }
 
+var cycle_color
+var cycle_brightness
+var cycle_contrast
+var cycle_saturation
+var cycle_pop_strength
+var cycle_pop_threslhold
+
+var cycles = {
+	night = {
+		color = color_night,
+		brightness = 1.11,
+		contrast = 0.7,
+		saturation = 0.64,
+		pop_strength = 1.67,
+		pop_threslhold = 0.69
+	},
+	dawn = {
+		color = color_dawn,
+		brightness = 0.88,
+		contrast = 1.3,
+		saturation = 1.24,
+		pop_strength = 1.0,
+		pop_threslhold = 0.84
+	},
+	day = {
+		color = color_day,
+		brightness = 1.0,
+		contrast = 1.0,
+		saturation = 1.0,
+		pop_strength = 1.0,
+		pop_threslhold = 1.0
+	},
+	dusk = {
+		color = color_dusk,
+		brightness = 0.94,
+		contrast = 1.24,
+		saturation = 1.36,
+		pop_strength = 1.0,
+		pop_threslhold = 0.83
+	}
+}
+
 
 func _ready():
 	if not on:
 		queue_free()
 
 	Global.DayNight = self
+
+	if material.get_shader_param("use_external_lights_tex") == true:
+		material.set_shader_param("lights_tex", get_parent().get_node("LightsViewport").get_texture())
+		material.set_shader_param("use_external_lights_tex", false)
 
 	day_duration = 60 * 60 * day_duration # Convert 'day_duration' from minutes to seconds
 
@@ -46,19 +92,35 @@ func _ready():
 
 	if current_day_hour >= state_night_start_hour or current_day_hour < state_dawn_start_hour:
 		cycle = cycle_state.NIGHT
-		color = color_night
 	elif current_day_hour >= state_dawn_start_hour and current_day_hour < state_day_start_hour:
 		cycle = cycle_state.DAWN
-		color = color_dawn
 	elif current_day_hour >= state_day_start_hour and current_day_hour < state_dusk_start_hour:
 		cycle = cycle_state.DAY
-		color = color_day
 	elif current_day_hour >= state_dusk_start_hour and current_day_hour < state_night_start_hour:
 		cycle = cycle_state.DUSK
-		color = color_dusk
+
+	cycle_color = cycles[get_cycle_name(cycle).to_lower()].color
+	cycle_brightness = cycles[get_cycle_name(cycle).to_lower()].brightness
+	cycle_contrast = cycles[get_cycle_name(cycle).to_lower()].contrast
+	cycle_saturation = cycles[get_cycle_name(cycle).to_lower()].saturation
+	cycle_pop_strength = cycles[get_cycle_name(cycle).to_lower()].pop_strength
+	cycle_pop_threslhold = cycles[get_cycle_name(cycle).to_lower()].pop_threslhold
+
+#	material.set_shader_param("cycle_color", cycle_color)
+#	material.set_shader_param("brightness", cycle_brightness)
+#	material.set_shader_param("contrast", cycle_contrast)
+#	material.set_shader_param("saturation", cycle_saturation)
+#	material.set_shader_param("pop_strength", cycle_pop_strength)
+#	material.set_shader_param("pop_threslhold", cycle_pop_threslhold)
+
+	# Add a tween for each property
+	for i in cycles.keys():
+		for j in cycles[i].keys():
+			cycles[i]["tween_" + j] = Tween.new()
+			add_child(cycles[i]["tween_" + j])
 
 
-func _physics_process(delta):
+func _process(delta):
 	day_cycle()
 	current_time += 1
 
@@ -72,45 +134,51 @@ func day_cycle():
 		current_day_number += 1
 
 	if current_day_hour >= state_night_start_hour or current_day_hour < state_dawn_start_hour:
-		cycle_test(cycle_state.NIGHT)
+		cycle(cycle_state.NIGHT)
 	elif current_day_hour >= state_dawn_start_hour and current_day_hour < state_day_start_hour:
-		cycle_test(cycle_state.DAWN)
+		cycle(cycle_state.DAWN)
 	elif current_day_hour >= state_day_start_hour and current_day_hour < state_dusk_start_hour:
-		cycle_test(cycle_state.DAY)
+		cycle(cycle_state.DAY)
 	elif current_day_hour >= state_dusk_start_hour and current_day_hour < state_night_start_hour:
-		cycle_test(cycle_state.DUSK)
+		cycle(cycle_state.DUSK)
+
+	material.set_shader_param("cycle_color", cycle_color)
+	material.set_shader_param("brightness", cycle_brightness)
+	material.set_shader_param("contrast", cycle_contrast)
+	material.set_shader_param("saturation", cycle_saturation)
+	material.set_shader_param("pop_strength", cycle_pop_strength)
+	material.set_shader_param("pop_threslhold", cycle_pop_threslhold)
 
 	if debug_mode:
-		print(str("Day ", current_day_number)  + " - " + str(int(current_day_hour), " h") + " - " + str(cycle_state.keys()[cycle]))
+		print(str("Day ", current_day_number)  + " - " + str(int(current_day_hour), " h") + " - " + get_cycle_name(cycle))
 
 
-func cycle_test(new_cycle):
+func cycle(new_cycle):
 	if cycle != new_cycle:
 		cycle = new_cycle
 
-		if cycle == cycle_state.NIGHT:
-			if obj_exists(Global.Moon):
-				Global.Moon.change_state(Global.Moon.state_night_energy)
-			$Tween.interpolate_property(self, "color", color_dusk, color_night, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
-			$Tween.start()
+		if obj_exists(Global.Moon):
+			Global.Moon.change_state(Global.Moon.cycles[get_cycle_name(cycle).to_lower()].energy)
 
-		if cycle == cycle_state.DAWN:
-			if obj_exists(Global.Moon):
-				Global.Moon.change_state(Global.Moon.state_dawn_energy)
-			$Tween.interpolate_property(self, "color", color_night, color_dawn, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
-			$Tween.start()
+		var previous_cycle_props = cycles[get_cycle_name(cycle - 1).to_lower()]
+		var current_cycle_props = cycles[get_cycle_name(cycle).to_lower()]
 
-		if cycle == cycle_state.DAY:
-			if obj_exists(Global.Moon):
-				Global.Moon.change_state(Global.Moon.state_day_energy)
-			$Tween.interpolate_property(self, "color", color_dawn, color_day, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
-			$Tween.start()
+		for key in current_cycle_props.keys():
+			if key.find("tween_"):
+				current_cycle_props["tween_" + key].interpolate_property(
+					self,
+					"cycle_" + key,
+					previous_cycle_props[key],
+					current_cycle_props[key],
+					transition_duration,
+					Tween.TRANS_SINE,
+					Tween.EASE_OUT
+				)
+				current_cycle_props["tween_" + key].start()
 
-		if cycle == cycle_state.DUSK:
-			if obj_exists(Global.Moon):
-				Global.Moon.change_state(Global.Moon.state_dusk_energy)
-			$Tween.interpolate_property(self, "color", color_day, color_dusk, transition_duration, Tween.TRANS_SINE, Tween.EASE_OUT)
-			$Tween.start()
+
+func get_cycle_name(cycle):
+	return str(cycle_state.keys()[cycle])
 
 
 func obj_exists(obj):
