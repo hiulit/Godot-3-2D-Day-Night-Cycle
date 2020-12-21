@@ -1,170 +1,331 @@
 extends Node
 
-const seconds_in_a_minute = 60
-const minutes_in_an_hour = 60
-const hours_in_a_day = 24
-const days_in_a_month = 30
-const months_in_a_year = 12
-var seconds_in_a_day = hours_in_a_day * minutes_in_an_hour * seconds_in_a_minute
-var seconds_in_a_month = days_in_a_month * seconds_in_a_day
+signal current_second_changed
+signal current_minute_changed
+signal current_hour_changed
+signal current_cycle_changed
+
+enum cycle_state { NIGHT, DAWN, DAY, DUSK }
+
+const SECONDS_IN_A_MINUTE = 60
+const MINUTES_IN_AN_HOUR = 60
+const HOURS_IN_A_DAY = 24
+const DAYS_IN_A_WEEK = 7
+const DAYS_IN_A_YEAR = 365
+const MONTHS_IN_A_YEAR = 12
+
+#const DAYS_IN_A_MONTH = DAYS_IN_A_YEAR / MONTHS_IN_A_YEAR
+const DAYS_IN_A_MONTH = 30
+#const WEEKS_IN_A_MONTH = DAYS_IN_A_MONTH / DAYS_IN_A_WEEK
+
+const SECONDS_IN_AN_HOUR = SECONDS_IN_A_MINUTE * MINUTES_IN_AN_HOUR
+const SECONDS_IN_A_DAY = SECONDS_IN_A_MINUTE * MINUTES_IN_AN_HOUR * HOURS_IN_A_DAY
+#const SECONDS_IN_A_WEEK = SECONDS_IN_A_DAY * DAYS_IN_A_WEEK
+const SECONDS_IN_A_MONTH = SECONDS_IN_A_DAY * DAYS_IN_A_MONTH
+const SECONDS_IN_A_YEAR = SECONDS_IN_A_MONTH * MONTHS_IN_A_YEAR
+
+# The amount of in-game seconds that should elapse for each real-time second.
+# Has to be at least 60 so that we can store 'seconds_elapsed' as an 'int'.
+const IN_GAME_SECONDS_PER_REAL_TIME_SECONDS = 5400 * 2 # 90 minutes in game == 1 second in real time.
 
 # The hour in the day in which the game starts (0-23).
-# Note that unlike the other game_start_* variables,
+# ----
+# Note that unlike the other 'game_start_*' variables,
 # the value of this variable (in seconds) will be appended
-# to seconds_elapsed on game start, and this is
-# done to avoid not being able to move the debug time slider
+# to 'seconds_elapsed' on game start.
+# This is done to avoid not being able to move the debug time slider
 # back to earlier hours in the day.
-# Should be at least 1 to ensure that _update_current_cycle()
-# gets called.
-const game_start_hour = 10
-# The day of the month in which the game starts (1-x).
-const game_start_day = 1
+# Should be at least 1 to ensure that '_update_current_cycle()' gets called.
+# ----
+var game_start_hour = 0
+# The day of the month in which the game starts (1-30).
+var game_start_day = 30
 # The month in which the game starts (1-12).
-const game_start_month = 11
-# The year in which the game starts.
-const game_start_year = 2010
+var game_start_month = 12
+# The year in which the game starts (0-INF).
+var game_start_year = 2020
 
-# Calculated below
-var game_start_in_seconds = 0
+# Calculated below. (previously 'game_start_in_seconds')
+var epoch = 0
 
+# The start hours of each cycle.
 var state_dawn_start_hour = 5
 var state_day_start_hour = 8
 var state_dusk_start_hour = 16
 var state_night_start_hour = 19
 
+# The duration, in hours, of the time it takes
+# to transition from one state to another.
+var state_transition_duration = 1
+
 # The seconds that have elapsed in-game since the game started.
 var seconds_elapsed: int = 0
-# Keeps track of fractions of a second that have elapsed so that
-# we can store seconds_elapsed as an int without losing accuracy when
-# multiplying by delta.
+# Keeps track of fractions of a second that have elapsed so that we can store
+# 'seconds_elapsed' as an int without losing accuracy when multiplying by delta.
 var seconds_elapsed_remainder: float = 0
 
-# The amount of in-game seconds that should elapse for each real-time second.
-# Has to be at least 60 so that we can store seconds_elapsed as an int.
-const in_game_seconds_per_real_time_second = 1200 # 20 minutes in game == 1 minute in real time
+# Keeps track of the current cycle.
+var current_cycle = cycle_state.DAY
 
-enum cycle_state { NIGHT, DAWN, DAY, DUSK }
-var current_cycle = cycle_state.NIGHT
 # When changing the time via the debug controls, we should skip interpolation.
-#warning-ignore:unused_class_variable
-var changing_time_manually = false
-var freeze_time = false
-
-signal current_second_changed()
-signal current_minute_changed()
-signal current_hour_changed()
-signal current_cycle_changed()
+var changing_time_manually = false setget _set_changing_time_manually
+var freeze_time = false setget _set_freeze_time
 
 func _ready():
-	var start_day_in_seconds = (game_start_day - 1) * seconds_in_a_day
-	var start_month_in_seconds = (game_start_month - 1) * days_in_a_month * seconds_in_a_day
-	var start_year_in_seconds = game_start_year * months_in_a_year * seconds_in_a_month
-	game_start_in_seconds = start_year_in_seconds \
-		+ start_month_in_seconds \
-		+ start_day_in_seconds
-
-	set_seconds_elapsed(hours_to_seconds(game_start_hour))
-
-func _physics_process(_delta):
-	print("_")
-	if (changing_time_manually or freeze_time):
-		# Don't update the time while the debug time slider handle is being dragged,
-		# as it conflicts with what the dev is trying to set.
+	if IN_GAME_SECONDS_PER_REAL_TIME_SECONDS < 60:
+		printerr("--------------------")
+		printerr("ERROR!")
+		printerr("File: '%s.gd'."  % self.name)
+		printerr("Message: The constant 'IN_GAME_SECONDS_PER_REAL_TIME_SECONDS' (" + \
+				str(IN_GAME_SECONDS_PER_REAL_TIME_SECONDS) + ") must be set to >= 60.")
+		printerr("--------------------")
+		set_physics_process(false)
 		return
 
-	seconds_elapsed_remainder = _delta * in_game_seconds_per_real_time_second
+	if game_start_hour < 0 or game_start_hour > 23:
+		printerr("--------------------")
+		printerr("ERROR!")
+		printerr("File: '%s.gd.'"  % self.name)
+		printerr("Message: The variable 'game_start_hour' (" + \
+				str(game_start_hour) + ") must be set between >= 0 and <= 23.")
+		printerr("--------------------")
+		set_physics_process(false)
+		return
+
+	if game_start_day < 1 or game_start_day > 30:
+		printerr("--------------------")
+		printerr("ERROR!")
+		printerr("File: '%s.gd.'"  % self.name)
+		printerr("Message: The variable 'game_start_day' (" + \
+				str(game_start_day) + ") must be set between >= 1 and <= 30.")
+		printerr("--------------------")
+		set_physics_process(false)
+		return
+
+	if game_start_month < 1 or game_start_month > 12:
+		printerr("--------------------")
+		printerr("ERROR!")
+		printerr("File: '%s.gd.'"  % self.name)
+		printerr("Message: The variable 'game_start_month' (" + \
+				str(game_start_month) + ") must be set between >= 1 and <= 12.")
+		printerr("--------------------")
+		set_physics_process(false)
+		return
+
+#	print("----")
+#	print("SECONDS_IN_AN_HOUR: ", SECONDS_IN_AN_HOUR)
+#	print("SECONDS_IN_A_DAY: ", SECONDS_IN_A_DAY)
+##	print("SECONDS_IN_A_WEEK: ", SECONDS_IN_A_WEEK)
+#	print("SECONDS_IN_A_MONTH: ", SECONDS_IN_A_MONTH)
+#	print("SECONDS_IN_A_YEAR: ", SECONDS_IN_A_YEAR)
+#	print("----")
+
+	var start_hour_in_seconds = game_start_hour * SECONDS_IN_AN_HOUR
+#	print("start_hour_in_seconds: ", start_hour_in_seconds)
+#	print(seconds_elapsed_to_hour(start_hour_in_seconds))
+	var start_day_in_seconds = (game_start_day - 1) * SECONDS_IN_A_DAY
+#	print("start_day_in_seconds: ", start_day_in_seconds)
+#	print(seconds_elapsed_to_day(start_day_in_seconds))
+	var start_month_in_seconds = (game_start_month - 1) * SECONDS_IN_A_MONTH
+#	print("start_month_in_seconds: ", start_month_in_seconds)
+#	print(seconds_elapsed_to_month(start_month_in_seconds))
+	var start_year_in_seconds = game_start_year * SECONDS_IN_A_YEAR
+#	print("start_year_in_seconds: ", start_year_in_seconds)
+#	print(seconds_elapsed_to_year(start_year_in_seconds))
+#	print("-------")
+
+	epoch = start_hour_in_seconds + \
+			start_day_in_seconds + \
+			start_month_in_seconds + \
+			start_year_in_seconds
+
+#	print("-------")
+#	print("epoch: ", epoch)
+#	print("-------")
+
+	_update_current_cycle()
+	_set_seconds_elapsed(epoch)
+
+#	print("-------")
+#	var current_hour = seconds_elapsed_to_hour(epoch)
+#	print("current_hour: ", current_hour)
+#	var current_day = seconds_elapsed_to_day(epoch)
+#	print("current_day: ", current_day)
+#	var current_month = seconds_elapsed_to_month(epoch)
+#	print("current_month: ", current_month)
+#	var current_year = seconds_elapsed_to_year(epoch)
+#	print("current_year: ", current_year)
+#	print("-------")
+
+
+func _physics_process(delta):
+#	print("_")
+
+	seconds_elapsed_remainder = delta * IN_GAME_SECONDS_PER_REAL_TIME_SECONDS
+#	print("seconds_elapsed_remainder: ", seconds_elapsed_remainder)
 	var seconds_to_add = int(seconds_elapsed_remainder)
-	if (seconds_to_add >= 1):
+#	print("seconds_to_add: ", seconds_to_add)
+	if seconds_to_add >= 1:
 		seconds_elapsed_remainder -= seconds_to_add
-		set_seconds_elapsed(seconds_elapsed + seconds_to_add)
+		_set_seconds_elapsed(seconds_elapsed + seconds_to_add)
+
+
+func seconds_elapsed_to_hour(seconds):
+	return floor((((int(seconds) % int(SECONDS_IN_A_YEAR)) % int(SECONDS_IN_A_MONTH)) % int(SECONDS_IN_A_DAY)) / SECONDS_IN_AN_HOUR)
+
+
+func seconds_elapsed_to_day(seconds):
+	return floor((((int(seconds) % int(SECONDS_IN_A_YEAR)) % int(SECONDS_IN_A_MONTH)) + SECONDS_IN_A_DAY) / SECONDS_IN_A_DAY)
+
+
+func seconds_elapsed_to_month(seconds):
+	return floor(((int(seconds) % int(SECONDS_IN_A_YEAR)) + SECONDS_IN_A_MONTH) / SECONDS_IN_A_MONTH)
+
+
+func seconds_elapsed_to_year(seconds):
+	return floor(seconds / SECONDS_IN_A_YEAR)
+
 
 # Getters for particular units (m/s/h/etc.) of the current time.
-func current_second():
-	return seconds_elapsed % seconds_in_a_minute;
+func get_current_second():
+	return seconds_elapsed % SECONDS_IN_A_MINUTE;
 
-func current_minute():
-	return seconds_to_minutes(seconds_elapsed) % minutes_in_an_hour
 
-func current_hour():
-	var hours_elapsed = minutes_to_hours(seconds_to_minutes(seconds_elapsed))
-	return hours_elapsed % hours_in_a_day;
+func get_current_minute():
+	var minutes_elapsed = seconds_to_minutes(seconds_elapsed)
+	return minutes_elapsed % MINUTES_IN_AN_HOUR
 
-func current_day():
-	var hours_elapsed = minutes_to_hours(seconds_to_minutes(seconds_elapsed))
-	var days_elapsed = hours_to_days(hours_elapsed)
-	return (game_start_day + days_elapsed) % days_in_a_month
 
-func current_month():
-	var hours_elapsed = minutes_to_hours(seconds_to_minutes(seconds_elapsed))
-	var days_elapsed = hours_to_days(hours_elapsed)
-	var months_elapsed = days_to_months(days_elapsed)
-	return (game_start_month + months_elapsed) % months_in_a_year
+func get_current_hour():
+	return seconds_elapsed_to_hour(seconds_elapsed)
 
-func current_year():
-	var hours_elapsed = minutes_to_hours(seconds_to_minutes(seconds_elapsed))
-	var days_elapsed = hours_to_days(hours_elapsed)
-	var months_elapsed = days_to_months(days_elapsed)
-	return game_start_year + months_to_years(months_elapsed)
 
-func current_time_string():
-	var time_string = str(current_hour()) + ":" + str(current_minute()) + ":" + str(current_second())
-	return time_string
+func get_current_day():
+	return seconds_elapsed_to_day(seconds_elapsed)
 
-func current_date_string():
-	return str(current_day()) + "/" + str(current_month()) + "/" + str(current_year())
 
-# General time unit conversion functions.
-func seconds_to_minutes(seconds):
-	return seconds / seconds_in_a_minute
+func get_current_month():
+	return seconds_elapsed_to_month(seconds_elapsed)
 
-func minutes_to_hours(minutes):
-	return minutes / minutes_in_an_hour
 
-func hours_to_days(hours):
-	return hours / hours_in_a_day
+func get_current_year():
+	return seconds_elapsed_to_year(seconds_elapsed)
 
-func days_to_months(days):
-	return days / days_in_a_month
 
-func months_to_years(months):
-	return months / months_in_a_year
-
-func minutes_to_seconds(minutes):
-	return minutes * seconds_in_a_minute
-
-func hours_to_seconds(hours):
-	return hours * minutes_in_an_hour * seconds_in_a_minute
-
-func set_seconds_elapsed(seconds):
-	if (seconds == seconds_elapsed):
+# Setters for particular units (m/s/h/etc.) of the current time.
+func _set_seconds_elapsed(seconds):
+#	print("_set_seconds_elapsed: ", seconds)
+	if seconds == seconds_elapsed:
 		return
 
-	if (seconds < 0):
-		push_warning("Seconds cannot be less than zero (" + str(seconds) + ")")
-		return
+#	print("_set_seconds_elapsed: ", seconds)
+#	if seconds < 0:
+#		printerr("------------------------------------------------------------------")
+#		printerr("ERROR!")
+#		printerr("File: '%s.gd'"  % self.name)
+#		printerr("Function: '_set_seconds_elapsed(seconds)'")
+#		printerr("Message: 'seconds' cannot be less than zero (" + str(seconds) + ")")
+#		printerr("------------------------------------------------------------------")
+#		return
 
-	var previous_minute = int(current_minute())
-	var previous_hour = int(current_hour())
+	var previous_minute = int(get_current_minute())
+	var previous_hour = int(get_current_hour())
 
 	seconds_elapsed = seconds
 
 	emit_signal("current_second_changed")
 
-	if (int(current_minute()) != previous_minute):
+	if int(get_current_minute()) != previous_minute:
 		emit_signal("current_minute_changed")
 
-	if (int(current_hour()) != previous_hour):
-		_update_current_cycle()
+	if int(get_current_hour()) != previous_hour:
 		emit_signal("current_hour_changed")
+		_update_current_cycle()
+
+#	print("-----")
+#	print(get_current_hour())
+#	print(get_current_day())
+#	print(get_current_month())
+#	print(get_current_year())
+#	print("-----")
+
 
 func set_current_hour(hour):
-	var previous_hour = current_hour()
-	if (hour == previous_hour):
+	var previous_hour = get_current_hour()
+
+	if hour == previous_hour:
 		return
 
 	var difference = hour - previous_hour
 	var difference_in_seconds = hours_to_seconds(difference)
-	set_seconds_elapsed(seconds_elapsed + difference_in_seconds)
+	_set_seconds_elapsed(seconds_elapsed + difference_in_seconds)
+
+
+# General string conversion functions.
+func current_time_string():
+	var time_string = str("%02d" % get_current_hour()) + ":" + \
+			str("%02d" % get_current_minute()) + ":" + \
+			str("%02d" % get_current_second())
+	return time_string
+
+
+func current_date_string():
+	return str("%02d" % get_current_day()) + "/" + \
+			str("%02d" % get_current_month()) + "/" +\
+			str("%02d" % get_current_year())
+
+
+func current_cycle_to_string():
+	return cycle_state.keys()[current_cycle]
+
+
+# General time unit conversion functions.
+func seconds_to_minutes(seconds):
+	return seconds / SECONDS_IN_A_MINUTE
+
+
+func seconds_to_hours(seconds):
+	return seconds / SECONDS_IN_AN_HOUR
+
+
+func seconds_to_days(seconds):
+	return seconds / SECONDS_IN_A_DAY
+
+
+func seconds_to_months(seconds):
+	return seconds / SECONDS_IN_A_MONTH
+
+
+func seconds_to_years(seconds):
+	return seconds / SECONDS_IN_A_YEAR
+
+
+func minutes_to_seconds(minutes):
+	return minutes * SECONDS_IN_A_MINUTE
+
+
+func minutes_to_hours(minutes):
+	return minutes / MINUTES_IN_AN_HOUR
+
+
+func hours_to_seconds(hours):
+	return hours * MINUTES_IN_AN_HOUR * SECONDS_IN_A_MINUTE
+
+
+func hours_to_days(hours):
+	return hours / HOURS_IN_A_DAY
+
+
+func days_to_months(days):
+	return days / DAYS_IN_A_MONTH
+
+
+func months_to_years(months):
+	return months / MONTHS_IN_A_YEAR
+
+
+
+
 
 #func get_artificial_light_strength():
 #    # The light should be stronger the further it is from midday.
@@ -172,23 +333,40 @@ func set_current_hour(hour):
 #        return (11.0 - current_day_hour) / 11.0
 #    return (current_day_hour / 12.0) - 1.0
 
-func current_cycle_to_string():
-	return cycle_state.keys()[current_cycle]
 
+
+
+# PRIVATE FUNCTIONS
+# -----------------
 func _update_current_cycle():
-	var current_day_hour = current_hour()
-	if (current_day_hour >= state_night_start_hour or current_day_hour < state_dawn_start_hour):
+	var current_day_hour = get_current_hour()
+
+	if current_day_hour >= state_night_start_hour or current_day_hour < state_dawn_start_hour:
 		_set_current_cycle(cycle_state.NIGHT)
-	elif (current_day_hour >= state_dawn_start_hour and current_day_hour < state_day_start_hour):
+	elif current_day_hour >= state_dawn_start_hour and current_day_hour < state_day_start_hour:
 		_set_current_cycle(cycle_state.DAWN)
-	elif (current_day_hour >= state_day_start_hour and current_day_hour < state_dusk_start_hour):
+	elif current_day_hour >= state_day_start_hour and current_day_hour < state_dusk_start_hour:
 		_set_current_cycle(cycle_state.DAY)
-	elif (current_day_hour >= state_dusk_start_hour and current_day_hour < state_night_start_hour):
+	elif current_day_hour >= state_dusk_start_hour and current_day_hour < state_night_start_hour:
 		_set_current_cycle(cycle_state.DUSK)
 
+
 func _set_current_cycle(cycle):
-	if (cycle == current_cycle):
+	if cycle == current_cycle:
 		return
 
 	current_cycle = cycle
 	emit_signal("current_cycle_changed")
+
+
+func _set_changing_time_manually(new_value):
+	changing_time_manually = new_value
+#	print("changing_time_manually: ", changing_time_manually)
+	if not freeze_time:
+		set_physics_process(not changing_time_manually)
+
+
+func _set_freeze_time(new_value):
+	freeze_time = new_value
+#	print("freeze_time: ", freeze_time)
+	set_physics_process(not freeze_time)

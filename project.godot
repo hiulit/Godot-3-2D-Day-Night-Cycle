@@ -8,22 +8,22 @@
 
 config_version=4
 
-_global_script_classes=[  ]
-_global_script_class_icons={
-
-}
-
 [application]
 
-config/name="Day-Night cycle"
-run/main_scene="res://TestScene.tscn"
+config/name="Godot 3 2D Day/Night Cycle"
+run/main_scene="res://demo_scene.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Global="*res://Global.gd"
 Time="*res://Time.gd"
+
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 environment/default_environment="res://default_env.tres"

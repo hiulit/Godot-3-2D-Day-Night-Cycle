@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://day_night_cycle.tscn" type="PackedScene" id=1]
+[ext_resource path="res://moon.tscn" type="PackedScene" id=2]
+[ext_resource path="res://background_sprite.png" type="Texture" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://debug_overlay.tscn" type="PackedScene" id=5]
+
+[node name="demo" type="Node"]
+
+[node name="background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.835294, 0.835294, 0.835294, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="icon" type="Sprite" parent="."]
+position = Vector2( 512, 300 )
+texture = ExtResource( 4 )
+
+[node name="background_sprite" type="Sprite" parent="."]
+position = Vector2( 506.987, 299.569 )
+scale = Vector2( 0.472776, 0.472777 )
+texture = ExtResource( 3 )
+
+[node name="day_night_cycle" parent="." instance=ExtResource( 1 )]
+color_night = Color( 0.0705882, 0.0901961, 0.380392, 1 )
+
+[node name="moon" parent="." instance=ExtResource( 2 )]
+
+[node name="popup_layer" type="CanvasLayer" parent="."]
+
+[node name="popup_panel" parent="popup_layer" instance=ExtResource( 5 )]
