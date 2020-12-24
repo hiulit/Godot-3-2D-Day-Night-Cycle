@@ -21,6 +21,7 @@ position = Vector2( 512, 300 )
 texture = ExtResource( 4 )
 
 [node name="background_sprite" type="Sprite" parent="."]
+visible = false
 position = Vector2( 506.987, 299.569 )
 scale = Vector2( 0.472776, 0.472777 )
 texture = ExtResource( 3 )
@@ -33,3 +34,4 @@ color_night = Color( 0.0705882, 0.0901961, 0.380392, 1 )
 [node name="popup_layer" type="CanvasLayer" parent="."]
 
 [node name="popup_panel" parent="popup_layer" instance=ExtResource( 5 )]
+popup_exclusive = true
