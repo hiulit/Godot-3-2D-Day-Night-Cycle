@@ -5,7 +5,8 @@
 
 [node name="moon" type="Light2D"]
 texture = ExtResource( 1 )
-color = Color( 0.027451, 0.317647, 0.737255, 1 )
 script = ExtResource( 2 )
+
+[node name="color_transition_tween" type="Tween" parent="."]
 
 [node name="energy_transition_tween" type="Tween" parent="."]

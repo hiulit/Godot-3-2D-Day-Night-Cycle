@@ -1,8 +1,12 @@
 extends Light2D
 
+export (Color) var color_night = Color(1.0, 1.0, 1.0, 1.0)
 export (float) var energy_night = 1
+export (Color) var color_dawn = Color(1.0, 1.0, 1.0, 1.0)
 export (float) var energy_dawn = 0.5
+export (Color) var color_day = Color(1.0, 1.0, 1.0, 1.0)
 export (float) var energy_day = 0
+export (Color) var color_dusk = Color(1.0, 1.0, 1.0, 1.0)
 export (float) var energy_dusk = 0.5
 export (float) var state_transition_duration = 1 # In in-game hours.
 
@@ -20,6 +24,7 @@ var hour_step
 var start_position
 var moon_position
 
+onready var color_transition_tween = $color_transition_tween
 onready var energy_transition_tween = $energy_transition_tween
 
 func _ready():
@@ -42,12 +47,16 @@ func _ready():
 
 	match Time.current_cycle:
 		Time.cycle_state.NIGHT:
+			color = color_night
 			energy = energy_night
 		Time.cycle_state.DAWN:
+			color = color_dawn
 			energy = energy_dawn
 		Time.cycle_state.DAY:
+			color = color_day
 			energy = energy_day
 		Time.cycle_state.DUSK:
+			color = color_dusk
 			energy = energy_dusk
 
 
@@ -67,6 +76,17 @@ func _on_current_cycle_changed():
 	match Time.current_cycle:
 		Time.cycle_state.NIGHT:
 			if not Time.changing_time_manually:
+				color_transition_tween.interpolate_property(
+					self,
+					"color",
+					color_dusk,
+					color_night,
+					Time.state_transition_duration,
+					Tween.TRANS_SINE,
+					Tween.EASE_OUT
+				)
+				color_transition_tween.start()
+
 				energy_transition_tween.interpolate_property(
 					self,
 					"energy",
@@ -81,6 +101,17 @@ func _on_current_cycle_changed():
 				set_color(energy_night)
 		Time.cycle_state.DAWN:
 			if not Time.changing_time_manually:
+				color_transition_tween.interpolate_property(
+					self,
+					"color",
+					color_night,
+					color_dawn,
+					Time.state_transition_duration,
+					Tween.TRANS_SINE,
+					Tween.EASE_OUT
+				)
+				color_transition_tween.start()
+
 				energy_transition_tween.interpolate_property(
 					self,
 					"energy",
@@ -95,6 +126,17 @@ func _on_current_cycle_changed():
 				set_color(energy_dawn)
 		Time.cycle_state.DAY:
 			if not Time.changing_time_manually:
+				color_transition_tween.interpolate_property(
+					self,
+					"color",
+					color_dawn,
+					color_day,
+					Time.state_transition_duration,
+					Tween.TRANS_SINE,
+					Tween.EASE_OUT
+				)
+				color_transition_tween.start()
+
 				energy_transition_tween.interpolate_property(
 					self,
 					"energy",
@@ -109,6 +151,17 @@ func _on_current_cycle_changed():
 				set_color(energy_day)
 		Time.cycle_state.DUSK:
 			if not Time.changing_time_manually:
+				color_transition_tween.interpolate_property(
+					self,
+					"color",
+					color_day,
+					color_dusk,
+					Time.state_transition_duration,
+					Tween.TRANS_SINE,
+					Tween.EASE_OUT
+				)
+				color_transition_tween.start()
+
 				energy_transition_tween.interpolate_property(
 					self,
 					"energy",
