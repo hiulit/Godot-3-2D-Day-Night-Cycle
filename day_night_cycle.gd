@@ -38,7 +38,7 @@ func _on_current_cycle_changed():
 				)
 				color_transition_tween.start()
 			else:
-				set_color(color_night)
+				color = color_night
 		Time.cycle_state.DAWN:
 			if not Time.changing_time_manually:
 				color_transition_tween.interpolate_property(
@@ -52,7 +52,7 @@ func _on_current_cycle_changed():
 				)
 				color_transition_tween.start()
 			else:
-				set_color(color_dawn)
+				color = color_dawn
 		Time.cycle_state.DAY:
 			if not Time.changing_time_manually:
 				color_transition_tween.interpolate_property(
@@ -66,7 +66,7 @@ func _on_current_cycle_changed():
 				)
 				color_transition_tween.start()
 			else:
-				set_color(color_day)
+				color = color_day
 		Time.cycle_state.DUSK:
 			if not Time.changing_time_manually:
 				color_transition_tween.interpolate_property(
@@ -80,4 +80,4 @@ func _on_current_cycle_changed():
 				)
 				color_transition_tween.start()
 			else:
-				set_color(color_dusk)
+				color = color_dusk
