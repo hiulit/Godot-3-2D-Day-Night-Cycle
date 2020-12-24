@@ -8,7 +8,6 @@ export (Color) var color_day = Color(1.0, 1.0, 1.0, 1.0)
 export (float) var energy_day = 0
 export (Color) var color_dusk = Color(1.0, 1.0, 1.0, 1.0)
 export (float) var energy_dusk = 0.5
-export (float) var state_transition_duration = 1 # In in-game hours.
 
 var window_x = ProjectSettings.get_setting("display/window/size/width")
 var window_y = ProjectSettings.get_setting("display/window/size/height")
