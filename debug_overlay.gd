@@ -21,12 +21,16 @@ func _ready():
 	if connect_current_hour_changed_signal != OK:
 		printerr(connect_current_hour_changed_signal)
 
+	var connect_current_cycle_changed_signal = Time.connect("current_cycle_changed", self, "_on_current_cycle_changed")
+	if connect_current_cycle_changed_signal != OK:
+		printerr(connect_current_cycle_changed_signal)
+
 	freeze_time_checkbox.pressed = Time.freeze_time
 
 	_update_time_slider()
 	_update_time_labels()
 
-#	call_deferred("popup")
+	call_deferred("popup")
 
 
 func _process(_delta):
@@ -46,7 +50,7 @@ func _update_fps_text():
 
 
 func _update_time_slider():
-	# Update the handle to reflect to the current hour.
+	# Update the handle to reflect the current hour.
 	var current_hour_normalized = Time.get_current_hour() / float(Time.HOURS_IN_A_DAY)
 #	set_block_signals(true)
 	time_slider.value = current_hour_normalized * time_slider.max_value
@@ -71,6 +75,10 @@ func _on_hour_changed():
 #		return
 
 	_update_time_slider()
+
+
+func _on_current_cycle_changed():
+	_update_time_labels()
 
 
 func _on_time_slider_gui_input(event):
