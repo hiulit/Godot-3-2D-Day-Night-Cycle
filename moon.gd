@@ -31,6 +31,10 @@ func _ready():
 	if connect_current_cycle_changed_signal != OK:
 		printerr(connect_current_cycle_changed_signal)
 
+	var connect_time_freezed_signal = Time.connect("time_freezed", self, "_on_time_freezed")
+	if connect_time_freezed_signal != OK:
+		printerr(connect_time_freezed_signal)
+
 	path.add_point(window_center + Vector2(0, -radius_y), Vector2(-radius_x, 0))
 	path.add_point(window_center + Vector2(radius_x, 0), Vector2(0, -radius_y))
 	path.add_point(window_center + Vector2(0, radius_y), Vector2(radius_x, 0))
@@ -177,3 +181,7 @@ func _on_current_cycle_changed():
 			else:
 				color = color_dusk
 				energy = energy_dusk
+
+
+func _on_time_freezed():
+	set_physics_process(not Time.freeze_time)
