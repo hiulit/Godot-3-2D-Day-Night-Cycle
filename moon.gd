@@ -47,7 +47,7 @@ func _ready():
 
 	speed = path.get_baked_points().size() / float((Time.SECONDS_IN_A_DAY / Time.IN_GAME_SECONDS_PER_REAL_TIME_SECONDS))
 	hour_step = path.get_baked_points().size() / float(Time.HOURS_IN_A_DAY)
-	start_position = hour_step * Time.game_start_hour
+	start_position = hour_step * Time.get_current_hour()
 	moon_position = start_position
 
 	position = path.get_baked_points()[moon_position]
