@@ -27,6 +27,10 @@ onready var color_transition_tween = $color_transition_tween
 onready var energy_transition_tween = $energy_transition_tween
 
 func _ready():
+	var connect_current_hour_changed_signal = Time.connect("current_hour_changed", self, "_on_current_hour_changed")
+	if connect_current_hour_changed_signal != OK:
+		printerr(connect_current_hour_changed_signal)
+
 	var connect_current_cycle_changed_signal = Time.connect("current_cycle_changed", self, "_on_current_cycle_changed")
 	if connect_current_cycle_changed_signal != OK:
 		printerr(connect_current_cycle_changed_signal)
@@ -181,6 +185,11 @@ func _on_current_cycle_changed():
 			else:
 				color = color_dusk
 				energy = energy_dusk
+
+
+func _on_current_hour_changed():
+	if Time.changing_time_manually:
+		position = path.get_baked_points()[hour_step * Time.get_current_hour()]
 
 
 func _on_time_freezed():
