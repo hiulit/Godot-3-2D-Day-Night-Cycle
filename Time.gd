@@ -56,6 +56,7 @@ var state_dusk_start_hour = 16
 var state_night_start_hour = 19
 
 # The duration, in hours, of the time it takes
+# The duration, in in-game hours, of the time it takes
 # to transition from one state to another.
 var state_transition_duration = 1
 
@@ -163,9 +164,7 @@ func _physics_process(delta):
 #	print("_")
 
 	seconds_elapsed_remainder = delta * IN_GAME_SECONDS_PER_REAL_TIME_SECONDS
-#	print("seconds_elapsed_remainder: ", seconds_elapsed_remainder)
 	var seconds_to_add = int(seconds_elapsed_remainder)
-#	print("seconds_to_add: ", seconds_to_add)
 	if seconds_to_add >= 1:
 		seconds_elapsed_remainder -= seconds_to_add
 		_set_seconds_elapsed(seconds_elapsed + seconds_to_add)
@@ -215,11 +214,9 @@ func get_current_year():
 
 # Setters for particular units (m/s/h/etc.) of the current time.
 func _set_seconds_elapsed(seconds):
-#	print("_set_seconds_elapsed: ", seconds)
 	if seconds == seconds_elapsed:
 		return
 
-#	print("_set_seconds_elapsed: ", seconds)
 #	if seconds < 0:
 #		printerr("------------------------------------------------------------------")
 #		printerr("ERROR!")

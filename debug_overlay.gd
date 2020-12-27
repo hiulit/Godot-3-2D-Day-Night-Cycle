@@ -9,10 +9,6 @@ onready var fps_label = $VBoxContainer/fps_label
 
 
 func _ready():
-#	var connect_current_second_changed_signal = Time.connect("current_second_changed", self, "_on_second_changed")
-#	if connect_current_second_changed_signal != OK:
-#		printerr(connect_current_second_changed_signal)
-
 	var connect_current_minute_changed_signal = Time.connect("current_minute_changed", self, "_on_minute_changed")
 	if connect_current_minute_changed_signal != OK:
 		printerr(connect_current_minute_changed_signal)
