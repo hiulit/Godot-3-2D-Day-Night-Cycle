@@ -4,6 +4,7 @@ signal current_second_changed
 signal current_minute_changed
 signal current_hour_changed
 signal current_cycle_changed
+signal time_manually_changed
 signal time_freezed
 
 enum cycle_state { NIGHT, DAWN, DAY, DUSK }
@@ -354,18 +355,22 @@ func _set_current_cycle(cycle):
 		return
 
 	current_cycle = cycle
+
 	emit_signal("current_cycle_changed")
 
 
 func _set_changing_time_manually(new_value):
 	changing_time_manually = new_value
-#	print("changing_time_manually: ", changing_time_manually)
+
+	emit_signal("time_manually_changed")
+
 	if not freeze_time:
 		set_physics_process(not changing_time_manually)
 
 
 func _set_freeze_time(new_value):
 	freeze_time = new_value
+
 	emit_signal("time_freezed")
-#	print("freeze_time: ", freeze_time)
+
 	set_physics_process(not freeze_time)
