@@ -35,6 +35,10 @@ func _ready():
 	if connect_current_cycle_changed_signal != OK:
 		printerr(connect_current_cycle_changed_signal)
 
+	var connect_time_manually_changed_signal = Time.connect("time_manually_changed", self, "_on_time_manually_changed")
+	if connect_time_manually_changed_signal != OK:
+		printerr(connect_time_manually_changed_signal)
+
 	var connect_time_freezed_signal = Time.connect("time_freezed", self, "_on_time_freezed")
 	if connect_time_freezed_signal != OK:
 		printerr(connect_time_freezed_signal)
@@ -189,7 +193,13 @@ func _on_current_cycle_changed():
 
 func _on_current_hour_changed():
 	if Time.changing_time_manually:
-		position = path.get_baked_points()[hour_step * Time.get_current_hour()]
+		moon_position = hour_step * Time.get_current_hour()
+		position = path.get_baked_points()[moon_position]
+
+
+func _on_time_manually_changed():
+	if not Time.freeze_time:
+		set_physics_process(not Time.changing_time_manually)
 
 
 func _on_time_freezed():
