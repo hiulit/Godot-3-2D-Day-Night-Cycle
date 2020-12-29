@@ -39,7 +39,7 @@ const IN_GAME_SECONDS_PER_REAL_TIME_SECONDS = 5400 * 2 # 90 minutes in game == 1
 # back to earlier hours in the day.
 # Should be at least 1 to ensure that '_update_current_cycle()' gets called.
 # ----
-var game_start_hour = 0
+var game_start_hour = 12
 # The day of the month in which the game starts (1-30).
 var game_start_day = 30
 # The month in which the game starts (1-12).
