@@ -145,7 +145,7 @@ func _ready():
 #	print("epoch: ", epoch)
 #	print("-------")
 
-	_update_current_cycle()
+#	_update_current_cycle()
 	_set_seconds_elapsed(epoch)
 
 #	print("-------")
