@@ -47,7 +47,7 @@ var game_start_month = 12
 # The year in which the game starts (0-INF).
 var game_start_year = 2020
 
-# Calculated below. (previously 'game_start_in_seconds')
+# Seconds at the start of the game.
 var epoch = 0
 
 # The start hours of each cycle.
@@ -161,12 +161,11 @@ func _ready():
 
 
 func _physics_process(delta):
-#	print("_")
-
 	seconds_elapsed_remainder = delta * IN_GAME_SECONDS_PER_REAL_TIME_SECONDS
 	var seconds_to_add = int(seconds_elapsed_remainder)
 	if seconds_to_add >= 1:
 		seconds_elapsed_remainder -= seconds_to_add
+
 		_set_seconds_elapsed(seconds_elapsed + seconds_to_add)
 
 
@@ -217,15 +216,6 @@ func _set_seconds_elapsed(seconds):
 	if seconds == seconds_elapsed:
 		return
 
-#	if seconds < 0:
-#		printerr("------------------------------------------------------------------")
-#		printerr("ERROR!")
-#		printerr("File: '%s.gd'"  % self.name)
-#		printerr("Function: '_set_seconds_elapsed(seconds)'")
-#		printerr("Message: 'seconds' cannot be less than zero (" + str(seconds) + ")")
-#		printerr("------------------------------------------------------------------")
-#		return
-
 	var previous_minute = int(get_current_minute())
 	var previous_hour = int(get_current_hour())
 
@@ -238,8 +228,8 @@ func _set_seconds_elapsed(seconds):
 
 	if int(get_current_hour()) != previous_hour:
 		emit_signal("current_hour_changed")
-		_update_current_cycle()
 
+		_update_current_cycle()
 
 
 func set_current_hour(hour):
@@ -250,6 +240,7 @@ func set_current_hour(hour):
 
 	var difference = hour - previous_hour
 	var difference_in_seconds = hours_to_seconds(difference)
+
 	_set_seconds_elapsed(seconds_elapsed + difference_in_seconds)
 
 
@@ -258,6 +249,7 @@ func current_time_string():
 	var time_string = str("%02d" % get_current_hour()) + ":" + \
 			str("%02d" % get_current_minute()) + ":" + \
 			str("%02d" % get_current_second())
+
 	return time_string
 
 
@@ -314,18 +306,6 @@ func days_to_months(days):
 
 func months_to_years(months):
 	return months / MONTHS_IN_A_YEAR
-
-
-
-
-
-#func get_artificial_light_strength():
-#    # The light should be stronger the further it is from midday.
-#    if (current_day_hour <= 11):
-#        return (11.0 - current_day_hour) / 11.0
-#    return (current_day_hour / 12.0) - 1.0
-
-
 
 
 # PRIVATE FUNCTIONS
