@@ -351,8 +351,9 @@ func _update_current_cycle():
 
 
 func _set_current_cycle(cycle):
-	if cycle == current_cycle:
-		return
+	if not changing_time_manually:
+		if cycle == current_cycle:
+			return
 
 	current_cycle = cycle
 
