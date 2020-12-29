@@ -65,13 +65,15 @@ var seconds_elapsed: int = 0
 # Keeps track of fractions of a second that have elapsed so that we can store
 # 'seconds_elapsed' as an int without losing accuracy when multiplying by delta.
 var seconds_elapsed_remainder: float = 0
+# Keeps track of the seconds to add.
+var seconds_to_add: int
 
 # Keeps track of the current cycle.
-var current_cycle = cycle_state.DAY
+var current_cycle: int #= cycle_state.DAY
 
 # When changing the time via the debug controls, we should skip interpolation.
-var changing_time_manually = false setget _set_changing_time_manually
-var freeze_time = false setget _set_freeze_time
+var changing_time_manually: bool = false setget _set_changing_time_manually
+var freeze_time: bool = false setget _set_freeze_time
 
 func _ready():
 	if IN_GAME_SECONDS_PER_REAL_TIME_SECONDS < 60:
@@ -162,7 +164,9 @@ func _ready():
 
 func _physics_process(delta):
 	seconds_elapsed_remainder = delta * IN_GAME_SECONDS_PER_REAL_TIME_SECONDS
-	var seconds_to_add = int(seconds_elapsed_remainder)
+
+	seconds_to_add = int(seconds_elapsed_remainder)
+
 	if seconds_to_add >= 1:
 		seconds_elapsed_remainder -= seconds_to_add
 
