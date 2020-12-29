@@ -56,7 +56,6 @@ var state_day_start_hour = 8
 var state_dusk_start_hour = 16
 var state_night_start_hour = 19
 
-# The duration, in hours, of the time it takes
 # The duration, in in-game hours, of the time it takes
 # to transition from one state to another.
 var state_transition_duration = 1
@@ -241,12 +240,6 @@ func _set_seconds_elapsed(seconds):
 		emit_signal("current_hour_changed")
 		_update_current_cycle()
 
-#	print("-----")
-#	print(get_current_hour())
-#	print(get_current_day())
-#	print(get_current_month())
-#	print(get_current_year())
-#	print("-----")
 
 
 func set_current_hour(hour):
