@@ -48,27 +48,18 @@ func _update_fps_text():
 func _update_time_slider():
 	# Update the handle to reflect the current hour.
 	var current_hour_normalized = Time.get_current_hour() / float(Time.HOURS_IN_A_DAY)
-#	set_block_signals(true)
+
 	time_slider.value = current_hour_normalized * time_slider.max_value
-#	set_block_signals(false)
 
 
 # CALLBACKS
 # ---------
-#func _on_second_changed():
-#	_update_time_labels()
-
-
 func _on_minute_changed():
 	_update_time_labels()
 
 
 func _on_hour_changed():
 	_update_time_labels()
-
-#	if Time.changing_time_manually:
-#		# Avoid recursion
-#		return
 
 	_update_time_slider()
 
