@@ -109,6 +109,9 @@ func _on_current_cycle_changed():
 				)
 				energy_transition_tween.start()
 			else:
+				color_transition_tween.stop_all()
+				energy_transition_tween.stop_all()
+
 				color = color_night
 				energy = energy_night
 		Time.cycle_state.DAWN:
@@ -135,6 +138,9 @@ func _on_current_cycle_changed():
 				)
 				energy_transition_tween.start()
 			else:
+				color_transition_tween.stop_all()
+				energy_transition_tween.stop_all()
+
 				color = color_dawn
 				energy = energy_dawn
 		Time.cycle_state.DAY:
@@ -161,6 +167,9 @@ func _on_current_cycle_changed():
 				)
 				energy_transition_tween.start()
 			else:
+				color_transition_tween.stop_all()
+				energy_transition_tween.stop_all()
+
 				color = color_day
 				energy = energy_day
 		Time.cycle_state.DUSK:
@@ -187,6 +196,9 @@ func _on_current_cycle_changed():
 				)
 				energy_transition_tween.start()
 			else:
+				color_transition_tween.stop_all()
+				energy_transition_tween.stop_all()
+
 				color = color_dusk
 				energy = energy_dusk
 

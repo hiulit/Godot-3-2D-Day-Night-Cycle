@@ -38,6 +38,7 @@ func _on_current_cycle_changed():
 				)
 				color_transition_tween.start()
 			else:
+				color_transition_tween.stop_all()
 				color = color_night
 		Time.cycle_state.DAWN:
 			if not Time.changing_time_manually:
@@ -52,6 +53,7 @@ func _on_current_cycle_changed():
 				)
 				color_transition_tween.start()
 			else:
+				color_transition_tween.stop_all()
 				color = color_dawn
 		Time.cycle_state.DAY:
 			if not Time.changing_time_manually:
@@ -66,6 +68,7 @@ func _on_current_cycle_changed():
 				)
 				color_transition_tween.start()
 			else:
+				color_transition_tween.stop_all()
 				color = color_day
 		Time.cycle_state.DUSK:
 			if not Time.changing_time_manually:
@@ -78,6 +81,7 @@ func _on_current_cycle_changed():
 					Tween.TRANS_SINE,
 					Tween.EASE_OUT
 				)
+				color_transition_tween.stop_all()
 				color_transition_tween.start()
 			else:
 				color = color_dusk
