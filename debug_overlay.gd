@@ -60,7 +60,6 @@ func _on_minute_changed():
 
 func _on_hour_changed():
 	_update_time_labels()
-
 	_update_time_slider()
 
 
@@ -74,7 +73,7 @@ func _on_time_slider_gui_input(event):
 		if event.is_pressed():
 			Time.changing_time_manually = true
 		else:
-			Time.set_deferred("changing_time_manually", false)
+			Time.changing_time_manually = false
 
 			if not time_slider.editable:
 				time_slider.editable = true
