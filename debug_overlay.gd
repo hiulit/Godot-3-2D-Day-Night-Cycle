@@ -9,15 +9,30 @@ onready var fps_label = $VBoxContainer/fps_label
 
 
 func _ready():
-	var connect_current_minute_changed_signal = Time.connect("current_minute_changed", self, "_on_minute_changed")
-	if connect_current_minute_changed_signal != OK:
-		printerr(connect_current_minute_changed_signal)
+	var current_minute_changed_signal = Time.connect(
+		"current_minute_changed",
+		self,
+		"_on_minute_changed"
+	)
 
-	var connect_current_hour_changed_signal = Time.connect("current_hour_changed", self, "_on_hour_changed")
-	if connect_current_hour_changed_signal != OK:
-		printerr(connect_current_hour_changed_signal)
+	var current_hour_changed_signal = Time.connect(
+		"current_hour_changed",
+		self,
+		"_on_hour_changed"
+	)
 
-	var connect_current_cycle_changed_signal = Time.connect("current_cycle_changed", self, "_on_current_cycle_changed")
+	var connect_current_cycle_changed_signal = Time.connect(
+		"current_cycle_changed",
+		self,
+		"_on_current_cycle_changed"
+	)
+
+	if current_minute_changed_signal != OK:
+		printerr(current_minute_changed_signal)
+	
+	if current_hour_changed_signal != OK:
+		printerr(current_hour_changed_signal)
+
 	if connect_current_cycle_changed_signal != OK:
 		printerr(connect_current_cycle_changed_signal)
 

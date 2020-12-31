@@ -27,29 +27,51 @@ onready var color_transition_tween = $color_transition_tween
 onready var energy_transition_tween = $energy_transition_tween
 
 func _ready():
-	var connect_current_hour_changed_signal = Time.connect("current_hour_changed", self, "_on_current_hour_changed")
-	if connect_current_hour_changed_signal != OK:
-		printerr(connect_current_hour_changed_signal)
+	var current_hour_changed_signal = Time.connect(
+		"current_hour_changed",
+		self,
+		"_on_current_hour_changed"
+	)
 
-	var connect_current_cycle_changed_signal = Time.connect("current_cycle_changed", self, "_on_current_cycle_changed")
-	if connect_current_cycle_changed_signal != OK:
-		printerr(connect_current_cycle_changed_signal)
+	var current_cycle_changed_signal = Time.connect(
+		"current_cycle_changed",
+		self,
+		"_on_current_cycle_changed"
+	)
 
-	var connect_time_manually_changed_signal = Time.connect("time_manually_changed", self, "_on_time_manually_changed")
-	if connect_time_manually_changed_signal != OK:
-		printerr(connect_time_manually_changed_signal)
+	var time_manually_changed_signal = Time.connect(
+		"time_manually_changed",
+		self,
+		"_on_time_manually_changed"
+	)
 
-	var connect_time_freezed_signal = Time.connect("time_freezed", self, "_on_time_freezed")
-	if connect_time_freezed_signal != OK:
-		printerr(connect_time_freezed_signal)
+	var time_freezed_signal = Time.connect(
+		"time_freezed",
+		self,
+		"_on_time_freezed"
+	)
 
+	if current_hour_changed_signal != OK:
+		printerr(current_hour_changed_signal)
+
+	if current_cycle_changed_signal != OK:
+		printerr(current_cycle_changed_signal)
+
+	if time_manually_changed_signal != OK:
+		printerr(time_manually_changed_signal)
+
+	if time_freezed_signal != OK:
+		printerr(time_freezed_signal)
+
+	# Create the moon's path.
 	path.add_point(window_center + Vector2(0, -radius_y), Vector2(-radius_x, 0))
 	path.add_point(window_center + Vector2(radius_x, 0), Vector2(0, -radius_y))
 	path.add_point(window_center + Vector2(0, radius_y), Vector2(radius_x, 0))
 	path.add_point(window_center + Vector2(-radius_x, 0), Vector2(0, radius_y))
 	path.add_point(window_center + Vector2(0, -radius_y), Vector2(-radius_x, 0))
 
-	speed = path.get_baked_points().size() / float((Time.SECONDS_IN_A_DAY / Time.IN_GAME_SECONDS_PER_REAL_TIME_SECONDS))
+	speed = path.get_baked_points().size() / \
+			(float(Time.SECONDS_IN_A_DAY) / Time.IN_GAME_SECONDS_PER_REAL_TIME_SECONDS)
 	hour_step = path.get_baked_points().size() / float(Time.HOURS_IN_A_DAY)
 	start_position = hour_step * Time.get_current_hour()
 	moon_position = start_position
@@ -57,16 +79,16 @@ func _ready():
 	position = path.get_baked_points()[moon_position]
 
 	match Time.current_cycle:
-		Time.cycle_state.NIGHT:
+		Time.CycleState.NIGHT:
 			color = color_night
 			energy = energy_night
-		Time.cycle_state.DAWN:
+		Time.CycleState.DAWN:
 			color = color_dawn
 			energy = energy_dawn
-		Time.cycle_state.DAY:
+		Time.CycleState.DAY:
 			color = color_day
 			energy = energy_day
-		Time.cycle_state.DUSK:
+		Time.CycleState.DUSK:
 			color = color_dusk
 			energy = energy_dusk
 
@@ -85,7 +107,7 @@ func move_moon(delta):
 
 func _on_current_cycle_changed():
 	match Time.current_cycle:
-		Time.cycle_state.NIGHT:
+		Time.CycleState.NIGHT:
 			if not Time.changing_time_manually:
 				color_transition_tween.interpolate_property(
 					self,
@@ -114,7 +136,7 @@ func _on_current_cycle_changed():
 
 				color = color_night
 				energy = energy_night
-		Time.cycle_state.DAWN:
+		Time.CycleState.DAWN:
 			if not Time.changing_time_manually:
 				color_transition_tween.interpolate_property(
 					self,
@@ -143,7 +165,7 @@ func _on_current_cycle_changed():
 
 				color = color_dawn
 				energy = energy_dawn
-		Time.cycle_state.DAY:
+		Time.CycleState.DAY:
 			if not Time.changing_time_manually:
 				color_transition_tween.interpolate_property(
 					self,
@@ -172,7 +194,7 @@ func _on_current_cycle_changed():
 
 				color = color_day
 				energy = energy_day
-		Time.cycle_state.DUSK:
+		Time.CycleState.DUSK:
 			if not Time.changing_time_manually:
 				color_transition_tween.interpolate_property(
 					self,

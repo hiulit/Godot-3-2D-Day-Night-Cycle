@@ -8,24 +8,29 @@ export (Color) var color_dusk = Color(0.59, 0.66, 0.78, 1.0)
 onready var color_transition_tween = $color_transition_tween
 
 func _ready():
-	var connect_current_cycle_changed_signal = Time.connect("current_cycle_changed", self, "_on_current_cycle_changed")
-	if connect_current_cycle_changed_signal != OK:
-		printerr(connect_current_cycle_changed_signal)
+	var current_cycle_changed_signal = Time.connect(
+		"current_cycle_changed",
+		self,
+		"_on_current_cycle_changed"
+	)
+
+	if current_cycle_changed_signal != OK:
+		printerr(current_cycle_changed_signal)
 
 	match Time.current_cycle:
-		Time.cycle_state.NIGHT:
+		Time.CycleState.NIGHT:
 			color = color_night
-		Time.cycle_state.DAWN:
+		Time.CycleState.DAWN:
 			color = color_dawn
-		Time.cycle_state.DAY:
+		Time.CycleState.DAY:
 			color = color_day
-		Time.cycle_state.DUSK:
+		Time.CycleState.DUSK:
 			color = color_dusk
 
 
 func _on_current_cycle_changed():
 	match Time.current_cycle:
-		Time.cycle_state.NIGHT:
+		Time.CycleState.NIGHT:
 			if not Time.changing_time_manually:
 				color_transition_tween.interpolate_property(
 					self,
@@ -40,7 +45,7 @@ func _on_current_cycle_changed():
 			else:
 				color_transition_tween.stop_all()
 				color = color_night
-		Time.cycle_state.DAWN:
+		Time.CycleState.DAWN:
 			if not Time.changing_time_manually:
 				color_transition_tween.interpolate_property(
 					self,
@@ -55,7 +60,7 @@ func _on_current_cycle_changed():
 			else:
 				color_transition_tween.stop_all()
 				color = color_dawn
-		Time.cycle_state.DAY:
+		Time.CycleState.DAY:
 			if not Time.changing_time_manually:
 				color_transition_tween.interpolate_property(
 					self,
@@ -70,7 +75,7 @@ func _on_current_cycle_changed():
 			else:
 				color_transition_tween.stop_all()
 				color = color_day
-		Time.cycle_state.DUSK:
+		Time.CycleState.DUSK:
 			if not Time.changing_time_manually:
 				color_transition_tween.interpolate_property(
 					self,
