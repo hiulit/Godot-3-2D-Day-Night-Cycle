@@ -81,7 +81,7 @@ func _on_current_cycle_changed():
 					Tween.TRANS_SINE,
 					Tween.EASE_OUT
 				)
-				color_transition_tween.stop_all()
 				color_transition_tween.start()
 			else:
+				color_transition_tween.stop_all()
 				color = color_dusk
