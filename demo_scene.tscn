@@ -27,7 +27,6 @@ scale = Vector2( 0.472776, 0.472777 )
 texture = ExtResource( 3 )
 
 [node name="day_night_cycle" parent="." instance=ExtResource( 1 )]
-color_night = Color( 0.0705882, 0.0901961, 0.380392, 1 )
 
 [node name="moon" parent="." instance=ExtResource( 2 )]
 
