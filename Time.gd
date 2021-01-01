@@ -9,13 +9,13 @@ signal time_freezed
 
 enum CycleState { NIGHT, DAWN, DAY, DUSK }
 
-const SECONDS_IN_A_MINUTE = 60
-const MINUTES_IN_AN_HOUR = 60
-const HOURS_IN_A_DAY = 24
-const DAYS_IN_A_WEEK = 7
-const DAYS_IN_A_MONTH = 30
-const DAYS_IN_A_YEAR = 365
-const MONTHS_IN_A_YEAR = 12
+const SECONDS_IN_A_MINUTE: int = 60
+const MINUTES_IN_AN_HOUR: int = 60
+const HOURS_IN_A_DAY: int = 24
+const DAYS_IN_A_WEEK: int = 7
+const DAYS_IN_A_MONTH: int = 30
+const DAYS_IN_A_YEAR: int = 365
+const MONTHS_IN_A_YEAR: int = 12
 
 const SECONDS_IN_AN_HOUR = SECONDS_IN_A_MINUTE * MINUTES_IN_AN_HOUR
 const SECONDS_IN_A_DAY = SECONDS_IN_A_MINUTE * MINUTES_IN_AN_HOUR * HOURS_IN_A_DAY
@@ -25,7 +25,7 @@ const SECONDS_IN_A_YEAR = SECONDS_IN_A_MONTH * MONTHS_IN_A_YEAR
 # The amount of in-game seconds that should elapse for each real-time second.
 # Has to be at least 60 so that we can store 'seconds_elapsed' as an 'int'.
 # 90 minutes (5400 seconds) in game == 1 second in real time.
-const IN_GAME_SECONDS_PER_REAL_TIME_SECONDS = 5400 * 2
+const IN_GAME_SECONDS_PER_REAL_TIME_SECONDS: int = 5400
 
 # The hour in the day in which the game starts (0-23).
 # ----
@@ -36,22 +36,22 @@ const IN_GAME_SECONDS_PER_REAL_TIME_SECONDS = 5400 * 2
 # back to earlier hours in the day.
 # Should be at least 1 to ensure that '_update_current_cycle()' gets called.
 # ----
-var game_start_hour = 12
+var game_start_hour: int = 12
 # The day of the month in which the game starts (1-30).
-var game_start_day = 30
+var game_start_day: int = 30
 # The month in which the game starts (1-12).
-var game_start_month = 12
+var game_start_month: int = 12
 # The year in which the game starts (0-INF).
-var game_start_year = 2020
+var game_start_year: int = 2020
 
 # Seconds at the start of the game.
-var epoch = 0
+var game_epoch: int
 
 # The start hours of each cycle.
-var state_dawn_start_hour = 5
-var state_day_start_hour = 8
-var state_dusk_start_hour = 16
-var state_night_start_hour = 19
+var state_dawn_start_hour: int = 5
+var state_day_start_hour: int = 8
+var state_dusk_start_hour: int = 16
+var state_night_start_hour: int = 19
 
 # The duration, in in-game hours, of the time it takes
 # to transition from one state to another.
@@ -66,7 +66,7 @@ var seconds_elapsed_remainder: float = 0
 var seconds_to_add: int
 
 # Keeps track of the current cycle.
-var current_cycle: int #= CycleState.DAY
+var current_cycle: int
 
 # When changing the time via the debug controls, we should skip interpolation.
 var changing_time_manually: bool = false setget _set_changing_time_manually
@@ -118,12 +118,12 @@ func _ready():
 	var start_month_in_seconds: int = (game_start_month - 1) * SECONDS_IN_A_MONTH
 	var start_year_in_seconds:int  = game_start_year * SECONDS_IN_A_YEAR
 
-	epoch = start_hour_in_seconds + \
+	game_epoch = start_hour_in_seconds + \
 			start_day_in_seconds + \
 			start_month_in_seconds + \
 			start_year_in_seconds
 
-	_set_seconds_elapsed(epoch)
+	_set_seconds_elapsed(game_epoch)
 
 
 func _physics_process(delta):
