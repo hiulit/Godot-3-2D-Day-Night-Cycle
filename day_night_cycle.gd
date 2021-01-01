@@ -28,6 +28,8 @@ func _ready():
 			color = color_dusk
 
 
+# CALLBACKS
+# ---------
 func _on_current_cycle_changed():
 	match Time.current_cycle:
 		Time.CycleState.NIGHT:

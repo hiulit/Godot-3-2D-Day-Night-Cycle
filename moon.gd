@@ -63,7 +63,7 @@ func _ready():
 	if time_freezed_signal != OK:
 		printerr(time_freezed_signal)
 
-	# Create the moon's path.
+	# Create the path.
 	path.add_point(window_center + Vector2(0, -radius_y), Vector2(-radius_x, 0))
 	path.add_point(window_center + Vector2(radius_x, 0), Vector2(0, -radius_y))
 	path.add_point(window_center + Vector2(0, radius_y), Vector2(radius_x, 0))
@@ -94,10 +94,12 @@ func _ready():
 
 
 func _physics_process(delta):
-	move_moon(delta)
+	_move_moon(delta)
 
 
-func move_moon(delta):
+# PRIVATE FUNCTIONS
+# -----------------
+func _move_moon(delta):
 	if moon_position + (delta * speed) >= path.get_baked_points().size():
 		moon_position += (delta * speed) - path.get_baked_points().size()
 	else:
@@ -105,6 +107,8 @@ func move_moon(delta):
 		moon_position += delta * speed
 
 
+# CALLBACKS
+# ---------
 func _on_current_cycle_changed():
 	match Time.current_cycle:
 		Time.CycleState.NIGHT:
