@@ -17,10 +17,10 @@ const DAYS_IN_A_MONTH: int = 30
 const DAYS_IN_A_YEAR: int = 365
 const MONTHS_IN_A_YEAR: int = 12
 
-const SECONDS_IN_AN_HOUR = SECONDS_IN_A_MINUTE * MINUTES_IN_AN_HOUR
-const SECONDS_IN_A_DAY = SECONDS_IN_A_MINUTE * MINUTES_IN_AN_HOUR * HOURS_IN_A_DAY
-const SECONDS_IN_A_MONTH = SECONDS_IN_A_DAY * DAYS_IN_A_MONTH
-const SECONDS_IN_A_YEAR = SECONDS_IN_A_MONTH * MONTHS_IN_A_YEAR
+const SECONDS_IN_AN_HOUR: int = SECONDS_IN_A_MINUTE * MINUTES_IN_AN_HOUR
+const SECONDS_IN_A_DAY: int = SECONDS_IN_A_MINUTE * MINUTES_IN_AN_HOUR * HOURS_IN_A_DAY
+const SECONDS_IN_A_MONTH: int = SECONDS_IN_A_DAY * DAYS_IN_A_MONTH
+const SECONDS_IN_A_YEAR: int = SECONDS_IN_A_MONTH * MONTHS_IN_A_YEAR
 
 # The amount of in-game seconds that should elapse for each real-time second.
 # Has to be at least 60 so that we can store 'seconds_elapsed' as an 'int'.
