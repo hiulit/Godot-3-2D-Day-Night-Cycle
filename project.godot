@@ -11,12 +11,12 @@ config_version=4
 [application]
 
 config/name="Godot 3 2D Day/Night Cycle"
-run/main_scene="res://demo_scene.tscn"
+run/main_scene="res://demo/demo.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Time="*res://Time.gd"
+Time="*res://src/singletons/Time.gd"
 
 [display]
 
