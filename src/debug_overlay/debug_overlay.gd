@@ -2,11 +2,11 @@ extends PopupPanel
 
 onready var time_slider = $VBoxContainer/time_slider
 onready var freeze_time_checkbox = $VBoxContainer/freeze_time_checkbox
+onready var show_moon_checkbox = $VBoxContainer/show_moon_checkbox
 onready var time_label = $VBoxContainer/time_label
 onready var date_label = $VBoxContainer/date_label
 onready var period_label = $VBoxContainer/period_label
 onready var fps_label = $VBoxContainer/fps_label
-
 
 func _ready():
 	var current_minute_changed_signal = Time.connect(
@@ -37,6 +37,7 @@ func _ready():
 		printerr(connect_current_cycle_changed_signal)
 
 	freeze_time_checkbox.pressed = Time.freeze_time
+	show_moon_checkbox.pressed = true
 
 	_update_time_slider()
 	_update_time_labels()
@@ -105,3 +106,7 @@ func _on_time_slider_value_changed(value):
 
 func _on_freeze_time_checkbox_toggled(button_pressed):
 	Time.freeze_time = button_pressed
+
+
+func _on_moon_checkbox_toggled(button_pressed):
+	get_tree().get_nodes_in_group("moon")[0].visible = button_pressed

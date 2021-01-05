@@ -48,6 +48,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="show_moon_checkbox" type="CheckBox" parent="VBoxContainer"]
+margin_top = 103.0
+margin_right = 168.0
+margin_bottom = 127.0
+text = "Show moon"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="time_label" type="Label" parent="VBoxContainer"]
 margin_top = 120.0
 margin_right = 242.0
@@ -78,3 +87,4 @@ __meta__ = {
 [connection signal="gui_input" from="VBoxContainer/time_slider" to="." method="_on_time_slider_gui_input"]
 [connection signal="value_changed" from="VBoxContainer/time_slider" to="." method="_on_time_slider_value_changed"]
 [connection signal="toggled" from="VBoxContainer/freeze_time_checkbox" to="." method="_on_freeze_time_checkbox_toggled"]
+[connection signal="toggled" from="VBoxContainer/show_moon_checkbox" to="." method="_on_moon_checkbox_toggled"]
