@@ -3,20 +3,21 @@
 [ext_resource path="res://src/debug_overlay/debug_overlay.gd" type="Script" id=1]
 
 [node name="debug_overlay" type="PopupPanel"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 270.0
-margin_bottom = 270.0
+margin_right = 176.0
+margin_bottom = 256.0
+rect_scale = Vector2( 0.5, 0.5 )
+popup_exclusive = true
 script = ExtResource( 1 )
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 246.0
-margin_bottom = 246.0
+margin_right = 172.0
+margin_bottom = 252.0
 custom_constants/separation = 15
 alignment = 1
 __meta__ = {
@@ -24,25 +25,25 @@ __meta__ = {
 }
 
 [node name="time_slider_label" type="Label" parent="VBoxContainer"]
-margin_top = 21.0
-margin_right = 242.0
-margin_bottom = 35.0
+margin_top = 4.0
+margin_right = 168.0
+margin_bottom = 18.0
 text = "Time Slider"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="time_slider" type="HSlider" parent="VBoxContainer"]
-margin_top = 50.0
-margin_right = 242.0
-margin_bottom = 66.0
+margin_top = 33.0
+margin_right = 168.0
+margin_bottom = 49.0
 min_value = -1.0
 max_value = 24.0
 
 [node name="freeze_time_checkbox" type="CheckBox" parent="VBoxContainer"]
-margin_top = 81.0
-margin_right = 242.0
-margin_bottom = 105.0
+margin_top = 64.0
+margin_right = 168.0
+margin_bottom = 88.0
 text = "Freeze time"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -58,27 +59,27 @@ __meta__ = {
 }
 
 [node name="time_label" type="Label" parent="VBoxContainer"]
-margin_top = 120.0
-margin_right = 242.0
-margin_bottom = 134.0
+margin_top = 142.0
+margin_right = 168.0
+margin_bottom = 156.0
 text = "Time:"
 
 [node name="date_label" type="Label" parent="VBoxContainer"]
-margin_top = 149.0
-margin_right = 242.0
-margin_bottom = 163.0
+margin_top = 171.0
+margin_right = 168.0
+margin_bottom = 185.0
 text = "Date:"
 
 [node name="period_label" type="Label" parent="VBoxContainer"]
-margin_top = 178.0
-margin_right = 242.0
-margin_bottom = 192.0
+margin_top = 200.0
+margin_right = 168.0
+margin_bottom = 214.0
 text = "Period:"
 
 [node name="fps_label" type="Label" parent="VBoxContainer"]
-margin_top = 207.0
-margin_right = 242.0
-margin_bottom = 221.0
+margin_top = 229.0
+margin_right = 168.0
+margin_bottom = 243.0
 text = "FPS:"
 __meta__ = {
 "_edit_use_anchors_": false
