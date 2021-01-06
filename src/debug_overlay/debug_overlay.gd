@@ -37,7 +37,11 @@ func _ready():
 		printerr(connect_current_cycle_changed_signal)
 
 	freeze_time_checkbox.pressed = Time.freeze_time
-	show_moon_checkbox.pressed = true
+
+	if not get_tree().has_group("moon"):
+		show_moon_checkbox.queue_free()
+	else:
+		show_moon_checkbox.pressed = true
 
 	_update_time_slider()
 	_update_time_labels()
