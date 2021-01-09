@@ -79,3 +79,4 @@ margin_left = 288.0
 margin_top = 8.0
 margin_right = 464.0
 margin_bottom = 264.0
+moon_node_path = NodePath("../../moon")
