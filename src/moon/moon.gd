@@ -99,9 +99,10 @@ func _ready():
 	# Sync delay with the cycle.
 	if cycle_sync_node_path:
 		cycle_sync_node = get_node(cycle_sync_node_path)
-
 		delay = cycle_sync_node.delay
+		visible = true
 	else:
+		visible = false
 		push_warning("The '%s' node isn't sync with any cycle." % self.name)
 
 

@@ -2,6 +2,8 @@ extends PopupPanel
 
 export (NodePath) var moon_node_path
 
+var moon_node
+
 onready var time_slider = $VBoxContainer/time_slider
 onready var freeze_time_checkbox = $VBoxContainer/freeze_time_checkbox
 onready var show_moon_checkbox = $VBoxContainer/show_moon_checkbox
@@ -41,6 +43,7 @@ func _ready():
 	freeze_time_checkbox.pressed = Time.freeze_time
 
 	if moon_node_path:
+		moon_node = get_node(moon_node_path)
 		show_moon_checkbox.pressed = true
 	else:
 		show_moon_checkbox.queue_free()
@@ -115,4 +118,4 @@ func _on_freeze_time_checkbox_toggled(button_pressed):
 
 
 func _on_moon_checkbox_toggled(button_pressed):
-	get_tree().get_nodes_in_group("moon")[0].visible = button_pressed
+	moon_node.visible = button_pressed
