@@ -61,6 +61,7 @@ position = Vector2( 40, 160 )
 texture = ExtResource( 9 )
 
 [node name="foreground_day_night_cycle" parent="." instance=ExtResource( 3 )]
+delay = 1800
 
 [node name="moon" parent="." instance=ExtResource( 2 )]
 visible = false
@@ -69,11 +70,11 @@ color_night = Color( 0.580392, 0.8, 0.972549, 1 )
 color_dawn = Color( 0.580392, 0.8, 0.972549, 1 )
 color_day = Color( 0.580392, 0.8, 0.972549, 1 )
 color_dusk = Color( 0.580392, 0.8, 0.972549, 1 )
+cycle_sync_node_path = NodePath("../foreground_day_night_cycle")
 
 [node name="debug_overlay_layer" type="CanvasLayer" parent="."]
 
 [node name="debug_overlay" parent="debug_overlay_layer" instance=ExtResource( 4 )]
-visible = true
 margin_left = 288.0
 margin_top = 8.0
 margin_right = 464.0
