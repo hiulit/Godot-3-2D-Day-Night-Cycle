@@ -4,6 +4,7 @@ export (Color) var color_night = Color(0.07, 0.09, 0.38, 1.0)
 export (Color) var color_dawn = Color(0.86, 0.70, 0.70, 1.0)
 export (Color) var color_day = Color(1.0, 1.0, 1.0, 1.0)
 export (Color) var color_dusk = Color(0.59, 0.66, 0.78, 1.0)
+export (int) var delay = 0
 
 onready var color_transition_tween = $color_transition_tween
 
@@ -27,6 +28,9 @@ func _ready():
 		Time.CycleState.DUSK:
 			color = color_dusk
 
+	# Sync delay with in-game time.
+	delay /= float(Time.IN_GAME_SECONDS_PER_REAL_TIME_SECONDS)
+
 
 # CALLBACKS
 # ---------
@@ -34,6 +38,9 @@ func _on_current_cycle_changed():
 	match Time.current_cycle:
 		Time.CycleState.NIGHT:
 			if not Time.changing_time_manually:
+				if delay > 0:
+					yield(get_tree().create_timer(delay), "timeout")
+
 				color_transition_tween.interpolate_property(
 					self,
 					"color",
@@ -49,6 +56,9 @@ func _on_current_cycle_changed():
 				color = color_night
 		Time.CycleState.DAWN:
 			if not Time.changing_time_manually:
+				if delay > 0:
+					yield(get_tree().create_timer(delay), "timeout")
+
 				color_transition_tween.interpolate_property(
 					self,
 					"color",
@@ -64,6 +74,9 @@ func _on_current_cycle_changed():
 				color = color_dawn
 		Time.CycleState.DAY:
 			if not Time.changing_time_manually:
+				if delay > 0:
+					yield(get_tree().create_timer(delay), "timeout")
+
 				color_transition_tween.interpolate_property(
 					self,
 					"color",
@@ -79,6 +92,9 @@ func _on_current_cycle_changed():
 				color = color_day
 		Time.CycleState.DUSK:
 			if not Time.changing_time_manually:
+				if delay > 0:
+					yield(get_tree().create_timer(delay), "timeout")
+
 				color_transition_tween.interpolate_property(
 					self,
 					"color",

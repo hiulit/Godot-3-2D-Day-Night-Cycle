@@ -8,6 +8,7 @@ export (Color) var color_day = Color(1.0, 1.0, 1.0, 1.0)
 export (float) var energy_day = 0
 export (Color) var color_dusk = Color(1.0, 1.0, 1.0, 1.0)
 export (float) var energy_dusk = 0.5
+export (NodePath) var cycle_sync_node_path
 
 var window_x = ProjectSettings.get_setting("display/window/size/width")
 var window_y = ProjectSettings.get_setting("display/window/size/height")
@@ -22,6 +23,9 @@ var speed
 var hour_step
 var start_position
 var moon_position
+
+var cycle_sync_node
+var delay = 0
 
 onready var color_transition_tween = $color_transition_tween
 onready var energy_transition_tween = $energy_transition_tween
@@ -92,6 +96,14 @@ func _ready():
 			color = color_dusk
 			energy = energy_dusk
 
+	# Sync delay with the cycle.
+	if cycle_sync_node_path:
+		cycle_sync_node = get_node(cycle_sync_node_path)
+
+		delay = cycle_sync_node.delay
+	else:
+		push_warning("The '%s' node isn't sync with any cycle." % self.name)
+
 
 func _physics_process(delta):
 	_move_moon(delta)
@@ -113,6 +125,9 @@ func _on_current_cycle_changed():
 	match Time.current_cycle:
 		Time.CycleState.NIGHT:
 			if not Time.changing_time_manually:
+				if delay > 0:
+					yield(get_tree().create_timer(delay), "timeout")
+
 				color_transition_tween.interpolate_property(
 					self,
 					"color",
@@ -142,6 +157,9 @@ func _on_current_cycle_changed():
 				energy = energy_night
 		Time.CycleState.DAWN:
 			if not Time.changing_time_manually:
+				if delay > 0:
+					yield(get_tree().create_timer(delay), "timeout")
+
 				color_transition_tween.interpolate_property(
 					self,
 					"color",
@@ -171,6 +189,9 @@ func _on_current_cycle_changed():
 				energy = energy_dawn
 		Time.CycleState.DAY:
 			if not Time.changing_time_manually:
+				if delay > 0:
+					yield(get_tree().create_timer(delay), "timeout")
+
 				color_transition_tween.interpolate_property(
 					self,
 					"color",
@@ -200,6 +221,9 @@ func _on_current_cycle_changed():
 				energy = energy_day
 		Time.CycleState.DUSK:
 			if not Time.changing_time_manually:
+				if delay > 0:
+					yield(get_tree().create_timer(delay), "timeout")
+
 				color_transition_tween.interpolate_property(
 					self,
 					"color",
