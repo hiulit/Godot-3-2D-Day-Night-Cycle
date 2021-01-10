@@ -1,6 +1,7 @@
 extends PopupPanel
 
 export (NodePath) var moon_node_path
+export (bool) var show = true
 
 var moon_node
 
@@ -13,6 +14,9 @@ onready var period_label = $VBoxContainer/period_label
 onready var fps_label = $VBoxContainer/fps_label
 
 func _ready():
+	if not show:
+		queue_free()
+
 	# Connect signals.
 	var current_minute_changed_signal = Time.connect(
 		"current_minute_changed",
