@@ -13,6 +13,7 @@ onready var period_label = $VBoxContainer/period_label
 onready var fps_label = $VBoxContainer/fps_label
 
 func _ready():
+	# Connect signals.
 	var current_minute_changed_signal = Time.connect(
 		"current_minute_changed",
 		self,
@@ -33,13 +34,14 @@ func _ready():
 
 	if current_minute_changed_signal != OK:
 		printerr(current_minute_changed_signal)
-	
+
 	if current_hour_changed_signal != OK:
 		printerr(current_hour_changed_signal)
 
 	if connect_current_cycle_changed_signal != OK:
 		printerr(connect_current_cycle_changed_signal)
 
+	# Set the debug overlay labels and checkboxes.
 	freeze_time_checkbox.pressed = Time.freeze_time
 
 	if moon_node_path:
@@ -51,6 +53,7 @@ func _ready():
 	_update_time_slider()
 	_update_time_labels()
 
+	# Show the debug overlay.
 	call_deferred("popup")
 
 

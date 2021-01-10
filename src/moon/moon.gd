@@ -67,7 +67,6 @@ func _ready():
 	if time_freezed_signal != OK:
 		printerr(time_freezed_signal)
 
-	# Create the path.
 	path.add_point(window_center + Vector2(0, -radius_y), Vector2(-radius_x, 0))
 	path.add_point(window_center + Vector2(radius_x, 0), Vector2(0, -radius_y))
 	path.add_point(window_center + Vector2(0, radius_y), Vector2(radius_x, 0))
@@ -82,6 +81,15 @@ func _ready():
 
 	position = path.get_baked_points()[moon_position]
 
+	# Sync delay with the cycle.
+	if cycle_sync_node_path:
+		cycle_sync_node = get_node(cycle_sync_node_path)
+		delay = cycle_sync_node.delay
+		visible = true
+	else:
+		visible = false
+		push_warning("The '%s' node isn't sync with any cycle." % self.name)
+
 	match Time.current_cycle:
 		Time.CycleState.NIGHT:
 			color = color_night
@@ -95,15 +103,6 @@ func _ready():
 		Time.CycleState.DUSK:
 			color = color_dusk
 			energy = energy_dusk
-
-	# Sync delay with the cycle.
-	if cycle_sync_node_path:
-		cycle_sync_node = get_node(cycle_sync_node_path)
-		delay = cycle_sync_node.delay
-		visible = true
-	else:
-		visible = false
-		push_warning("The '%s' node isn't sync with any cycle." % self.name)
 
 
 func _physics_process(delta):

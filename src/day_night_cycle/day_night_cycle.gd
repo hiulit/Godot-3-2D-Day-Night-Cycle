@@ -9,6 +9,7 @@ export (int) var delay = 0
 onready var color_transition_tween = $color_transition_tween
 
 func _ready():
+	# Connect signals.
 	var current_cycle_changed_signal = Time.connect(
 		"current_cycle_changed",
 		self,
@@ -17,6 +18,13 @@ func _ready():
 
 	if current_cycle_changed_signal != OK:
 		printerr(current_cycle_changed_signal)
+
+	# Sync delay with in-game time.
+	if delay < 0:
+		delay = 0
+		push_warning("The 'delay' (%s) in the '%s' node must be >= 0." % [delay, self.name])
+	elif delay > 0:
+		delay /= float(Time.IN_GAME_SECONDS_PER_REAL_TIME_SECONDS)
 
 	match Time.current_cycle:
 		Time.CycleState.NIGHT:
@@ -27,14 +35,6 @@ func _ready():
 			color = color_day
 		Time.CycleState.DUSK:
 			color = color_dusk
-
-	# Sync delay with in-game time.
-	if delay < 0:
-		delay = 0
-		push_warning("The 'delay' (%s) in the '%s' node must be >= 0." % [delay, self.name])
-	elif delay > 0:
-		delay /= float(Time.IN_GAME_SECONDS_PER_REAL_TIME_SECONDS)
-
 
 # CALLBACKS
 # ---------
