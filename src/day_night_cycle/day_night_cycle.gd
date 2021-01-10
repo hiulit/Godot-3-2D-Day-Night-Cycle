@@ -29,7 +29,11 @@ func _ready():
 			color = color_dusk
 
 	# Sync delay with in-game time.
-	delay /= float(Time.IN_GAME_SECONDS_PER_REAL_TIME_SECONDS)
+	if delay < 0:
+		delay = 0
+		push_warning("The 'delay' (%s) in the '%s' node must be >= 0." % [delay, self.name])
+	elif delay > 0:
+		delay /= float(Time.IN_GAME_SECONDS_PER_REAL_TIME_SECONDS)
 
 
 # CALLBACKS
