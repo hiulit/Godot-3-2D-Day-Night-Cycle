@@ -19,7 +19,7 @@ func _ready():
 	if current_cycle_changed_signal != OK:
 		printerr(current_cycle_changed_signal)
 
-	# Sync delay with in-game time.
+	# Sync the delay with in-game time.
 	if delay < 0:
 		delay = 0
 		push_warning("The 'delay' (%s) in the '%s' node must be >= 0." % [delay, self.name])

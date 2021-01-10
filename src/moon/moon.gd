@@ -19,10 +19,9 @@ var radius_y = radius_x / 1.5
 
 var path = Curve2D.new()
 
-var speed
-var hour_step
-var start_position
-var moon_position
+var speed: float
+var hour_step: float
+var moon_position: float
 
 var cycle_sync_node
 var delay = 0
@@ -31,6 +30,7 @@ onready var color_transition_tween = $color_transition_tween
 onready var energy_transition_tween = $energy_transition_tween
 
 func _ready():
+	# Connect signals.
 	var current_hour_changed_signal = Time.connect(
 		"current_hour_changed",
 		self,
@@ -67,21 +67,25 @@ func _ready():
 	if time_freezed_signal != OK:
 		printerr(time_freezed_signal)
 
+	# Create the path.
 	path.add_point(window_center + Vector2(0, -radius_y), Vector2(-radius_x, 0))
 	path.add_point(window_center + Vector2(radius_x, 0), Vector2(0, -radius_y))
 	path.add_point(window_center + Vector2(0, radius_y), Vector2(radius_x, 0))
 	path.add_point(window_center + Vector2(-radius_x, 0), Vector2(0, radius_y))
 	path.add_point(window_center + Vector2(0, -radius_y), Vector2(-radius_x, 0))
 
+	# Sync the speed with in-game time.
 	speed = path.get_baked_points().size() / \
 			(float(Time.SECONDS_IN_A_DAY) / Time.IN_GAME_SECONDS_PER_REAL_TIME_SECONDS)
-	hour_step = path.get_baked_points().size() / float(Time.HOURS_IN_A_DAY)
-	start_position = hour_step * Time.get_current_hour()
-	moon_position = start_position
 
+	# Divide the path into hours.
+	hour_step = path.get_baked_points().size() / float(Time.HOURS_IN_A_DAY)
+
+	# Set the moon position.
+	moon_position = hour_step * Time.get_current_hour()
 	position = path.get_baked_points()[moon_position]
 
-	# Sync delay with the cycle.
+	# Sync the delay with the cycle.
 	if cycle_sync_node_path:
 		cycle_sync_node = get_node(cycle_sync_node_path)
 		delay = cycle_sync_node.delay
