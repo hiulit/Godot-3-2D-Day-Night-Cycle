@@ -72,7 +72,7 @@ var current_cycle: int
 
 # When changing the time via the debug controls, we should skip interpolation.
 var changing_time_manually: bool = false setget _set_changing_time_manually
-var freeze_time: bool = false setget _set_freeze_time
+var freeze_time: bool = true setget _set_freeze_time
 
 func _ready():
 	if IN_GAME_SECONDS_PER_REAL_TIME_SECONDS < 60:
