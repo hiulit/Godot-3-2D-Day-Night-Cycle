@@ -1,13 +1,13 @@
 extends Light2D
 
 export (Color) var color_night = Color(1.0, 1.0, 1.0, 1.0)
-export (float) var energy_night = 1
+export (float) var energy_night = 1.0
 export (Color) var color_dawn = Color(1.0, 1.0, 1.0, 1.0)
-export (float) var energy_dawn = 0.5
+export (float) var energy_dawn = 0.0
 export (Color) var color_day = Color(1.0, 1.0, 1.0, 1.0)
-export (float) var energy_day = 0
+export (float) var energy_day = 0.0
 export (Color) var color_dusk = Color(1.0, 1.0, 1.0, 1.0)
-export (float) var energy_dusk = 0.5
+export (float) var energy_dusk = 0.0
 export (NodePath) var cycle_sync_node_path
 
 var window_x = ProjectSettings.get_setting("display/window/size/width")
