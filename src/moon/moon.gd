@@ -8,6 +8,7 @@ export (Color) var color_day = Color(1.0, 1.0, 1.0, 1.0)
 export (float) var energy_day = 0.0
 export (Color) var color_dusk = Color(1.0, 1.0, 1.0, 1.0)
 export (float) var energy_dusk = 0.0
+export (bool) var move = true
 export (NodePath) var cycle_sync_node_path
 
 var window_x: float = ProjectSettings.get_setting("display/window/size/width")
@@ -55,6 +56,7 @@ func _ready():
 		"_on_time_freezed"
 	)
 
+	# Check if signals are connected correctly.
 	if current_hour_changed_signal != OK:
 		printerr(current_hour_changed_signal)
 
@@ -85,15 +87,20 @@ func _ready():
 	moon_position = hour_step * Time.get_current_hour()
 	position = path.get_baked_points()[moon_position]
 
-	# Sync the delay with the cycle.
-	if cycle_sync_node_path:
-		cycle_sync_node = get_node(cycle_sync_node_path)
-		delay = cycle_sync_node.delay
-		visible = true
+	if move:
+		# Sync the delay with the cycle.
+		if cycle_sync_node_path:
+			cycle_sync_node = get_node(cycle_sync_node_path)
+			delay = cycle_sync_node.delay
+			visible = true
+		else:
+			visible = false
+			push_warning("The '" + str(self.name) + "' node isn't sync with any cycle." + \
+					" Use 'cycle_sync_node_path' to set a cycle to sync the '" + str(self.name) + "' node with.")
 	else:
-		visible = false
-		push_warning("The '%s' node isn't sync with any cycle." % self.name)
+		set_physics_process(false)
 
+	# Set the current cycle state.
 	match Time.current_cycle:
 		Time.CycleState.NIGHT:
 			color = color_night
@@ -258,15 +265,16 @@ func _on_current_cycle_changed():
 
 
 func _on_current_hour_changed():
-	if Time.changing_time_manually:
+	if Time.changing_time_manually and move:
 		moon_position = hour_step * Time.get_current_hour()
 		position = path.get_baked_points()[moon_position]
 
 
 func _on_time_manually_changed():
-	if not Time.freeze_time:
+	if not Time.freeze_time and move:
 		set_physics_process(not Time.changing_time_manually)
 
 
 func _on_time_freezed():
-	set_physics_process(not Time.freeze_time)
+	if move:
+		set_physics_process(not Time.freeze_time)
