@@ -10,21 +10,21 @@ export (Color) var color_dusk = Color(1.0, 1.0, 1.0, 1.0)
 export (float) var energy_dusk = 0.0
 export (NodePath) var cycle_sync_node_path
 
-var window_x = ProjectSettings.get_setting("display/window/size/width")
-var window_y = ProjectSettings.get_setting("display/window/size/height")
+var window_x: float = ProjectSettings.get_setting("display/window/size/width")
+var window_y: float = ProjectSettings.get_setting("display/window/size/height")
 
-var window_center = Vector2(window_x / 2, window_y / 2)
-var radius_x = window_x / 1.5
-var radius_y = radius_x / 1.5
+var window_center: Vector2 = Vector2(window_x / 2, window_y / 2)
+var radius_x: float = window_x / 1.5
+var radius_y: float = radius_x / 1.5
 
 var path = Curve2D.new()
 
 var speed: float
 var hour_step: float
-var moon_position: float
+var moon_position: float = 12.0 # Top center.
 
-var cycle_sync_node
-var delay = 0
+var cycle_sync_node: Node
+var delay: float = 0
 
 onready var color_transition_tween = $color_transition_tween
 onready var energy_transition_tween = $energy_transition_tween
