@@ -16,6 +16,7 @@ func _ready():
 		"_on_current_cycle_changed"
 	)
 
+	# Check if signals are connected correctly.
 	if current_cycle_changed_signal != OK:
 		printerr(current_cycle_changed_signal)
 
@@ -26,6 +27,7 @@ func _ready():
 	elif delay > 0:
 		delay /= float(Time.IN_GAME_SECONDS_PER_REAL_TIME_SECONDS)
 
+	# Set the current cycle state.
 	match Time.current_cycle:
 		Time.CycleState.NIGHT:
 			color = color_night
