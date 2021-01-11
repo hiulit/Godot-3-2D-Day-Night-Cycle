@@ -36,6 +36,7 @@ func _ready():
 		"_on_current_cycle_changed"
 	)
 
+	# Check if signals are connected correctly.
 	if current_minute_changed_signal != OK:
 		printerr(current_minute_changed_signal)
 
@@ -50,7 +51,10 @@ func _ready():
 
 	if moon_node_path:
 		moon_node = get_node(moon_node_path)
-		show_moon_checkbox.pressed = true
+		if moon_node.cycle_sync_node_path:
+			show_moon_checkbox.pressed = true
+		else:
+			show_moon_checkbox.queue_free()
 	else:
 		show_moon_checkbox.queue_free()
 
