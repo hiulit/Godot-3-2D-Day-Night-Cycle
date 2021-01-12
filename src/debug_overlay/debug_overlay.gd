@@ -14,6 +14,7 @@ onready var period_label = $VBoxContainer/period_label
 onready var fps_label = $VBoxContainer/fps_label
 
 func _ready():
+	# Remove the debug overlay if 'show' is set to 'false'.
 	if not show:
 		queue_free()
 
@@ -51,6 +52,7 @@ func _ready():
 
 	if moon_node_path:
 		moon_node = get_node(moon_node_path)
+
 		if moon_node.cycle_sync_node_path:
 			show_moon_checkbox.pressed = true
 		else:
@@ -128,5 +130,5 @@ func _on_freeze_time_checkbox_toggled(button_pressed):
 	Time.freeze_time = button_pressed
 
 
-func _on_moon_checkbox_toggled(button_pressed):
+func _on_show_moon_checkbox_toggled(button_pressed):
 	moon_node.visible = button_pressed
