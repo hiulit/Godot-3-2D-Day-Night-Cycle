@@ -1,38 +1,37 @@
 # Godot 3 2D Day/Night Cycle
 
-A simple 2D ☀️ Day / 🌔 Night cycle using `CanvasModulate` and a moon light effect using `Light2D`.
+![Godot v3.x](https://img.shields.io/badge/Godot-v3.x-%23478cbf?logo=godot-engine&logoColor=white) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/hiulit/Godot-3-2D-Day-Night-Cycle) [![GitHub license](https://img.shields.io/github/license/hiulit/Godot-3-2D-Day-Night-Cycle)](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/blob/master/LICENSE)
 
-![Godot 3 2D Day/Night Cycle GIF](example_images/day_night_cycle_godot_3.gif)
+A 2D ☀️ Day / 🌔 Night cycle using `CanvasModulate` and a moon light effect using `Light2D`.
 
-## Now with a 🌕 Moon effect using `Light2D`!
-
-### Without a Moon
+![Godot 3 2D Day/Night Cycle](example_images/godot_3_2D_day_night_cycle.jpg)
 
 ![Godot 3 2D Day/Night Cycle GIF](example_images/day_night_cycle_godot_3-no-moon.gif)
 
-### With a Moon
+*Cycle without the moon light.*
 
 ![Godot 3 2D Day/Night Cycle GIF](example_images/day_night_cycle_godot_3-with-moon.gif)
 
-### With a moving Moon
+*Cycle with the moon light.*
 
 ![Godot 3 2D Day/Night Cycle GIF](example_images/day_night_cycle_godot_3-with-moving-moon.gif)
 
+
+*Cycle with the moon light moving.*
 ## Installation
 
-* [Download](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/archive/master.zip) the repository ZIP file.
-* Copy `DayNightCycle.tscn` and `DayNightCycle.gd` in your project.
-* Copy `Moon.tscn`, `Moon.gd` and `light.png` in your project.
-
+- [Download](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/archive/master.zip) the repository ZIP file.
+- Copy the **Time** singleton in your project and [enable](https://docs.godotengine.org/en/stable/getting_started/step_by_step/singletons_autoload.html) it.
+    - `src/singletons/Time.gd`
+- Copy the **Day/Night Cycle** folder in your project.
+    - `src/day_night_cycle`
+- Copy **Moon** folder in your project.
+    - `src/moon`
+- Copy the **Debug overlay** folder in your project.
+    - `src/debug_overlay`
 ## Usage
 
-### DayNightCycle
 
-* Instance `DayNightCycle.tscn` and attach `DayNightCycle.gd` as a script.
-
-You can change all these variables right from the Inspector.
-
-![Inspector](example_images/daynight-inspector.png)
 
 ### Tips
 
@@ -52,29 +51,17 @@ Main
 * Background scene - **Day start hour**: 10.2
 * Main scene - **Day start hour**: 10
 
-### Moon
 
-**Warning!**
 
-Before using the **Moon** you should know that it is intrinsically connected with **DayNightCycle**. This is where [singletons](https://docs.godotengine.org/en/3.1/getting_started/step_by_step/singletons_autoload.html) come in handy.
-
-This project has a `Global.gd` that serves as a **singleton**. Its function is to have `DayNight` and `Moon` variables available always and from everywhere.
-
-You can copy those variables and add them to your own **singleton**. In that case, you'll have to change all the `Global.xxx` variables accordingly.
-
-* Instance `Moon.tscn` and attach `Moon.gd` as a script.
-* In `DayNightCycle.gd`, uncomment the commented following line:
-
-```
-func _ready():
-    # Global.DayNight = self
-```
-
-You can change all these variables right from the Inspector.
-
-![Inspector](example_images/moon-inspector.png)
+....
 
 ## Documentation
+
+
+
+- [Day/Night Cycle](docs/DAY_NIGHT_CYCLE.md)
+- [Moon](docs/MOON.md)
+
 
 ### DayNightCycle
 
@@ -84,11 +71,6 @@ You can change all these variables right from the Inspector.
 | --- | --- | --- |
 | `day_duration` | `float` | The duration of the day **in minutes**. |
 
-#### Day Start Hour
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `day_start_hour` | `float` | The starting hour of the day. **24 hours time (0-23)**. |
 
 #### Day Start Number
 
@@ -96,29 +78,7 @@ You can change all these variables right from the Inspector.
 | --- | --- | --- |
 | `day_start_number` | `float` | The starting day number. |
 
-#### Color (DAWN)
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `color_dawn` | `Color` | The color of the DAWN state **in RGBA**. |
-
-#### Color (DAY)
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `color_day` | `Color` | The color of the DAY state **in RGBA**. |
-
-#### Color (DUSK)
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `color_dusk` | `Color` | The color of the DUSK state **in RGBA**. |
-
-#### Color (NIGHT)
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `color_night` | `Color` | The color of the NIGHT state **in RGBA**. |
+...
 
 #### State (DAWN) Start Hour
 
@@ -150,62 +110,52 @@ You can change all these variables right from the Inspector.
 | --- | --- | --- |
 | `state_transition_duration` | `float` | The duration of the transition between cycle states **in hours**. |
 
-#### Debug mode
+## 🗒️ Changelog
 
-| Name | Type | Description |
-| --- | --- | --- |
-| `debug_mode` | `bool` | Enables/disables **debug mode**. It prints `current_day_number`, `current_day_hour` and `cycle_state`|
+See [CHANGELOG](/CHANGELOG.md).
 
-### Moon
+## 👤 Author
 
-#### State (DAWN) Energy
+**hiulit**
 
-| Name | Type | Description |
-| --- | --- | --- |
-| `state_dawn_energy` | `float` | The energy value of the DAWN state. The larger the value, the stronger the light. |
+- Twitter: [@hiulit](https://twitter.com/hiulit)
+- GitHub: [@hiulit](https://github.com/kefhiulitranabg)
 
-#### State (DAY) Energy
+## 🤝 Contributing
 
-| Name | Type | Description |
-| --- | --- | --- |
-| `state_day_energy` | `float` | The energy value of the DAY state. The larger the value, the stronger the light. |
+Feel free to:
 
-#### State (DUSK) Energy
+- [Open an issue](https://github.com/hiulit/RetroPie-Godot-Game-Engine-Emulator/issues) if you find a bug.
+- [Create a pull request](https://github.com/hiulit/RetroPie-Godot-Game-Engine-Emulator/pulls) if you have a new cool feature to add to the project.
+- [Start a new discussion]() about a feature request.
 
-| Name | Type | Description |
-| --- | --- | --- |
-| `state_dusk_energy` | `float` | The energy value of the DUSK state. The larger the value, the stronger the light. |
+## 🙌 Supporting this project
 
-#### State (NIGHT) Energy
+If this project helped you, please consider supporting it through any size donations ❤️.
 
-| Name | Type | Description |
-| --- | --- | --- |
-| `state_night_energy` | `float` | The energy value of the NIGHT state. The larger the value, the stronger the light. |
+[![patreon](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/hiulit)
 
-#### State Transition Duration
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F2F7136ND)
 
-| Name | Type | Description |
-| --- | --- | --- |
-| `state_transition_duration` | `float` | The duration of the transition between cycle states **in hours**. |
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/paypalme/hiulit)
 
-#### Move
+Or just drop a star ⭐️.
 
-| Name | Type | Description |
-| --- | --- | --- |
-| `move` | `bool` | Enables/disables the Moon movement. |
 
-## Authors
-
-Me 😛 [@hiulit](https://github.com/hiulit).
-
-## Credits
+## 👏 Credits
 
 Thanks to:
 
-* **Solo CodeNet** for the [YouTube video tutorial](https://www.youtube.com/watch?v=sz8fyzvB6q0) that inspired me.
-* [Terkwood](https://github.com/Terkwood) - For helping with an issue about comparison operators in the cycle state.
+- **Solo CodeNet** for the [YouTube video tutorial](https://www.youtube.com/watch?v=sz8fyzvB6q0) that inspired me.
+- [Terkwood](https://github.com/Terkwood) - For helping with an issue about comparison operators in the cycle state.
+- [Twemoji](https://twemoji.twitter.com/) - For the emojis.
+- **Andrea Calabró** - For creating the Godot logo.
 
-## License
 
-[MIT License](/LICENSE).
+## 📝 Licenses
+
+- Source code: [MIT License](/LICENSE).
+- Emojis: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+- Godot logo: [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
+
 
