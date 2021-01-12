@@ -14,18 +14,19 @@ export (NodePath) var cycle_sync_node_path
 var window_x: float = ProjectSettings.get_setting("display/window/size/width")
 var window_y: float = ProjectSettings.get_setting("display/window/size/height")
 
-var window_center: Vector2 = Vector2(window_x / 2, window_y / 2)
+var window_center := Vector2(window_x / 2, window_y / 2)
 var radius_x: float = window_x / 1.5
 var radius_y: float = radius_x / 1.5
 
-var path = Curve2D.new()
+var path := Curve2D.new()
 
 var speed: float
 var hour_step: float
-var moon_position: float = 12.0 # Top center.
+var moon_position: float
+var moon_position_static: float = 0.0 # Top center.
 
 var cycle_sync_node: Node
-var delay: float = 0
+var delay: float = 0.0
 
 onready var color_transition_tween = $color_transition_tween
 onready var energy_transition_tween = $energy_transition_tween
@@ -83,10 +84,6 @@ func _ready():
 	# Divide the path into hours.
 	hour_step = path.get_baked_points().size() / float(Time.HOURS_IN_A_DAY)
 
-	# Set the moon position.
-	moon_position = hour_step * Time.get_current_hour()
-	position = path.get_baked_points()[moon_position]
-
 	if move:
 		# Sync the delay with the cycle.
 		if cycle_sync_node_path:
@@ -97,8 +94,16 @@ func _ready():
 			visible = false
 			push_warning("The '" + str(self.name) + "' node isn't sync with any cycle." + \
 					" Use 'cycle_sync_node_path' to set a cycle to sync the '" + str(self.name) + "' node with.")
+
+		# Set moving position.
+		moon_position = hour_step * Time.get_current_hour()
 	else:
+		# Set static position.
+		moon_position = hour_step * moon_position_static
 		set_physics_process(false)
+
+	# Set the initial position.
+	position = path.get_baked_points()[moon_position]
 
 	# Set the current cycle state.
 	match Time.current_cycle:
