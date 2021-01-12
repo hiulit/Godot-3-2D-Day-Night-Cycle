@@ -27,25 +27,14 @@ const SECONDS_IN_A_YEAR: int = SECONDS_IN_A_MONTH * MONTHS_IN_A_YEAR
 # 90 minutes (5400 seconds) in game == 1 second in real time.
 const IN_GAME_SECONDS_PER_REAL_TIME_SECONDS: int = 5400
 
-# The hour in the day in which the game starts (0-23).
-# ----
-# Note that unlike the other 'game_start_*' variables,
-# the value of this variable (in seconds) will be appended
-# to 'seconds_elapsed' on game start.
-# This is done to avoid not being able to move the debug time slider
-# back to earlier hours in the day.
-# Should be at least 1 to ensure that '_update_current_cycle()' gets called.
-# ----
+# The hour of the day at which the game starts (0-23).
 var game_start_hour: int = 12
-# The day of the month in which the game starts (1-30).
-var game_start_day: int = 30
-# The month in which the game starts (1-12).
-var game_start_month: int = 12
-# The year in which the game starts (0-INF).
-var game_start_year: int = 2020
-
-# Seconds at the start of the game.
-var game_epoch: int
+# The day of the month at which the game starts (1-30).
+var game_start_day: int = 1
+# The month at which the game starts (1-12).
+var game_start_month: int = 1
+# The year at which the game starts (0-INF).
+var game_start_year: int = 2021
 
 # The start hours of each cycle.
 var state_dawn_start_hour: int = 5
@@ -70,8 +59,12 @@ var seconds_to_add: int
 # Keeps track of the current cycle.
 var current_cycle: int
 
+# Seconds at the start of the game.
+var game_epoch: int
+
 # When changing the time via the debug controls, we should skip interpolation.
 var changing_time_manually: bool = false setget _set_changing_time_manually
+# Stops the time.
 var freeze_time: bool = true setget _set_freeze_time
 
 func _ready():
