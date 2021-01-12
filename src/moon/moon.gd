@@ -92,8 +92,8 @@ func _ready():
 			visible = true
 		else:
 			visible = false
-			push_warning("The '" + str(self.name) + "' node isn't sync with any cycle." + \
-					" Use 'cycle_sync_node_path' to set a cycle to sync the '" + str(self.name) + "' node with.")
+			push_warning("The '" + str(self.name) + "' node isn't sync with any 'day_night_cycle' node." + \
+					" Use 'cycle_sync_node_path' to set a 'day_night_cycle' node to sync the '" + str(self.name) + "' node with.")
 
 		# Set moving position.
 		moon_position = hour_step * Time.get_current_hour()
