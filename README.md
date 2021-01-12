@@ -6,6 +6,8 @@ A 2D ☀️ Day / 🌔 Night cycle using `CanvasModulate` and a moon light effec
 
 ![Godot 3 2D Day/Night Cycle](example_images/godot_3_2D_day_night_cycle.jpg)
 
+## Examples
+
 ![Godot 3 2D Day/Night Cycle GIF](example_images/day_night_cycle_godot_3-no-moon.gif)
 
 *Cycle without the moon light.*
@@ -51,64 +53,13 @@ Main
 * Background scene - **Day start hour**: 10.2
 * Main scene - **Day start hour**: 10
 
+... XXX ...
 
-
-....
-
-## Documentation
-
-
+## 📑 Documentation
 
 - [Day/Night Cycle](docs/DAY_NIGHT_CYCLE.md)
 - [Moon](docs/MOON.md)
-
-
-### DayNightCycle
-
-#### Day Duration
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `day_duration` | `float` | The duration of the day **in minutes**. |
-
-
-#### Day Start Number
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `day_start_number` | `float` | The starting day number. |
-
-...
-
-#### State (DAWN) Start Hour
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `state_dawn_start_hour` | `float` | The starting hour of the DAWN cycle state. **24 hours time (0-23)**. |
-
-#### State (DAY) Start Hour
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `state_day_start_hour` | `float` | The starting hour of the DAY cycle state. **24 hours time (0-23)**. |
-
-#### State (DUSK) Start Hour
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `state_dusk_start_hour` | `float` | The starting hour of the DUSK cycle state. **24 hours time (0-23)**. |
-
-#### State (NIGHT) Start Hour
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `state_night_start_hour` | `float` | The starting hour of the NIGHT cycle state. **24 hours time (0-23)**. |
-
-#### State Transition Duration
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `state_transition_duration` | `float` | The duration of the transition between cycle states **in hours**. |
+- [Time](docs/TIME.md)
 
 ## 🗒️ Changelog
 
