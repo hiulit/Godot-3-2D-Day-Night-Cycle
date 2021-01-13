@@ -21,45 +21,46 @@ A 2D ☀️ Day / 🌔 Night cycle using `CanvasModulate` and a moon light effec
 ![Cycle with the moon light moving](example_images/day_night_cycle_godot_3-with-moving-moon.gif)
 
 *Cycle with the moon light moving.*
-## 🛠️ Installation
+## 🛠️ Setup
 
-- [Download](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/archive/master.zip) the repository ZIP file.
+- Clone the repository `https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle.git` or  [Download](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/archive/master.zip) the repository as a ZIP file.
 - Copy the **Time** singleton in your project and [enable](https://docs.godotengine.org/en/stable/getting_started/step_by_step/singletons_autoload.html) it.
     - `day_night_cycle/src/Singletons/Time.gd`
 - Copy the **DayNightCycle** folder in your project.
     - `day_night_cycle/src/DayNightCycle`
-- Copy **MoonLight** folder in your project.
+- Copy the **MoonLight** folder in your project.
     - `day_night_cycle/src/MoonLight`
 - Copy the **DebugOverlay** folder in your project.
     - `day_night_cycle/src/DebugOverlay`
 
-... XXX ... ... XXX ... ... XXX ...
-
 ## 🚀 Usage
 
-- Instance `day_night_cycle.tscn` (you may have to attach `day_night_cycle.gd` to it as a script)
-- 
+- Instance `DayNightCycle.tscn` (you may have to attach `DayNightCycle.gd` to it as a script).
+- Instance `MoonLight.tscn` (you may have to attach `MoonLight.gd` to it as a script).
+
 
 ### Add a delay between cycles
 
-- Create a `CanvasLayer` for the background.
-- Instance a `DayNightCycle` in your background `CanvasLayer`.
+- Create a `CanvasLayer` for the background and set its `layer` to `-1`.
+- Instance a `DayNightCycle` in the background `CanvasLayer` previously created.
 - Instance another `DayNightCycle` in the root scene and add a [delay](docs/DAY_NIGHT_CYCLE.md#delay).
-- Instance a `MoonLight` in the root scene ans [sync it](docs/MOON_LIGHT.md#cycle-sync-node-path) to the `DayNightCycle` with a delay.
+- Instance a `MoonLight` in the root scene and [sync it](docs/MOON_LIGHT.md#cycle-sync-node-path) to the `DayNightCycle` with a delay.
 
-etc. and set the **Day start hour** in the background scene a little after than the **Day start hour** in the main scene to have the effect that the background starts changing before the foreground.
+Something like this:
 
 ```
 Node
-├── CanvasLayer
+├── CanvasLayer (layer = -1)
+│   └── BackgroundSprite
 │   └── DayNightCycleBackground (delay = 0)
+├── TileMap
 ├── Player
 ├── OtherStuff
 └── DayNightCycleForeground (delay = 1800)
 └── MoonLight (cycle_sync_node_path = DayNightCycleForeground)
 ```
 
-... XXX ... ... XXX ... ... XXX ...
+This will create the effect that the background starts changing before the foreground.
 
 ## 📑 Documentation
 
@@ -113,6 +114,7 @@ Thanks to:
 - [Solo CodeNet](https://twitter.com/codenetsolo) - For the [YouTube video tutorial](https://www.youtube.com/watch?v=sz8fyzvB6q0) that inspired this project.
 - [Terkwood](https://github.com/Terkwood) - For helping with an issue about comparison operators in the cycle state.
 - [Mitch Curtis](https://github.com/mitchcurtis) - For an amazing PR ([#4](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/pull/4)) that helped improve the project big time.
+- [Luis Zuno](https://twitter.com/ansimuz) - For creating the [Sunny Land](https://opengameart.org/content/sunny-land-2d-pixel-art-pack) assets.
 - [Twemoji](https://twemoji.twitter.com/) - For the emojis.
 - **Andrea Calabró** - For creating the Godot logo.
 
@@ -122,5 +124,5 @@ Thanks to:
 - Source code: [MIT License](/LICENSE).
 - Emojis: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 - Godot logo: [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
-
+- Sunny Land assets: [Public domain](https://creativecommons.org/publicdomain/zero/1.0/deed).
 
