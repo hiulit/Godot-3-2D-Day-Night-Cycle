@@ -45,7 +45,7 @@ A 2D ☀️ Day / 🌔 Night cycle using `CanvasModulate` and a moon light effec
 - Create a `CanvasLayer` for the background.
 - Instance a `DayNightCycle` in your background `CanvasLayer`.
 - Instance another `DayNightCycle` in the root scene and add a [delay](docs/DAY_NIGHT_CYCLE.md#delay).
-- Instance a `MoonLight` in the root scene ans [sync it](docs/MOON_LIGHT.md#moon-node-path) to the `DayNightCycle` with a delay.
+- Instance a `MoonLight` in the root scene ans [sync it](docs/MOON_LIGHT.md#cycle-sync-node-path) to the `DayNightCycle` with a delay.
 
 etc. and set the **Day start hour** in the background scene a little after than the **Day start hour** in the main scene to have the effect that the background starts changing before the foreground.
 
