@@ -62,4 +62,4 @@
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `cycle_sync_node_path` | `NodePath` | The `day_night_cycle` node which the moon will sync with. The moon will only show if there is a `day_night_cycle` node assigned. |
+| `cycle_sync_node_path` | `NodePath` | The `DayNightCycle` node which the moon will sync with. The moon will only show if there is a `DayNightCycle` node assigned. |
