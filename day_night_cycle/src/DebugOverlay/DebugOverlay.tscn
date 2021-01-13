@@ -17,14 +17,14 @@ __meta__ = {
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 172.0
-margin_bottom = 282.0
+margin_bottom = 252.0
 custom_constants/separation = 15
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="time_slider_label" type="Label" parent="VBoxContainer"]
+[node name="TimeSliderLabel" type="Label" parent="VBoxContainer"]
 margin_right = 168.0
 margin_bottom = 14.0
 text = "Time Slider"
@@ -32,14 +32,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="time_slider" type="HSlider" parent="VBoxContainer"]
+[node name="TimeSlider" type="HSlider" parent="VBoxContainer"]
 margin_top = 29.0
 margin_right = 168.0
 margin_bottom = 45.0
 min_value = -1.0
 max_value = 24.0
 
-[node name="freeze_time_checkbox" type="CheckBox" parent="VBoxContainer"]
+[node name="FreezeTimeCheckbox" type="CheckBox" parent="VBoxContainer"]
 margin_top = 60.0
 margin_right = 168.0
 margin_bottom = 84.0
@@ -48,34 +48,34 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="show_moon_checkbox" type="CheckBox" parent="VBoxContainer"]
+[node name="ShowMoonLightCheckbox" type="CheckBox" parent="VBoxContainer"]
 margin_top = 99.0
 margin_right = 168.0
 margin_bottom = 123.0
-text = "Show moon"
+text = "Show moon light"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="time_label" type="Label" parent="VBoxContainer"]
+[node name="TimeLabel" type="Label" parent="VBoxContainer"]
 margin_top = 177.0
 margin_right = 168.0
 margin_bottom = 191.0
 text = "Time:"
 
-[node name="date_label" type="Label" parent="VBoxContainer"]
+[node name="DateLabel" type="Label" parent="VBoxContainer"]
 margin_top = 206.0
 margin_right = 168.0
 margin_bottom = 220.0
 text = "Date:"
 
-[node name="period_label" type="Label" parent="VBoxContainer"]
+[node name="PeriodLabel" type="Label" parent="VBoxContainer"]
 margin_top = 235.0
 margin_right = 168.0
 margin_bottom = 249.0
 text = "Period:"
 
-[node name="fps_label" type="Label" parent="VBoxContainer"]
+[node name="FPSLabel" type="Label" parent="VBoxContainer"]
 margin_top = 264.0
 margin_right = 168.0
 margin_bottom = 278.0
@@ -84,7 +84,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="gui_input" from="VBoxContainer/time_slider" to="." method="_on_time_slider_gui_input"]
-[connection signal="value_changed" from="VBoxContainer/time_slider" to="." method="_on_time_slider_value_changed"]
-[connection signal="toggled" from="VBoxContainer/freeze_time_checkbox" to="." method="_on_freeze_time_checkbox_toggled"]
-[connection signal="toggled" from="VBoxContainer/show_moon_checkbox" to="." method="_on_show_moon_checkbox_toggled"]
+[connection signal="gui_input" from="VBoxContainer/TimeSlider" to="." method="_on_time_slider_gui_input"]
+[connection signal="value_changed" from="VBoxContainer/TimeSlider" to="." method="_on_time_slider_value_changed"]
+[connection signal="toggled" from="VBoxContainer/FreezeTimeCheckbox" to="." method="_on_freeze_time_checkbox_toggled"]
+[connection signal="toggled" from="VBoxContainer/ShowMoonLightCheckbox" to="." method="_on_show_moon_checkbox_toggled"]

@@ -1,4 +1,4 @@
-# Day/Night Cycle
+# DayNightCycle
 
 ## Parameters
 

@@ -28,8 +28,8 @@ var moon_position_static: float = 0.0 # Top center.
 var cycle_sync_node: Node
 var delay: float = 0.0
 
-onready var color_transition_tween = $color_transition_tween
-onready var energy_transition_tween = $energy_transition_tween
+onready var color_transition_tween = $ColorTransitionTween
+onready var energy_transition_tween = $EnergyTransitionTween
 
 func _ready():
 	# Connect signals.
@@ -92,8 +92,8 @@ func _ready():
 			visible = true
 		else:
 			visible = false
-			push_warning("The '" + str(self.name) + "' node isn't sync with any 'day_night_cycle' node." + \
-					" Use 'cycle_sync_node_path' to set a 'day_night_cycle' node to sync the '" + str(self.name) + "' node with.")
+			push_warning("The '" + str(self.name) + "' node isn't sync with any 'DayNightCycle' node." + \
+					" Use 'cycle_sync_node_path' to set a 'DayNightCycle' node to sync the '" + str(self.name) + "' node with.")
 
 		# Set moving position.
 		moon_position = hour_step * Time.get_current_hour()

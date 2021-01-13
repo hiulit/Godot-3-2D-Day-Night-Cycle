@@ -1,4 +1,4 @@
-# Debug Overlay
+# DebugOverlay
 
 ## Parameters
 

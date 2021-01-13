@@ -25,13 +25,13 @@ A 2D ☀️ Day / 🌔 Night cycle using `CanvasModulate` and a moon light effec
 
 - [Download](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/archive/master.zip) the repository ZIP file.
 - Copy the **Time** singleton in your project and [enable](https://docs.godotengine.org/en/stable/getting_started/step_by_step/singletons_autoload.html) it.
-    - `src/singletons/Time.gd`
-- Copy the **Day/Night Cycle** folder in your project.
-    - `src/day_night_cycle`
-- Copy **Moon** folder in your project.
-    - `src/moon`
-- Copy the **Debug overlay** folder in your project.
-    - `src/debug_overlay`
+    - `day_night_cycle/src/Singletons/Time.gd`
+- Copy the **DayNightCycle** folder in your project.
+    - `day_night_cycle/src/DayNightCycle`
+- Copy **MoonLight** folder in your project.
+    - `day_night_cycle/src/MoonLight`
+- Copy the **DebugOverlay** folder in your project.
+    - `day_night_cycle/src/DebugOverlay`
 
 ... XXX ... ... XXX ... ... XXX ...
 
@@ -42,29 +42,30 @@ A 2D ☀️ Day / 🌔 Night cycle using `CanvasModulate` and a moon light effec
 
 ### Tips
 
-Instance one `DayNightCycle.tscn` in your background scene and another `DayNightCycle.tscn` in your main scene or level scene, etc. and set the **Day start hour** in the background scene a little after than the **Day start hour** in the main scene to have the effect that the background starts changing before the foreground.
+Instance one `DayNightCycle` in your background `CanvasLayer` and call it `DayNightCycleBackground` and instance another `DayNightCycle` in the root scene, etc. and set the **Day start hour** in the background scene a little after than the **Day start hour** in the main scene to have the effect that the background starts changing before the foreground.
 
 ```
 Node
 ├── CanvasLayer
-│   └── DayNightCycle
+│   └── BackgroundDayNightCycle
 ├── Player
 ├── OtherStuff
-└── DayNightCycle
+└── ForegroundDayNightCycle
 ```
 
 #### Example
 
-* Background scene - **Day start hour**: 10.2
-* Main scene - **Day start hour**: 10
+* BackgroundDayNightCycle: delay 0
+* ForegroundDayNightCycle: delay 1800
 
 ... XXX ... ... XXX ... ... XXX ...
 
 ## 📑 Documentation
 
-- [Day/Night Cycle](docs/DAY_NIGHT_CYCLE.md)
-- [Moon](docs/MOON.md)
 - [Time](docs/TIME.md)
+- [DayNightCycle](docs/DAY_NIGHT_CYCLE.md)
+- [MoonLight](docs/MOON_LIGHT.md)
+- [DebugOverlay](docs/DEBUG_OVERLAY.md)
 
 ## 🗒️ Changelog
 

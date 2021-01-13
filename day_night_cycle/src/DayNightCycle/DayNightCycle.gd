@@ -6,7 +6,7 @@ export (Color) var color_day = Color(1.0, 1.0, 1.0, 1.0)
 export (Color) var color_dusk = Color(0.59, 0.66, 0.78, 1.0)
 export (int) var delay = 0
 
-onready var color_transition_tween = $color_transition_tween
+onready var color_transition_tween = $ColorTransitionTween
 
 func _ready():
 	# Connect signals.

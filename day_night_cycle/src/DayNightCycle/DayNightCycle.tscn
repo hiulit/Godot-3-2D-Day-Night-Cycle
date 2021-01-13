@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/DayNightCycle/DayNightCycle.gd" type="Script" id=1]
 
-[node name="day_night_cycle" type="CanvasModulate"]
+[node name="DayNightCycle" type="CanvasModulate"]
 script = ExtResource( 1 )
 
-[node name="color_transition_tween" type="Tween" parent="."]
+[node name="ColorTransitionTween" type="Tween" parent="."]

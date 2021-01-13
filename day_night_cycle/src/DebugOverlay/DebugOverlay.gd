@@ -5,13 +5,13 @@ export (bool) var show = true
 
 var moon_node
 
-onready var time_slider = $VBoxContainer/time_slider
-onready var freeze_time_checkbox = $VBoxContainer/freeze_time_checkbox
-onready var show_moon_checkbox = $VBoxContainer/show_moon_checkbox
-onready var time_label = $VBoxContainer/time_label
-onready var date_label = $VBoxContainer/date_label
-onready var period_label = $VBoxContainer/period_label
-onready var fps_label = $VBoxContainer/fps_label
+onready var time_slider = $VBoxContainer/TimeSlider
+onready var freeze_time_checkbox = $VBoxContainer/FreezeTimeCheckbox
+onready var show_moon_checkbox = $VBoxContainer/ShowMoonLightCheckbox
+onready var time_label = $VBoxContainer/TimeLabel
+onready var date_label = $VBoxContainer/DateLabel
+onready var period_label = $VBoxContainer/PeriodLabel
+onready var fps_label = $VBoxContainer/FPSLabel
 
 func _ready():
 	# Remove the debug overlay if 'show' is set to 'false'.
