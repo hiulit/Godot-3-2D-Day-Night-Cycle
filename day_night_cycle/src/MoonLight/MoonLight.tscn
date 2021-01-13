@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://src/moon/moon_light.png" type="Texture" id=1]
-[ext_resource path="res://src/moon/moon.gd" type="Script" id=2]
+[ext_resource path="res://assets/moon_light.png" type="Texture" id=1]
+[ext_resource path="res://src/MoonLight/MoonLight.gd" type="Script" id=2]
 
 [node name="moon" type="Light2D"]
 texture = ExtResource( 1 )
