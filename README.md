@@ -23,12 +23,14 @@ A 2D ☀️ Day / 🌔 Night cycle using `CanvasModulate` and a moon light effec
 
 - Clone the repository or [download](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/archive/master.zip) it in a ZIP file.
 - Copy the following files and folders to your project:
-    - `Time.gd` file (`day_night_cycle/src/Singletons/Time.gd`). It is a singleton, so remember to [enable](https://docs.godotengine.org/en/stable/getting_started/step_by_step/singletons_autoload.html) it.
+    - `Time.gd` file (`day_night_cycle/src/Singletons/Time.gd`).
     - `DayNightCycle` folder (`day_night_cycle/src/DayNightCycle`).
     - `MoonLight` folder (`day_night_cycle/src/MoonLight`).
     - `DebugOverlay` folder (`day_night_cycle/src/DebugOverlay`).
 
 ## 🚀 Usage
+
+### Prerequisites
 
 Add the `Time` singleton:
 
