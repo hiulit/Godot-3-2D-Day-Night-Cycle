@@ -23,27 +23,64 @@ A 2D ☀️ Day / 🌔 Night cycle using `CanvasModulate` and a moon light effec
 *Cycle with the moon light moving.*
 ## 🛠️ Setup
 
-- Clone the repository `https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle.git` or  [Download](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/archive/master.zip) the repository as a ZIP file.
-- Copy the **Time** singleton in your project and [enable](https://docs.godotengine.org/en/stable/getting_started/step_by_step/singletons_autoload.html) it.
-    - `day_night_cycle/src/Singletons/Time.gd`
-- Copy the **DayNightCycle** folder in your project.
-    - `day_night_cycle/src/DayNightCycle`
-- Copy the **MoonLight** folder in your project.
-    - `day_night_cycle/src/MoonLight`
-- Copy the **DebugOverlay** folder in your project.
-    - `day_night_cycle/src/DebugOverlay`
+- Clone the repository or [download](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/archive/master.zip) it in a ZIP file.
+- Copy the following files and folders to your project:
+    - `Time.gd` file (`day_night_cycle/src/Singletons/Time.gd`). It is a singleton, so remember to [enable](https://docs.godotengine.org/en/stable/getting_started/step_by_step/singletons_autoload.html) it.
+    - `DayNightCycle` folder (`day_night_cycle/src/DayNightCycle`).
+    - `MoonLight` folder (`day_night_cycle/src/MoonLight`).
+    - `DebugOverlay` folder (`day_night_cycle/src/DebugOverlay`).
 
 ## 🚀 Usage
 
-- Instance `DayNightCycle.tscn` (you may have to attach `DayNightCycle.gd` to it as a script).
-- Instance `MoonLight.tscn` (you may have to attach `MoonLight.gd` to it as a script).
+Add the `Time` singleton:
 
+- Go to `Project` -> `Project Settings`.
+- Go to the `AutoLoad` tab.
+- Add the `Time.gd` file.
+- Enable it.
+
+![Enable the Time.gd singleton](example_images/enable_time_singleton.png)
+
+Change the `Time` [parameters](docs/TIME.md#parameters) to your liking.
+
+### Add a simple cycle
+
+Instance a `DayNightCycle` node in the root scene.
+
+```
+Node
+├── TileMap
+├── Player
+├── OtherStuff
+└── DayNightCycle
+```
+
+Change the `DayNightCycle` [parameters](docs/DAY_NIGHT_CYCLE.md#parameters) to your liking.
+
+### Add a cycle with a moon light
+
+Instance a `DayNightCycle` node and a `MoonLight` node in the root scene.
+
+```
+Node
+├── TileMap
+├── Player
+├── OtherStuff
+├── DayNightCycle
+└── MoonLight
+```
+
+[Sync](docs/MOON_LIGHT.md#cycle-sync-node-path) the `MoonLight` with the `DayNightCycle`.
+
+The `MoonLight` can be static or [moving](docs/MOON_LIGHT.md#move) in sync with a `DayNightCycle`.
+
+Change the `DayNightCycle` [parameters](docs/DAY_NIGHT_CYCLE.md#parameters) and the `MoonLight` [parameters](docs/MOON_LIGHT.md#parameters) to your liking.
 
 ### Add a delay between cycles
 
 - Create a `CanvasLayer` for the background and set its `layer` to `-1`.
-- Instance a `DayNightCycle` in the background `CanvasLayer` previously created.
-- Instance another `DayNightCycle` in the root scene and add a [delay](docs/DAY_NIGHT_CYCLE.md#delay).
+- Instance a `DayNightCycle` node in the background `CanvasLayer` previously created.
+- Instance another `DayNightCycle` node in the root scene and add a [delay](docs/DAY_NIGHT_CYCLE.md#delay).
 - Instance a `MoonLight` in the root scene and [sync it](docs/MOON_LIGHT.md#cycle-sync-node-path) to the `DayNightCycle` with a delay.
 
 Something like this:
@@ -90,7 +127,7 @@ Feel free to:
 
 ## 🙌 Supporting this project
 
-If you love this project, please consider supporting it through any size donations to help make it better ❤️
+If you love this project or find it helpful, please consider supporting it through any size donations to help make it better ❤️.
 
 [![Become a patron](https://img.shields.io/badge/Become_a_patron-ff424d?logo=Patreon&style=for-the-badge&logoColor=white)](https://www.patreon.com/hiulit)
 
@@ -100,12 +137,11 @@ If you love this project, please consider supporting it through any size donatio
 
 [![Donate Paypal](https://img.shields.io/badge/PayPal-00457C?logo=PayPal&style=for-the-badge&label=Donate)](https://www.paypal.com/paypalme/hiulit)
 
-share it with the world
+If you can't, consider sharing it with the world...
 
 [![](https://img.shields.io/badge/Share_on_Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fhiulit%2FGodot-3-2D-Day-Night-Cycle&text=%22Godot%203%202D%20Day%2FNight%20Cycle%22%3A%20A%202D%20%E2%98%80%EF%B8%8F%20Day%20%2F%20%F0%9F%8C%94%20Night%20cycle%20using%20CanvasModulate%20and%20a%20moon%20light%20effect%20using%20Light2D)
 
-
-or give it a [star ⭐️](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/stargazers).
+... or giving it a [star ⭐️](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/stargazers).
 
 ## 👏 Credits
 
