@@ -98,8 +98,12 @@ func _ready():
 		# Set moving position.
 		moon_position = hour_step * Time.get_current_hour()
 	else:
+		# Make it visible in case it's hidden in the editor.
+		visible = true
+
 		# Set static position.
 		moon_position = hour_step * moon_position_static
+
 		set_physics_process(false)
 
 	# Set the initial position.
