@@ -8,7 +8,7 @@
 
 | Name | Type | Description | Default |
 | - | - | - | - |
-| `color_night` | `Color` | The color of the night state. | `Color(0.07, 0.09, 0.38, 1.0)0` |
+| `color_night` | `Color` | The color of the night state. | `Color(0.07, 0.09, 0.38, 1.0)` |
 
 ### Color Dawn
 
