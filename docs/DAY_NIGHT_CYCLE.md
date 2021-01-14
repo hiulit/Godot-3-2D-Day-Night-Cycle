@@ -32,4 +32,4 @@
 
 | Name | Type | Description | Default |
 | - | - | - | - |
-| `delay` | `int` | The amount of seconds of delay. | `0` |
+| `delay` | `int` | The amount of in-game seconds of delay. | `0` |
