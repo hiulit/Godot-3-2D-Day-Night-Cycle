@@ -64,33 +64,26 @@
 
 ## Public Functions
 
-Getters for particular units (m/s/h/etc.) of the current time.
+### Getters for particular units (m/s/h/etc.) of the current time.
 
 - `get_current_second()`
-
 - `get_current_minute()`
-
 - `get_current_hour()`
-
 - `get_current_day()`
-
 - `get_current_month()`
-
 - `get_current_year()`
 
-Setters for particular units (m/s/h/etc.) of the current time.
+### Setters for particular units (m/s/h/etc.) of the current time.
 
 - `set_current_hour(hour)`
 
-General string conversion functions.
+### General string conversion functions.
 
 - `current_time_string()`
-
 - `current_date_string()`
-
 - `current_cycle_to_string()`
 
-General time unit conversion functions.
+### General time unit conversion functions.
 
 - `seconds_to_minutes(seconds)`
 - `seconds_to_hours(seconds)`
