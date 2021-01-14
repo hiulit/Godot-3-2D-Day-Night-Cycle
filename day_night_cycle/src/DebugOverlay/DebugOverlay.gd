@@ -1,9 +1,9 @@
 extends PopupPanel
 
-export (NodePath) var moon_node_path
+export (NodePath) var moon_light_node_path
 export (bool) var show = true
 
-var moon_node
+var moon_light_node
 
 onready var time_slider = $VBoxContainer/TimeSlider
 onready var freeze_time_checkbox = $VBoxContainer/FreezeTimeCheckbox
@@ -50,10 +50,10 @@ func _ready():
 	# Set the debug overlay labels and checkboxes.
 	freeze_time_checkbox.pressed = Time.freeze_time
 
-	if moon_node_path:
-		moon_node = get_node(moon_node_path)
+	if moon_light_node_path:
+		moon_light_node = get_node(moon_light_node_path)
 
-		if moon_node.cycle_sync_node_path:
+		if moon_light_node.cycle_sync_node_path:
 			show_moon_checkbox.pressed = true
 		else:
 			show_moon_checkbox.queue_free()
@@ -131,4 +131,4 @@ func _on_freeze_time_checkbox_toggled(button_pressed):
 
 
 func _on_show_moon_checkbox_toggled(button_pressed):
-	moon_node.visible = button_pressed
+	moon_light_node.visible = button_pressed

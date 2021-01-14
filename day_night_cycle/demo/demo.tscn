@@ -62,7 +62,7 @@ texture = ExtResource( 9 )
 
 [node name="DayNightCycleForeground" parent="." instance=ExtResource( 3 )]
 
-[node name="Moon" parent="." instance=ExtResource( 2 )]
+[node name="MoonLight" parent="." instance=ExtResource( 2 )]
 visible = false
 move = false
 cycle_sync_node_path = NodePath("../DayNightCycleForeground")
@@ -74,4 +74,4 @@ margin_left = 288.0
 margin_top = 8.0
 margin_right = 464.0
 margin_bottom = 264.0
-moon_node_path = NodePath("../../Moon")
+moon_light_node_path = NodePath("../../MoonLight")
