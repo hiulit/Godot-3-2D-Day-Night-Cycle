@@ -16,6 +16,8 @@ onready var fps_label = $VBoxContainer/FPSLabel
 func _ready():
 	# Remove the debug overlay if 'show' is set to 'false'.
 	if not show:
+		# Unfreeze the time.
+		Time.freeze_time = false
 		queue_free()
 
 	# Connect signals.
