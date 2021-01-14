@@ -28,7 +28,20 @@ A 2D ☀️ Day / 🌔 Night cycle using `CanvasModulate` and a moon light effec
     - `MoonLight` folder (`day_night_cycle/src/MoonLight`).
     - `DebugOverlay` folder (`day_night_cycle/src/DebugOverlay`).
 
+## 📑 Documentation
+
+- [Time](docs/TIME.md)
+- [DayNightCycle](docs/DAY_NIGHT_CYCLE.md)
+- [MoonLight](docs/MOON_LIGHT.md)
+- [DebugOverlay](docs/DEBUG_OVERLAY.md)
+
 ## 🚀 Usage
+
+- [Prerequisites](#prerequisites)
+- [Add a simple cycle](#add-a-simple-cycle)
+- [Add a cycle with a moon light](#add-a-cycle-with-a-moon-light)
+- [Add a delay between cycles](#add-a-delay-between-cycles)
+- [Add a debug overlay](#add-a-debug-overlay)
 
 ### Prerequisites
 
@@ -45,7 +58,7 @@ Change the `Time` [parameters](docs/TIME.md#parameters) to your liking.
 
 ### Add a simple cycle
 
-Instance a `DayNightCycle` node in the root scene.
+Instance the `DayNightCycle` node in the root scene.
 
 ```
 Node
@@ -59,7 +72,7 @@ Change the `DayNightCycle` [parameters](docs/DAY_NIGHT_CYCLE.md#parameters) to y
 
 ### Add a cycle with a moon light
 
-Instance a `DayNightCycle` node and a `MoonLight` node in the root scene.
+Instance the `DayNightCycle` node and the `MoonLight` node in the root scene.
 
 ```
 Node
@@ -79,9 +92,9 @@ Change the `DayNightCycle` [parameters](docs/DAY_NIGHT_CYCLE.md#parameters) and 
 ### Add a delay between cycles
 
 - Create a `CanvasLayer` for the background and set its `layer` to `-1`.
-- Instance a `DayNightCycle` node in the background `CanvasLayer` previously created.
+- Instance the `DayNightCycle` node in the background `CanvasLayer` previously created.
 - Instance another `DayNightCycle` node in the root scene and add a [delay](docs/DAY_NIGHT_CYCLE.md#delay).
-- Instance a `MoonLight` in the root scene and [sync it](docs/MOON_LIGHT.md#cycle-sync-node-path) to the `DayNightCycle` with a delay.
+- Instance the `MoonLight` in the root scene and [sync it](docs/MOON_LIGHT.md#cycle-sync-node-path) to the `DayNightCycle` node with a delay.
 
 Something like this:
 
@@ -99,12 +112,27 @@ Node
 
 This will create the effect that the background starts changing before the foreground.
 
-## 📑 Documentation
+### Add a debug overlay
 
-- [Time](docs/TIME.md)
-- [DayNightCycle](docs/DAY_NIGHT_CYCLE.md)
-- [MoonLight](docs/MOON_LIGHT.md)
-- [DebugOverlay](docs/DEBUG_OVERLAY.md)
+Test the passing of time, the cycles and the moon light.
+
+![Debugg overlay example](example_images/debug_overlay_example.png)
+
+- Create a `CanvasLayer` and set its `layer` to `1`.
+- Instance the `DebugOverlay` node.
+
+Something like this:
+
+```
+Node
+├── TileMap
+├── Player
+├── OtherStuff
+├── DayNightCycle
+├── MoonLight
+└── CanvasLayer (layer = 1)
+    └── DebugOverlay
+```
 
 ## 🗒️ Changelog
 
