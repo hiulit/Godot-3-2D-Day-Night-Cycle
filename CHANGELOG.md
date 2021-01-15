@@ -4,6 +4,29 @@
 
 * Up to date.
 
+## [3.0.0] - 2021-01-15
+
+**NOTE**: This release contain breaking changes!
+
+### Added
+
+- Moved the time-specific code into a **Time** singleton.
+- Add a **debug overlay** that shows:
+    - A slider to change the time manually.
+    - A checkbox to freeze/unfreeze the time.
+    - A checkbox to show/hide the moon light.
+    - The current time.
+    - The current date.
+    - The current period.
+    - The FPS.
+- The moon light can be static or moving.
+
+### Changed
+
+- `DayNightCycle` is just tweening the cycles.
+- The `delay` variable of `DayNightCycle` must be set in in-game seconds.
+- `MoonLight` must be sync with a `DayNightCycle`.
+
 ## [2.1.2] - 2019-10-07
 
 ### Added
