@@ -19,6 +19,7 @@ A 2D ☀️ Day / 🌔 Night cycle using `CanvasModulate` and a moon light effec
 ![Cycle with the moon light moving](example_images/day_night_cycle_godot_3-with-moving-moon.gif)
 
 *Cycle with the moon light moving.*
+
 ## 🛠️ Setup
 
 - Clone the repository or [download](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/archive/master.zip) it in a ZIP file.
@@ -85,7 +86,7 @@ Node
 
 [Sync](docs/MOON_LIGHT.md#cycle-sync-node-path) the `MoonLight` with the `DayNightCycle`.
 
-The `MoonLight` can be static or [moving](docs/MOON_LIGHT.md#move) in sync with a `DayNightCycle`.
+The `MoonLight` can be [static](docs/MOON_LIGHT.md#static_moon) or [moving](docs/MOON_LIGHT.md#move_moon) in sync with a `DayNightCycle`.
 
 Change the `DayNightCycle` [parameters](docs/DAY_NIGHT_CYCLE.md#parameters) and the `MoonLight` [parameters](docs/MOON_LIGHT.md#parameters) to your liking.
 
@@ -182,11 +183,9 @@ Thanks to:
 - [Twemoji](https://twemoji.twitter.com/) - For the emojis.
 - **Andrea Calabró** - For creating the Godot logo.
 
-
 ## 📝 Licenses
 
 - Source code: [MIT License](/LICENSE).
 - Emojis: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 - Godot logo: [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
 - Sunny Land assets: [Public domain](https://creativecommons.org/publicdomain/zero/1.0/deed).
-
