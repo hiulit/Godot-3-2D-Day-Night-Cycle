@@ -55,7 +55,8 @@ func _ready():
 	if moon_light_node_path:
 		moon_light_node = get_node(moon_light_node_path)
 
-		if moon_light_node.cycle_sync_node_path:
+		if moon_light_node.static_moon and not moon_light_node.move_moon \
+				or moon_light_node.cycle_sync_node_path:
 			show_moon_checkbox.pressed = true
 		else:
 			show_moon_checkbox.queue_free()
