@@ -35,8 +35,12 @@ onready var energy_transition_tween = $EnergyTransitionTween
 
 func _ready():
 	if static_moon and move_moon or not static_moon and not move_moon:
-		printerr("The 'static_moon' and 'move_moon' variables in the '" + str(self.name) + "' node")
-		printerr("can't be set both to 'true' or 'false' at the same time.")
+		printerr("--------------------")
+		printerr("ERROR!")
+		printerr("File: '%s.gd'."  % self.name)
+		printerr("Message: The 'static_moon' and 'move_moon' variables can't" + \
+				" both be set to 'true' or 'false' at the same time.")
+		printerr("--------------------")
 
 		# Reset the path so in case there is a 'DebugOverlay' node,
 		# there won't be any options for the 'MoonLight' node.
@@ -109,8 +113,14 @@ func _ready():
 			moon_position = hour_step * Time.get_current_hour()
 			position = path.get_baked_points()[moon_position]
 		else:
-			printerr("The '" + str(self.name) + "' node isn't sync with any 'DayNightCycle' node.")
-			printerr("Use the 'cycle_sync_node_path' variable in the '" + str(self.name) + "' node to sync it with a 'DayNightCycle' node.")
+			printerr("--------------------")
+			printerr("ERROR!")
+			printerr("File: '%s.gd'."  % self.name)
+			printerr("Message: The '" + str(self.name) + "' node isn't" + \
+					" sync with any 'DayNightCycle' node." + \
+					" Use the 'cycle_sync_node_path' variable in the '" + \
+					str(self.name) + "' node to sync it with a 'DayNightCycle' node.")
+			printerr("--------------------")
 
 			visible = false
 
