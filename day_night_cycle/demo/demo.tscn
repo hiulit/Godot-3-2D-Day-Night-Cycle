@@ -64,7 +64,6 @@ texture = ExtResource( 9 )
 
 [node name="MoonLight" parent="." instance=ExtResource( 2 )]
 visible = false
-cycle_sync_node_path = NodePath("../DayNightCycleForeground")
 
 [node name="DebugOverlayLayer" type="CanvasLayer" parent="."]
 
