@@ -2,7 +2,7 @@
 
 ## Parameters
 
-![Moon Inspector](../example_images/moon_inspector.png)
+![Moon Inspector](../example_images/moon_light_inspector.png)
 
 ### Color Night
 
@@ -52,14 +52,32 @@
 | - | - | - | - |
 | `energy_dusk` | `float` | The energy value of the dusk state. The larger the value, the stronger the light. | `0.0` |
 
-### Move
+### Move Moon
 
 | Name | Type | Description | Default |
 | - | - | - | - |
-| `move` | `bool` | Enables/disables the moon movement. | `true` |
+| `move_moon` | `bool` | Enables the `MoonLight` node movement. | `false` |
 
 ### Cycle Sync Node Path
 
 | Name | Type | Description | Default |
 | - | - | - | - |
 | `cycle_sync_node_path` | `NodePath` | The `DayNightCycle` node which the moon will sync with. The `MoonLight` node will only show if there is a `DayNightCycle` node assigned to it. | `none` |
+
+### Static moon
+
+| Name | Type | Description | Default |
+| - | - | - | - |
+| `static_moon` | `bool` | Disables the `MoonLight` node movement. | `true` |
+
+### Use hour position
+
+| Name | Type | Description | Default |
+| - | - | - | - |
+| `use_hour_position` | `bool` | If enabled, the position of the `MoonLight` node is determined by `hour_position`. If not enabled, the position of the `MoonLight` node is determined by its `position`. It only works when `static_moon` is enabled. | `false` |
+
+### Hour position
+
+| Name | Type | Description | Default |
+| - | - | - | - |
+| `hour_position` | `int` | The hour of the day, in a 24-hour clock, to position the `MoonLight` node (0-23). | `0` |
