@@ -81,3 +81,13 @@
 | Name | Type | Description | Default |
 | - | - | - | - |
 | `hour_position` | `int` | The hour of the day, in a 24-hour clock, to position the `MoonLight` node (0-23). | `0` |
+
+## Path
+
+The moon light path is a [Curve2D](https://docs.godotengine.org/en/stable/classes/class_curve2d.html).
+
+The default path is like the one in the following image.
+
+![Moon Light Path](../example_images/moon_light_path.png)
+
+A new path can be set by changing the `Curve2D` in `path`.
