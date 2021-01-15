@@ -18,8 +18,8 @@ var window_x: float = ProjectSettings.get_setting("display/window/size/width")
 var window_y: float = ProjectSettings.get_setting("display/window/size/height")
 
 var window_center := Vector2(window_x / 2, window_y / 2)
-var radius_x: float = window_x / 1.5
-var radius_y: float = radius_x / 1.5
+var radius_x: float = window_x / 2.10
+var radius_y: float = window_y / 2.15
 
 var path := Curve2D.new()
 
