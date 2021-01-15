@@ -33,7 +33,7 @@ func _ready():
 		"_on_hour_changed"
 	)
 
-	var connect_current_cycle_changed_signal = Time.connect(
+	var current_cycle_changed_signal = Time.connect(
 		"current_cycle_changed",
 		self,
 		"_on_current_cycle_changed"
@@ -46,8 +46,8 @@ func _ready():
 	if current_hour_changed_signal != OK:
 		printerr(current_hour_changed_signal)
 
-	if connect_current_cycle_changed_signal != OK:
-		printerr(connect_current_cycle_changed_signal)
+	if current_cycle_changed_signal != OK:
+		printerr(current_cycle_changed_signal)
 
 	# Set the debug overlay labels and checkboxes.
 	freeze_time_checkbox.pressed = Time.freeze_time
