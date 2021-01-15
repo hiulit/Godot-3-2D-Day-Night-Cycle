@@ -7,7 +7,7 @@ var moon_light_node
 
 onready var time_slider = $VBoxContainer/TimeSlider
 onready var freeze_time_checkbox = $VBoxContainer/FreezeTimeCheckbox
-onready var show_moon_checkbox = $VBoxContainer/ShowMoonLightCheckbox
+onready var show_moon_light_checkbox = $VBoxContainer/ShowMoonLightCheckbox
 onready var time_label = $VBoxContainer/TimeLabel
 onready var date_label = $VBoxContainer/DateLabel
 onready var period_label = $VBoxContainer/PeriodLabel
@@ -57,11 +57,11 @@ func _ready():
 
 		if moon_light_node.static_moon and not moon_light_node.move_moon \
 				or moon_light_node.cycle_sync_node_path:
-			show_moon_checkbox.pressed = true
+			show_moon_light_checkbox.pressed = true
 		else:
-			show_moon_checkbox.queue_free()
+			show_moon_light_checkbox.queue_free()
 	else:
-		show_moon_checkbox.queue_free()
+		show_moon_light_checkbox.queue_free()
 
 	_update_time_slider()
 	_update_time_labels()
