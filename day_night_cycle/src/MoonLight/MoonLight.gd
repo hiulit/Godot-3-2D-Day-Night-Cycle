@@ -8,8 +8,11 @@ export (Color) var color_day = Color(1.0, 1.0, 1.0, 1.0)
 export (float) var energy_day = 0.0
 export (Color) var color_dusk = Color(1.0, 1.0, 1.0, 1.0)
 export (float) var energy_dusk = 0.0
-export (bool) var move = true
+export (bool) var move_moon = false
 export (NodePath) var cycle_sync_node_path
+export (bool) var static_moon = true
+export (bool) var use_hour_position = false
+export (int, 0, 23) var hour_position = 0
 
 var window_x: float = ProjectSettings.get_setting("display/window/size/width")
 var window_y: float = ProjectSettings.get_setting("display/window/size/height")
@@ -23,7 +26,6 @@ var path := Curve2D.new()
 var speed: float
 var hour_step: float
 var moon_position: float
-var moon_position_static: float = 0.0 # Top center.
 
 var cycle_sync_node: Node
 var delay: float = 0.0
@@ -32,6 +34,16 @@ onready var color_transition_tween = $ColorTransitionTween
 onready var energy_transition_tween = $EnergyTransitionTween
 
 func _ready():
+	if static_moon and move_moon or not static_moon and not move_moon:
+		printerr("The 'static_moon' and 'move_moon' variables in the '" + str(self.name) + "' node")
+		printerr("can't be set both to 'true' or 'false' at the same time.")
+
+		# Reset the path so in case there is a 'DebugOverlay' node,
+		# there won't be any options for the 'MoonLight' node.
+		cycle_sync_node_path = ""
+
+		return
+
 	# Connect signals.
 	var current_hour_changed_signal = Time.connect(
 		"current_hour_changed",
@@ -84,30 +96,34 @@ func _ready():
 	# Divide the path into hours.
 	hour_step = path.get_baked_points().size() / float(Time.HOURS_IN_A_DAY)
 
-	if move:
-		# Sync the delay with the cycle.
+	if move_moon:
 		if cycle_sync_node_path:
 			cycle_sync_node = get_node(cycle_sync_node_path)
-			delay = cycle_sync_node.delay
-			visible = true
-		else:
-			visible = false
-			push_warning("The '" + str(self.name) + "' node isn't sync with any 'DayNightCycle' node." + \
-					" Use 'cycle_sync_node_path' to set a 'DayNightCycle' node to sync the '" + str(self.name) + "' node with.")
 
-		# Set moving position.
-		moon_position = hour_step * Time.get_current_hour()
-	else:
+			# Sync the delay with the cycle.
+			delay = cycle_sync_node.delay
+
+			# Make it visible in case it's hidden in the editor.
+			visible = true
+
+			moon_position = hour_step * Time.get_current_hour()
+			position = path.get_baked_points()[moon_position]
+		else:
+			printerr("The '" + str(self.name) + "' node isn't sync with any 'DayNightCycle' node.")
+			printerr("Use the 'cycle_sync_node_path' variable in the '" + str(self.name) + "' node to sync it with a 'DayNightCycle' node.")
+
+			visible = false
+
+			return
+	elif static_moon:
+		set_physics_process(false)
+
 		# Make it visible in case it's hidden in the editor.
 		visible = true
 
-		# Set static position.
-		moon_position = hour_step * moon_position_static
-
-		set_physics_process(false)
-
-	# Set the initial position.
-	position = path.get_baked_points()[moon_position]
+		if use_hour_position:
+			moon_position = hour_step * hour_position
+			position = path.get_baked_points()[moon_position]
 
 	# Set the current cycle state.
 	match Time.current_cycle:
@@ -274,16 +290,16 @@ func _on_current_cycle_changed():
 
 
 func _on_current_hour_changed():
-	if Time.changing_time_manually and move:
+	if Time.changing_time_manually and move_moon:
 		moon_position = hour_step * Time.get_current_hour()
 		position = path.get_baked_points()[moon_position]
 
 
 func _on_time_manually_changed():
-	if not Time.freeze_time and move:
+	if not Time.freeze_time and move_moon:
 		set_physics_process(not Time.changing_time_manually)
 
 
 func _on_time_freezed():
-	if move:
+	if move_moon:
 		set_physics_process(not Time.freeze_time)
