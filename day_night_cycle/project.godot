@@ -11,7 +11,8 @@ config_version=4
 [application]
 
 config/name="Godot 3 2D Day/Night Cycle"
-run/main_scene="res://demo/demo.tscn"
+config/description="A 2D Day/Night cycle using CanvasModulate and a moon light effect using Light2D."
+run/main_scene="res://demo/Demo.tscn"
 config/icon="res://icon.png"
 
 [autoload]
