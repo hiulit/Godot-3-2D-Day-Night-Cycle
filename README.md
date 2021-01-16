@@ -20,6 +20,19 @@ A 2D ☀️ Day / 🌔 Night cycle using `CanvasModulate` and a moon light effec
 
 *Cycle with the moon light moving.*
 
+## 🕹️ Demo
+
+- Clone the repository or [download](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/archive/master.zip) it in a ZIP file.
+- Open `project.godot`.
+- Play around 🙂.
+
+## 📑 Documentation
+
+- [Time](docs/TIME.md)
+- [DayNightCycle](docs/DAY_NIGHT_CYCLE.md)
+- [MoonLight](docs/MOON_LIGHT.md)
+- [DebugOverlay](docs/DEBUG_OVERLAY.md)
+
 ## 🛠️ Setup
 
 - Clone the repository or [download](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/archive/master.zip) it in a ZIP file.
@@ -28,13 +41,6 @@ A 2D ☀️ Day / 🌔 Night cycle using `CanvasModulate` and a moon light effec
     - `DayNightCycle` folder (`day_night_cycle/src/DayNightCycle`).
     - `MoonLight` folder (`day_night_cycle/src/MoonLight`).
     - `DebugOverlay` folder (`day_night_cycle/src/DebugOverlay`).
-
-## 📑 Documentation
-
-- [Time](docs/TIME.md)
-- [DayNightCycle](docs/DAY_NIGHT_CYCLE.md)
-- [MoonLight](docs/MOON_LIGHT.md)
-- [DebugOverlay](docs/DEBUG_OVERLAY.md)
 
 ## 🚀 Usage
 
