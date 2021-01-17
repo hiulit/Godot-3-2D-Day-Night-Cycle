@@ -1,0 +1,90 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/DebugOverlay/DebugOverlay.gd" type="Script" id=1]
+
+[node name="debug_overlay" type="PopupPanel"]
+margin_right = 176.0
+margin_bottom = 256.0
+rect_scale = Vector2( 0.5, 0.5 )
+popup_exclusive = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 172.0
+margin_bottom = 252.0
+custom_constants/separation = 15
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeSliderLabel" type="Label" parent="VBoxContainer"]
+margin_right = 168.0
+margin_bottom = 14.0
+text = "Time Slider"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeSlider" type="HSlider" parent="VBoxContainer"]
+margin_top = 29.0
+margin_right = 168.0
+margin_bottom = 45.0
+min_value = -1.0
+max_value = 24.0
+
+[node name="FreezeTimeCheckbox" type="CheckBox" parent="VBoxContainer"]
+margin_top = 60.0
+margin_right = 168.0
+margin_bottom = 84.0
+text = "Freeze time"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShowMoonLightCheckbox" type="CheckBox" parent="VBoxContainer"]
+margin_top = 99.0
+margin_right = 168.0
+margin_bottom = 123.0
+text = "Show moon light"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeLabel" type="Label" parent="VBoxContainer"]
+margin_top = 177.0
+margin_right = 168.0
+margin_bottom = 191.0
+text = "Time:"
+
+[node name="DateLabel" type="Label" parent="VBoxContainer"]
+margin_top = 206.0
+margin_right = 168.0
+margin_bottom = 220.0
+text = "Date:"
+
+[node name="PeriodLabel" type="Label" parent="VBoxContainer"]
+margin_top = 235.0
+margin_right = 168.0
+margin_bottom = 249.0
+text = "Period:"
+
+[node name="FPSLabel" type="Label" parent="VBoxContainer"]
+margin_top = 264.0
+margin_right = 168.0
+margin_bottom = 278.0
+text = "FPS:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="gui_input" from="VBoxContainer/TimeSlider" to="." method="_on_time_slider_gui_input"]
+[connection signal="value_changed" from="VBoxContainer/TimeSlider" to="." method="_on_time_slider_value_changed"]
+[connection signal="toggled" from="VBoxContainer/FreezeTimeCheckbox" to="." method="_on_freeze_time_checkbox_toggled"]
+[connection signal="toggled" from="VBoxContainer/ShowMoonLightCheckbox" to="." method="_on_show_moon_checkbox_toggled"]
