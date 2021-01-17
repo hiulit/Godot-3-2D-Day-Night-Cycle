@@ -23,7 +23,7 @@ A 2D ☀️ Day / 🌔 Night cycle using `CanvasModulate` and a moon light effec
 ## 🕹️ Demo
 
 - Clone the repository or [download](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/archive/master.zip) it in a ZIP file.
-- Open `project.godot`.
+- Open `day_night_cycle/project.godot`.
 - Play around 🙂.
 
 ## 📑 Documentation
