@@ -150,15 +150,15 @@ See [CHANGELOG](/CHANGELOG.md).
 **hiulit**
 
 - Twitter: [@hiulit](https://twitter.com/hiulit)
-- GitHub: [@hiulit](https://github.com/kefhiulitranabg)
+- GitHub: [@hiulit](https://github.com/hiulit)
 
 ## 🤝 Contributing
 
 Feel free to:
 
-- [Open an issue](https://github.com/hiulit/RetroPie-Godot-Game-Engine-Emulator/issues) if you find a bug.
-- [Create a pull request](https://github.com/hiulit/RetroPie-Godot-Game-Engine-Emulator/pulls) if you have a new cool feature to add to the project.
-- [Start a new discussion]() about a feature request.
+- [Open an issue](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/issues) if you find a bug.
+- [Create a pull request](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/pulls) if you have a new cool feature to add to the project.
+- [Start a new discussion](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/discussions) about a feature request.
 
 ## 🙌 Supporting this project
 
