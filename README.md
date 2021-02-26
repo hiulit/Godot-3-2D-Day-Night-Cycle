@@ -150,15 +150,15 @@ See [CHANGELOG](/CHANGELOG.md).
 **hiulit**
 
 - Twitter: [@hiulit](https://twitter.com/hiulit)
-- GitHub: [@hiulit](https://github.com/kefhiulitranabg)
+- GitHub: [@hiulit](https://github.com/hiulit)
 
 ## 🤝 Contributing
 
 Feel free to:
 
-- [Open an issue](https://github.com/hiulit/RetroPie-Godot-Game-Engine-Emulator/issues) if you find a bug.
-- [Create a pull request](https://github.com/hiulit/RetroPie-Godot-Game-Engine-Emulator/pulls) if you have a new cool feature to add to the project.
-- [Start a new discussion]() about a feature request.
+- [Open an issue](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/issues) if you find a bug.
+- [Create a pull request](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/pulls) if you have a new cool feature to add to the project.
+- [Start a new discussion](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/discussions) about a feature request.
 
 ## 🙌 Supporting this project
 
@@ -174,7 +174,7 @@ If you love this project or find it helpful, please consider supporting it throu
 
 If you can't, consider sharing it with the world...
 
-[![](https://img.shields.io/badge/Share_on_Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fhiulit%2FGodot-3-2D-Day-Night-Cycle&text=%22Godot%203%202D%20Day%2FNight%20Cycle%22%3A%20A%202D%20%E2%98%80%EF%B8%8F%20Day%20%2F%20%F0%9F%8C%94%20Night%20cycle%20using%20CanvasModulate%20and%20a%20moon%20light%20effect%20using%20Light2D)
+[![](https://img.shields.io/badge/Share_on_Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fhiulit%2FGodot-3-2D-Day-Night-Cycle&text=%22Godot+3+2D+Day%2FNight+Cycle%22%0D%0AA+2D+%E2%98%80%EF%B8%8F+Day+%2F+%F0%9F%8C%94+Night+cycle+using+CanvasModulate+and+a+moon+light+effect+using+Light2D+by+%40hiulit)
 
 ... or giving it a [star ⭐️](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/stargazers).
 
