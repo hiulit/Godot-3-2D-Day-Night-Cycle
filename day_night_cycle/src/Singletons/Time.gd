@@ -45,8 +45,10 @@ var state_night_start_hour: int = 19
 # The duration, in in-game seconds, of the time it takes
 # to transition from one state to another.
 var state_transition_seconds: int = 3600
-var state_transition_duration: float = state_transition_seconds / \
-		float(IN_GAME_SECONDS_PER_REAL_TIME_SECONDS)
+var state_transition_duration: float = (
+	state_transition_seconds
+	/ float(IN_GAME_SECONDS_PER_REAL_TIME_SECONDS)
+)
 
 # The seconds that have elapsed in-game since the game started.
 var seconds_elapsed: int = 0
@@ -67,13 +69,19 @@ var changing_time_manually: bool = false setget _set_changing_time_manually
 # Stops the time.
 var freeze_time: bool = true setget _set_freeze_time
 
+
 func _ready():
 	if IN_GAME_SECONDS_PER_REAL_TIME_SECONDS < 60:
 		printerr("--------------------")
 		printerr("ERROR!")
-		printerr("File: '%s.gd'."  % self.name)
-		printerr("Message: The constant 'IN_GAME_SECONDS_PER_REAL_TIME_SECONDS' (" + \
-				str(IN_GAME_SECONDS_PER_REAL_TIME_SECONDS) + ") must be set to >= 60.")
+		printerr("File: '%s.gd'." % self.name)
+		printerr(
+			(
+				"Message: The constant 'IN_GAME_SECONDS_PER_REAL_TIME_SECONDS' ("
+				+ str(IN_GAME_SECONDS_PER_REAL_TIME_SECONDS)
+				+ ") must be set to >= 60."
+			)
+		)
 		printerr("--------------------")
 		set_physics_process(false)
 		return
@@ -81,9 +89,14 @@ func _ready():
 	if game_start_hour < 0 or game_start_hour > 23:
 		printerr("--------------------")
 		printerr("ERROR!")
-		printerr("File: '%s.gd.'"  % self.name)
-		printerr("Message: The variable 'game_start_hour' (" + \
-				str(game_start_hour) + ") must be set between >= 0 and <= 23.")
+		printerr("File: '%s.gd.'" % self.name)
+		printerr(
+			(
+				"Message: The variable 'game_start_hour' ("
+				+ str(game_start_hour)
+				+ ") must be set between >= 0 and <= 23."
+			)
+		)
 		printerr("--------------------")
 		set_physics_process(false)
 		return
@@ -91,9 +104,14 @@ func _ready():
 	if game_start_day < 1 or game_start_day > 30:
 		printerr("--------------------")
 		printerr("ERROR!")
-		printerr("File: '%s.gd.'"  % self.name)
-		printerr("Message: The variable 'game_start_day' (" + \
-				str(game_start_day) + ") must be set between >= 1 and <= 30.")
+		printerr("File: '%s.gd.'" % self.name)
+		printerr(
+			(
+				"Message: The variable 'game_start_day' ("
+				+ str(game_start_day)
+				+ ") must be set between >= 1 and <= 30."
+			)
+		)
 		printerr("--------------------")
 		set_physics_process(false)
 		return
@@ -101,22 +119,29 @@ func _ready():
 	if game_start_month < 1 or game_start_month > 12:
 		printerr("--------------------")
 		printerr("ERROR!")
-		printerr("File: '%s.gd.'"  % self.name)
-		printerr("Message: The variable 'game_start_month' (" + \
-				str(game_start_month) + ") must be set between >= 1 and <= 12.")
+		printerr("File: '%s.gd.'" % self.name)
+		printerr(
+			(
+				"Message: The variable 'game_start_month' ("
+				+ str(game_start_month)
+				+ ") must be set between >= 1 and <= 12."
+			)
+		)
 		printerr("--------------------")
 		set_physics_process(false)
 		return
 
 	var start_hour_in_seconds: int = game_start_hour * SECONDS_IN_AN_HOUR
-	var start_day_in_seconds: int  = (game_start_day - 1) * SECONDS_IN_A_DAY
+	var start_day_in_seconds: int = (game_start_day - 1) * SECONDS_IN_A_DAY
 	var start_month_in_seconds: int = (game_start_month - 1) * SECONDS_IN_A_MONTH
-	var start_year_in_seconds:int  = game_start_year * SECONDS_IN_A_YEAR
+	var start_year_in_seconds: int = game_start_year * SECONDS_IN_A_YEAR
 
-	game_epoch = start_hour_in_seconds + \
-			start_day_in_seconds + \
-			start_month_in_seconds + \
-			start_year_in_seconds
+	game_epoch = (
+		start_hour_in_seconds
+		+ start_day_in_seconds
+		+ start_month_in_seconds
+		+ start_year_in_seconds
+	)
 
 	_set_seconds_elapsed(game_epoch)
 
@@ -175,17 +200,25 @@ func set_current_hour(hour):
 
 # General string conversion functions.
 func current_time_string():
-	var time_string = str("%02d" % get_current_hour()) + ":" + \
-			str("%02d" % get_current_minute()) + ":" + \
-			str("%02d" % get_current_second())
+	var time_string = (
+		str("%02d" % get_current_hour())
+		+ ":"
+		+ str("%02d" % get_current_minute())
+		+ ":"
+		+ str("%02d" % get_current_second())
+	)
 
 	return time_string
 
 
 func current_date_string():
-	return str("%02d" % get_current_day()) + "/" + \
-			str("%02d" % get_current_month()) + "/" +\
-			str("%02d" % get_current_year())
+	return (
+		str("%02d" % get_current_day())
+		+ "/"
+		+ str("%02d" % get_current_month())
+		+ "/"
+		+ str("%02d" % get_current_year())
+	)
 
 
 func current_cycle_to_string():
@@ -261,23 +294,24 @@ func _set_seconds_elapsed(seconds):
 
 func _seconds_elapsed_to_hour(seconds):
 	return floor(
-		(((seconds % SECONDS_IN_A_YEAR) % SECONDS_IN_A_MONTH) % SECONDS_IN_A_DAY) / \
-				float(SECONDS_IN_AN_HOUR)
+		(
+			(((seconds % SECONDS_IN_A_YEAR) % SECONDS_IN_A_MONTH) % SECONDS_IN_A_DAY)
+			/ float(SECONDS_IN_AN_HOUR)
+		)
 	)
 
 
 func _seconds_elapsed_to_day(seconds):
 	return floor(
-		(((seconds % SECONDS_IN_A_YEAR) % SECONDS_IN_A_MONTH) + SECONDS_IN_A_DAY) / \
-				float(SECONDS_IN_A_DAY)
+		(
+			(((seconds % SECONDS_IN_A_YEAR) % SECONDS_IN_A_MONTH) + SECONDS_IN_A_DAY)
+			/ float(SECONDS_IN_A_DAY)
+		)
 	)
 
 
 func _seconds_elapsed_to_month(seconds):
-	return floor(
-		((seconds % SECONDS_IN_A_YEAR) + SECONDS_IN_A_MONTH) / \
-				float(SECONDS_IN_A_MONTH)
-	)
+	return floor(((seconds % SECONDS_IN_A_YEAR) + SECONDS_IN_A_MONTH) / float(SECONDS_IN_A_MONTH))
 
 
 func _seconds_elapsed_to_year(seconds):
