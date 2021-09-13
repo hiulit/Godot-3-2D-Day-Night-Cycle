@@ -1,5 +1,7 @@
 extends Node
 
+## Time description.
+
 signal current_second_changed
 signal current_minute_changed
 signal current_hour_changed
@@ -22,28 +24,30 @@ const SECONDS_IN_A_DAY: int = SECONDS_IN_A_MINUTE * MINUTES_IN_AN_HOUR * HOURS_I
 const SECONDS_IN_A_MONTH: int = SECONDS_IN_A_DAY * DAYS_IN_A_MONTH
 const SECONDS_IN_A_YEAR: int = SECONDS_IN_A_MONTH * MONTHS_IN_A_YEAR
 
-# The amount of in-game seconds that should elapse for each real-time second.
-# Has to be at least 60 so that we can store 'seconds_elapsed' as an 'int'.
-# 90 minutes (5400 seconds) in game == 1 second in real time.
+## The amount of in-game seconds that should elapse for each real-time second.
+## Has to be at least 60 so that we can store 'seconds_elapsed' as an 'int'.
+## 90 minutes (5400 seconds) in game == 1 second in real time.
 const IN_GAME_SECONDS_PER_REAL_TIME_SECONDS: int = 5400
 
-# The hour of the day at which the game starts (0-23).
+## The hour of the day at which the game starts (0-23).
 var game_start_hour: int = 12
-# The day of the month at which the game starts (1-30).
+## The day of the month at which the game starts (1-30).
 var game_start_day: int = 1
-# The month at which the game starts (1-12).
+## The month at which the game starts (1-12).
 var game_start_month: int = 1
-# The year at which the game starts (0-INF).
+## The year at which the game starts (0-INF).
 var game_start_year: int = 2021
 
-# The start hours of each cycle.
+## The starting hour of the dawn cycle state (0-23).
 var state_dawn_start_hour: int = 5
+## The starting hour of the day cycle state (0-23).
 var state_day_start_hour: int = 8
+## The starting hour of the dusk cycle state (0-23).
 var state_dusk_start_hour: int = 16
+## The starting hour of the night cycle state (0-23).
 var state_night_start_hour: int = 19
 
-# The duration, in in-game seconds, of the time it takes
-# to transition from one state to another.
+## The duration, in in-game seconds, of the time it takes to transition from one state to another.
 var state_transition_seconds: int = 3600
 var state_transition_duration: float = (
 	state_transition_seconds
@@ -66,7 +70,7 @@ var game_epoch: int
 
 # When changing the time via the debug controls, we should skip interpolation.
 var changing_time_manually: bool = false setget _set_changing_time_manually
-# Stops the time.
+## Stops the time.
 var freeze_time: bool = true setget _set_freeze_time
 
 
@@ -160,33 +164,42 @@ func _physics_process(delta):
 # PUBLIC FUNCTIONS
 # ----------------
 # Getters for particular units (m/s/h/etc.) of the current time.
-func get_current_second():
+
+## Returns the current second.
+func get_current_second() -> int:
 	return seconds_elapsed % SECONDS_IN_A_MINUTE
 
 
-func get_current_minute():
+## Returns the current minute.
+func get_current_minute() -> int:
 	var minutes_elapsed = seconds_to_minutes(seconds_elapsed)
 	return minutes_elapsed % MINUTES_IN_AN_HOUR
 
 
-func get_current_hour():
+## Returns the current hour.
+func get_current_hour() -> int:
 	return _seconds_elapsed_to_hour(seconds_elapsed)
 
 
-func get_current_day():
+## Returns the current day.
+func get_current_day() -> int:
 	return _seconds_elapsed_to_day(seconds_elapsed)
 
 
-func get_current_month():
+## Returns the current month.
+func get_current_month() -> int:
 	return _seconds_elapsed_to_month(seconds_elapsed)
 
 
-func get_current_year():
+## Returns the current year.
+func get_current_year() -> int:
 	return _seconds_elapsed_to_year(seconds_elapsed)
 
 
 # Setters for particular units (m/s/h/etc.) of the current time.
-func set_current_hour(hour):
+
+## Sets the current hour.
+func set_current_hour(hour: int):
 	var previous_hour = get_current_hour()
 
 	if hour == previous_hour:
@@ -199,8 +212,10 @@ func set_current_hour(hour):
 
 
 # General string conversion functions.
-func current_time_string():
-	var time_string = (
+
+## Returns the current time in `H:M:S`.
+func current_time_string() -> String:
+	return (
 		str("%02d" % get_current_hour())
 		+ ":"
 		+ str("%02d" % get_current_minute())
@@ -208,10 +223,9 @@ func current_time_string():
 		+ str("%02d" % get_current_second())
 	)
 
-	return time_string
 
-
-func current_date_string():
+## Returns the current date in `D/M/Y`.
+func current_date_string() -> String:
 	return (
 		str("%02d" % get_current_day())
 		+ "/"
@@ -221,52 +235,65 @@ func current_date_string():
 	)
 
 
-func current_cycle_to_string():
+## Returns the current cycle state in a `String` format.
+func current_cycle_to_string() -> String:
 	return CycleState.keys()[current_cycle]
 
 
 # General time unit conversion functions.
-func seconds_to_minutes(seconds):
+
+## Converts seconds into minutes.
+func seconds_to_minutes(seconds: float) -> float:
 	return seconds / SECONDS_IN_A_MINUTE
 
 
-func seconds_to_hours(seconds):
+## Converts seconds into hours.
+func seconds_to_hours(seconds: float) -> float:
 	return seconds / SECONDS_IN_AN_HOUR
 
 
-func seconds_to_days(seconds):
+## Converts seconds into days.
+func seconds_to_days(seconds: float) -> float:
 	return seconds / SECONDS_IN_A_DAY
 
 
-func seconds_to_months(seconds):
+## Converts seconds into months.
+func seconds_to_months(seconds: float) -> float:
 	return seconds / SECONDS_IN_A_MONTH
 
 
-func seconds_to_years(seconds):
+## Converts seconds into years.
+func seconds_to_years(seconds: float) -> float:
 	return seconds / SECONDS_IN_A_YEAR
 
 
-func minutes_to_seconds(minutes):
+## Converts minutes into seconds.
+func minutes_to_seconds(minutes: float) -> float:
 	return minutes * SECONDS_IN_A_MINUTE
 
 
-func minutes_to_hours(minutes):
+## Converts minutes into hours.
+func minutes_to_hours(minutes: float) -> float:
 	return minutes / MINUTES_IN_AN_HOUR
 
 
-func hours_to_seconds(hours):
+## Converts hours into seconds.
+func hours_to_seconds(hours: float) -> float:
 	return hours * MINUTES_IN_AN_HOUR * SECONDS_IN_A_MINUTE
 
 
-func hours_to_days(hours):
+## Converts hours into days.
+func hours_to_days(hours: float) -> float:
 	return hours / HOURS_IN_A_DAY
 
 
-func days_to_months(days):
+## Converts days into months.
+func days_to_months(days: float) -> float:
 	return days / DAYS_IN_A_MONTH
 
 
-func months_to_years(months):
+## Converts months into years.
+func months_to_years(months: float) -> float:
 	return months / MONTHS_IN_A_YEAR
 
 

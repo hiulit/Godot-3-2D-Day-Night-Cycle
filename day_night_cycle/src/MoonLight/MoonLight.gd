@@ -1,17 +1,40 @@
 extends Light2D
 
+## The color of the night state.
 export (Color) var color_night = Color(1.0, 1.0, 1.0, 1.0)
+## The energy value of the night state.
+## The larger the value, the stronger the light.
 export (float) var energy_night = 1.0
+## The color of the dawn state.
 export (Color) var color_dawn = Color(1.0, 1.0, 1.0, 1.0)
+## The energy value of the dawn state.
+## The larger the value, the stronger the light.
 export (float) var energy_dawn = 0.0
+## The color of the day state.
 export (Color) var color_day = Color(1.0, 1.0, 1.0, 1.0)
+## The energy value of the day state.
+## The larger the value, the stronger the light.
 export (float) var energy_day = 0.0
+## The color of the dusk state.
 export (Color) var color_dusk = Color(1.0, 1.0, 1.0, 1.0)
+## The energy value of the dusk state.
+## The larger the value, the stronger the light.
 export (float) var energy_dusk = 0.0
+## Enables the `MoonLight` node movement.
 export (bool) var move_moon = false
+## The `DayNightCycle` node which the moon will sync with.
+##
+## The `MoonLight` node will only show if there is a `DayNightCycle` node assigned to it.
 export (NodePath) var cycle_sync_node_path
+## Disables the `MoonLight` node movement.
 export (bool) var static_moon = true
+## If `true`, the position of the `MoonLight` node is determined by @link_var {hour_position}.
+##
+## If `false`, the position of the `MoonLight` node is determined by its position.
+##
+## It only works when @link_var {static_moon} is enabled.
 export (bool) var use_hour_position = false
+## The hour of the day, in a 24-hour clock, to position the `MoonLight` node (0-23).
 export (int, 0, 23) var hour_position = 0
 
 var window_x: float = ProjectSettings.get_setting("display/window/size/width")
@@ -21,6 +44,12 @@ var window_center := Vector2(window_x / 2, window_y / 2)
 var radius_x: float = window_x / 2.10
 var radius_y: float = window_y / 2.15
 
+## The moon light path is a `Curve2D`.
+##
+## The default path is like the one in the following image.
+## @link_img {../../example_images/moon_light_path.png}
+##
+## A new path can be set by changing the `Curve2D`.
 var path := Curve2D.new()
 
 var speed: float
