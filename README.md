@@ -28,19 +28,19 @@ A 2D ☀️ Day / 🌔 Night cycle using `CanvasModulate` and a moon light effec
 
 ## 📑 Documentation
 
-- [Time](docs/TIME.md)
-- [DayNightCycle](docs/DAY_NIGHT_CYCLE.md)
-- [MoonLight](docs/MOON_LIGHT.md)
-- [DebugOverlay](docs/DEBUG_OVERLAY.md)
+- [Time](docs/time.md)
+- [DayNightCycle](docs/day_night_cycle.md)
+- [MoonLight](docs/moon_light.md)
+- [DebugOverlay](docs/debug_overlay.md)
 
 ## 🛠️ Setup
 
 - Clone the repository or [download](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/archive/master.zip) it in a ZIP file.
 - Copy the following files and folders to your project:
-    - `Time.gd` file (`day_night_cycle/src/Singletons/Time.gd`).
-    - `DayNightCycle` folder (`day_night_cycle/src/DayNightCycle`).
-    - `MoonLight` folder (`day_night_cycle/src/MoonLight`).
-    - `DebugOverlay` folder (`day_night_cycle/src/DebugOverlay`).
+    - `time.gd` file (`day_night_cycle/src/singletons/time.gd`).
+    - `day_night_cycle` folder (`day_night_cycle/src/day_night_cycle`).
+    - `moon_light` folder (`day_night_cycle/src/moon_light`).
+    - `debug_overlay` folder (`day_night_cycle/src/debug_overlay`).
 
 ## 🚀 Usage
 
@@ -56,12 +56,12 @@ Add the `Time` singleton:
 
 - Go to `Project` -> `Project Settings`.
 - Go to the `AutoLoad` tab.
-- Add the `Time.gd` file.
+- Add the `time.gd` file.
 - Enable it.
 
-![Enable the Time.gd singleton](example_images/enable_time_singleton.png)
+![Enable the time.gd singleton](example_images/enable_time_singleton.png)
 
-Change the `Time` [parameters](docs/TIME.md#parameters) to your liking.
+Change the `Time` [parameters](docs/time.md) to your liking.
 
 ### Add a simple cycle
 
@@ -75,7 +75,7 @@ Node
 └── DayNightCycle
 ```
 
-Change the `DayNightCycle` [parameters](docs/DAY_NIGHT_CYCLE.md#parameters) to your liking.
+Change the `DayNightCycle` [parameters](docs/day_night_cycle.md) to your liking.
 
 ### Add a cycle with a moon light
 
@@ -90,18 +90,18 @@ Node
 └── MoonLight
 ```
 
-[Sync](docs/MOON_LIGHT.md#cycle-sync-node-path) the `MoonLight` with the `DayNightCycle`.
+[Sync](docs/moon_light.md#cycle-sync-node-path) the `MoonLight` with the `DayNightCycle`.
 
-The `MoonLight` can be [static](docs/MOON_LIGHT.md#static_moon) or [moving](docs/MOON_LIGHT.md#move_moon) in sync with a `DayNightCycle`.
+The `MoonLight` can be [static](docs/moon_light.md#static_moon) or [moving](docs/moon_light.md#move_moon) in sync with a `DayNightCycle`.
 
-Change the `DayNightCycle` [parameters](docs/DAY_NIGHT_CYCLE.md#parameters) and the `MoonLight` [parameters](docs/MOON_LIGHT.md#parameters) to your liking.
+Change the `DayNightCycle` [parameters](docs/DAY_NIGHT_CYCLE.md) and the `MoonLight` [parameters](docs/moon_light.md) to your liking.
 
 ### Add a delay between cycles
 
 - Create a `CanvasLayer` for the background and set its `layer` to `-1`.
 - Instance the `DayNightCycle` node in the background `CanvasLayer` previously created.
 - Instance another `DayNightCycle` node in the root scene and add a [delay](docs/DAY_NIGHT_CYCLE.md#delay).
-- Instance the `MoonLight` in the root scene and [sync it](docs/MOON_LIGHT.md#cycle-sync-node-path) to the `DayNightCycle` node with a delay.
+- Instance the `MoonLight` in the root scene and [sync it](docs/moon_light.md#cycle-sync-node-path) to the `DayNightCycle` node with a delay.
 
 Something like this:
 
@@ -147,10 +147,7 @@ See [CHANGELOG](/CHANGELOG.md).
 
 ## 👤 Author
 
-**hiulit**
-
-- Twitter: [@hiulit](https://twitter.com/hiulit)
-- GitHub: [@hiulit](https://github.com/hiulit)
+- hiulit
 
 ## 🤝 Contributing
 
@@ -158,11 +155,10 @@ Feel free to:
 
 - [Open an issue](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/issues) if you find a bug.
 - [Create a pull request](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/pulls) if you have a new cool feature to add to the project.
-- [Start a new discussion](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/discussions) about a feature request.
 
 ## 🙌 Supporting this project
 
-If you love this project or find it helpful, please consider supporting it through any size donations to help make it better ❤️.
+If you find this project helpful, please consider supporting it through any size donations to help make it better ❤️.
 
 [![Become a patron](https://img.shields.io/badge/Become_a_patron-ff424d?logo=Patreon&style=for-the-badge&logoColor=white)](https://www.patreon.com/hiulit)
 
