@@ -94,13 +94,13 @@ Node
 
 The `MoonLight` can be [static](docs/moon_light.md#static_moon) or [moving](docs/moon_light.md#move_moon) in sync with a `DayNightCycle`.
 
-Change the `DayNightCycle` [parameters](docs/DAY_NIGHT_CYCLE.md) and the `MoonLight` [parameters](docs/moon_light.md) to your liking.
+Change the `DayNightCycle` [parameters](docs/day_night_cycle.md) and the `MoonLight` [parameters](docs/moon_light.md) to your liking.
 
 ### Add a delay between cycles
 
 - Create a `CanvasLayer` for the background and set its `layer` to `-1`.
 - Instance the `DayNightCycle` node in the background `CanvasLayer` previously created.
-- Instance another `DayNightCycle` node in the root scene and add a [delay](docs/DAY_NIGHT_CYCLE.md#delay).
+- Instance another `DayNightCycle` node in the root scene and add a [delay](docs/day_night_cycle.md#delay).
 - Instance the `MoonLight` in the root scene and [sync it](docs/moon_light.md#cycle_sync_node_path) to the `DayNightCycle` node with a delay.
 
 Something like this:
@@ -158,7 +158,7 @@ Feel free to:
 
 ## 🙌 Supporting this project
 
-If you find this project helpful, please consider supporting it through any size donations to help make it better ❤️.
+If you find this project helpful, please consider supporting it through any size donations to help make it better.
 
 [![Become a patron](https://img.shields.io/badge/Become_a_patron-ff424d?logo=Patreon&style=for-the-badge&logoColor=white)](https://www.patreon.com/hiulit)
 
@@ -172,7 +172,7 @@ If you can't, consider sharing it with the world...
 
 [![](https://img.shields.io/badge/Share_on_Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fhiulit%2FGodot-3-2D-Day-Night-Cycle&text=%22Godot+3+2D+Day%2FNight+Cycle%22%0D%0AA+2D+%E2%98%80%EF%B8%8F+Day+%2F+%F0%9F%8C%94+Night+cycle+using+CanvasModulate+and+a+moon+light+effect+using+Light2D+by+%40hiulit)
 
-... or giving it a [star ⭐️](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/stargazers).
+... or giving it a [star](https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle/stargazers).
 
 ## 👏 Credits
 
