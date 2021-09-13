@@ -1,4 +1,5 @@
 extends CanvasModulate
+class_name DayNightCycle
 
 ## The color of the night state.
 export (Color) var color_night = Color(0.07, 0.09, 0.38, 1.0)

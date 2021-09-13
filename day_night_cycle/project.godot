@@ -8,6 +8,28 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "CanvasModulate",
+"class": "DayNightCycle",
+"language": "GDScript",
+"path": "res://src/day_night_cycle/day_night_cycle.gd"
+}, {
+"base": "PopupPanel",
+"class": "DebugOverlay",
+"language": "GDScript",
+"path": "res://src/debug_overlay/debug_overlay.gd"
+}, {
+"base": "Light2D",
+"class": "MoonLight",
+"language": "GDScript",
+"path": "res://src/moon_light/moon_light.gd"
+} ]
+_global_script_class_icons={
+"DayNightCycle": "",
+"DebugOverlay": "",
+"MoonLight": ""
+}
+
 [application]
 
 config/name="Godot 3 2D Day/Night Cycle"
@@ -26,7 +48,7 @@ config/paypal="https://www.paypal.com/paypalme/hiulit"
 
 [autoload]
 
-Time="*res://src/singletons/Time.gd"
+Time="*res://src/singletons/time.gd"
 
 [display]
 

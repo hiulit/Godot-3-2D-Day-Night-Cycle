@@ -165,6 +165,7 @@ func _physics_process(delta):
 # ----------------
 # Getters for particular units (m/s/h/etc.) of the current time.
 
+
 ## Returns the current second.
 func get_current_second() -> int:
 	return seconds_elapsed % SECONDS_IN_A_MINUTE
@@ -172,7 +173,7 @@ func get_current_second() -> int:
 
 ## Returns the current minute.
 func get_current_minute() -> int:
-	var minutes_elapsed = seconds_to_minutes(seconds_elapsed)
+	var minutes_elapsed = int(seconds_to_minutes(seconds_elapsed))
 	return minutes_elapsed % MINUTES_IN_AN_HOUR
 
 
@@ -198,6 +199,7 @@ func get_current_year() -> int:
 
 # Setters for particular units (m/s/h/etc.) of the current time.
 
+
 ## Sets the current hour.
 func set_current_hour(hour: int):
 	var previous_hour = get_current_hour()
@@ -212,6 +214,7 @@ func set_current_hour(hour: int):
 
 
 # General string conversion functions.
+
 
 ## Returns the current time in `H:M:S`.
 func current_time_string() -> String:
@@ -241,6 +244,7 @@ func current_cycle_to_string() -> String:
 
 
 # General time unit conversion functions.
+
 
 ## Converts seconds into minutes.
 func seconds_to_minutes(seconds: float) -> float:
