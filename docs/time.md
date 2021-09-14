@@ -1,5 +1,7 @@
 # Time
 
+**Singleton**
+
 **Extends**: `Node`
 
 ## Table of contents

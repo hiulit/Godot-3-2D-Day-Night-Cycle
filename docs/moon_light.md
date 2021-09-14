@@ -1,4 +1,4 @@
-# Moon Light
+# MoonLight
 
 **Extends**: `Light2D`
 
