@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://src/MoonLight/MoonLight.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/DayNightCycle/DayNightCycle.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/DebugOverlay/DebugOverlay.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/moon_light/moon_light.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/day_night_cycle/day_night_cycle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/debug_overlay/debug_overlay.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/demo/back.png" type="Texture" id=5]
 [ext_resource path="res://assets/demo/middle.png" type="Texture" id=6]
 [ext_resource path="res://demo/props.tres" type="TileSet" id=7]

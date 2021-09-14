@@ -1,9 +1,15 @@
 extends CanvasModulate
+class_name DayNightCycle
 
+## The color of the night state.
 export (Color) var color_night = Color(0.07, 0.09, 0.38, 1.0)
+## The color of the dawn state.
 export (Color) var color_dawn = Color(0.86, 0.70, 0.70, 1.0)
+## The color of the day state.
 export (Color) var color_day = Color(1.0, 1.0, 1.0, 1.0)
+## The color of the dusk state.
 export (Color) var color_dusk = Color(0.59, 0.66, 0.78, 1.0)
+## The amount of in-game seconds of delay.
 export (int) var delay = 0
 
 onready var color_transition_tween = $ColorTransitionTween

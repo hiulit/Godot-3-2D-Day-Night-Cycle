@@ -8,16 +8,47 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "CanvasModulate",
+"class": "DayNightCycle",
+"language": "GDScript",
+"path": "res://src/day_night_cycle/day_night_cycle.gd"
+}, {
+"base": "PopupPanel",
+"class": "DebugOverlay",
+"language": "GDScript",
+"path": "res://src/debug_overlay/debug_overlay.gd"
+}, {
+"base": "Light2D",
+"class": "MoonLight",
+"language": "GDScript",
+"path": "res://src/moon_light/moon_light.gd"
+} ]
+_global_script_class_icons={
+"DayNightCycle": "",
+"DebugOverlay": "",
+"MoonLight": ""
+}
+
 [application]
 
 config/name="Godot 3 2D Day/Night Cycle"
-config/description="A 2D Day/Night cycle using CanvasModulate and a moon light effect using Light2D."
+config/description="A 2D ☀️ Day / 🌔 Night cycle using CanvasModulate and a moon light effect using Light2D."
 run/main_scene="res://demo/Demo.tscn"
 config/icon="res://icon.png"
+config/version="3.1.0"
+config/godot_version="3.x"
+config/author="hiulit"
+config/license="MIT"
+config/repository="https://github.com/hiulit/Godot-3-2D-Day-Night-Cycle"
+config/patreon="https://www.patreon.com/hiulit"
+config/ko-fi="https://ko-fi.com/F2F7136ND"
+config/buymeacoffee="https://www.buymeacoffee.com/hiulit"
+config/paypal="https://www.paypal.com/paypalme/hiulit"
 
 [autoload]
 
-Time="*res://src/singletons/Time.gd"
+Time="*res://src/singletons/time.gd"
 
 [display]
 

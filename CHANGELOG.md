@@ -4,6 +4,12 @@
 
 * Up to date.
 
+## [3.1.0] - 2021-09-14
+
+### Added
+
+- New documentation auto-generated with [GDScriptify](https://github.com/hiulit/gdscriptify).
+
 ## [3.0.0] - 2021-01-15
 
 **NOTE**: This release contain breaking changes!
