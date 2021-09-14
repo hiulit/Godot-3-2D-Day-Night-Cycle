@@ -74,4 +74,6 @@ export (int) var delay = 0
 |:-|:-|:-|
 |`delay`|`int`|`0`|
 
+---
+
 Powered by [GDScriptify](https://github.com/hiulit/gdscriptify).

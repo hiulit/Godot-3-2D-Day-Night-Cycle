@@ -206,4 +206,6 @@ var path := Curve2D.new()
 |:-|:-|:-|
 |`path`|`Curve2D`|`Curve2D.new()`|
 
+---
+
 Powered by [GDScriptify](https://github.com/hiulit/gdscriptify).

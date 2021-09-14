@@ -445,4 +445,6 @@ func months_to_years(months: float) -> float
 |:-|:-|:-|
 |`months`|`float`|-|
 
+---
+
 Powered by [GDScriptify](https://github.com/hiulit/gdscriptify).

@@ -35,4 +35,6 @@ export (bool) var show = true
 |:-|:-|:-|
 |`show`|`bool`|`true`|
 
+---
+
 Powered by [GDScriptify](https://github.com/hiulit/gdscriptify).
