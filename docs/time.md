@@ -6,6 +6,10 @@
 
 ## Table of contents
 
+### Constants
+
+- [IN_GAME_SECONDS_PER_REAL_TIME_SECONDS](#in_game_seconds_per_real_time_seconds)
+
 ### Variables
 
 - [game_start_hour](#game_start_hour)
@@ -42,6 +46,24 @@
 - [hours_to_days](#hours_to_days)
 - [days_to_months](#days_to_months)
 - [months_to_years](#months_to_years)
+
+## Constants
+
+### IN_GAME_SECONDS_PER_REAL_TIME_SECONDS
+
+The amount of in-game seconds that should elapse for each real-time second.
+
+It has to be at least `60` so that `seconds_elapsed` can be stored as an `int`.
+
+> 90 minutes (5400 seconds) in game == 1 second in real time.
+
+```gdscript
+const IN_GAME_SECONDS_PER_REAL_TIME_SECONDS: int = 5400
+```
+
+|Name|Type|Default|
+|:-|:-|:-|
+|`IN_GAME_SECONDS_PER_REAL_TIME_SECONDS`|`int`|`5400`|
 
 ## Variables
 
@@ -171,7 +193,7 @@ var freeze_time: bool = true setget _set_freeze_time
 
 Returns the current second.
 
-**Returns**: `int`.
+**Returns**: `int`
 
 ```gdscript
 func get_current_second() -> int
@@ -181,7 +203,7 @@ func get_current_second() -> int
 
 Returns the current minute.
 
-**Returns**: `int`.
+**Returns**: `int`
 
 ```gdscript
 func get_current_minute() -> int
@@ -191,7 +213,7 @@ func get_current_minute() -> int
 
 Returns the current hour.
 
-**Returns**: `int`.
+**Returns**: `int`
 
 ```gdscript
 func get_current_hour() -> int
@@ -201,7 +223,7 @@ func get_current_hour() -> int
 
 Returns the current day.
 
-**Returns**: `int`.
+**Returns**: `int`
 
 ```gdscript
 func get_current_day() -> int
@@ -211,7 +233,7 @@ func get_current_day() -> int
 
 Returns the current month.
 
-**Returns**: `int`.
+**Returns**: `int`
 
 ```gdscript
 func get_current_month() -> int
@@ -221,7 +243,7 @@ func get_current_month() -> int
 
 Returns the current year.
 
-**Returns**: `int`.
+**Returns**: `int`
 
 ```gdscript
 func get_current_year() -> int
@@ -245,7 +267,7 @@ func set_current_hour(hour: int)
 
 Returns the current time in `H:M:S`.
 
-**Returns**: `String`.
+**Returns**: `String`
 
 ```gdscript
 func current_time_string() -> String
@@ -255,7 +277,7 @@ func current_time_string() -> String
 
 Returns the current date in `D/M/Y`.
 
-**Returns**: `String`.
+**Returns**: `String`
 
 ```gdscript
 func current_date_string() -> String
@@ -265,7 +287,7 @@ func current_date_string() -> String
 
 Returns the current cycle state in a `String` format.
 
-**Returns**: `String`.
+**Returns**: `String`
 
 ```gdscript
 func current_cycle_to_string() -> String
@@ -275,7 +297,7 @@ func current_cycle_to_string() -> String
 
 Converts seconds into minutes.
 
-**Returns**: `float`.
+**Returns**: `float`
 
 ```gdscript
 func seconds_to_minutes(seconds: float) -> float
@@ -291,7 +313,7 @@ func seconds_to_minutes(seconds: float) -> float
 
 Converts seconds into hours.
 
-**Returns**: `float`.
+**Returns**: `float`
 
 ```gdscript
 func seconds_to_hours(seconds: float) -> float
@@ -307,7 +329,7 @@ func seconds_to_hours(seconds: float) -> float
 
 Converts seconds into days.
 
-**Returns**: `float`.
+**Returns**: `float`
 
 ```gdscript
 func seconds_to_days(seconds: float) -> float
@@ -323,7 +345,7 @@ func seconds_to_days(seconds: float) -> float
 
 Converts seconds into months.
 
-**Returns**: `float`.
+**Returns**: `float`
 
 ```gdscript
 func seconds_to_months(seconds: float) -> float
@@ -339,7 +361,7 @@ func seconds_to_months(seconds: float) -> float
 
 Converts seconds into years.
 
-**Returns**: `float`.
+**Returns**: `float`
 
 ```gdscript
 func seconds_to_years(seconds: float) -> float
@@ -355,7 +377,7 @@ func seconds_to_years(seconds: float) -> float
 
 Converts minutes into seconds.
 
-**Returns**: `float`.
+**Returns**: `float`
 
 ```gdscript
 func minutes_to_seconds(minutes: float) -> float
@@ -371,7 +393,7 @@ func minutes_to_seconds(minutes: float) -> float
 
 Converts minutes into hours.
 
-**Returns**: `float`.
+**Returns**: `float`
 
 ```gdscript
 func minutes_to_hours(minutes: float) -> float
@@ -387,7 +409,7 @@ func minutes_to_hours(minutes: float) -> float
 
 Converts hours into seconds.
 
-**Returns**: `float`.
+**Returns**: `float`
 
 ```gdscript
 func hours_to_seconds(hours: float) -> float
@@ -403,7 +425,7 @@ func hours_to_seconds(hours: float) -> float
 
 Converts hours into days.
 
-**Returns**: `float`.
+**Returns**: `float`
 
 ```gdscript
 func hours_to_days(hours: float) -> float
@@ -419,7 +441,7 @@ func hours_to_days(hours: float) -> float
 
 Converts days into months.
 
-**Returns**: `float`.
+**Returns**: `float`
 
 ```gdscript
 func days_to_months(days: float) -> float
@@ -435,7 +457,7 @@ func days_to_months(days: float) -> float
 
 Converts months into years.
 
-**Returns**: `float`.
+**Returns**: `float`
 
 ```gdscript
 func months_to_years(months: float) -> float
