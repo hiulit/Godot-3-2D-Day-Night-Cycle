@@ -188,7 +188,7 @@ Thanks to:
 ## 📝 Licenses
 
 - Source code: [MIT License](/LICENSE).
-- Documentation ([GDScriptify](https://github.com/hiulit/gdscriptify)): [MIT License](/GDSCRIPTIFY_LICENSE).
+- Documentation ([GDScriptify](https://github.com/hiulit/gdscriptify)): [MIT License](/LICENSE_GDSCRIPTIFY.txt).
 - Emojis: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 - Godot logo: [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
 - Sunny Land assets: [Public domain](https://creativecommons.org/publicdomain/zero/1.0/deed).
