@@ -1,5 +1,5 @@
-extends Light2D
 class_name MoonLight
+extends Light2D
 
 ## The color of the night state.
 export (Color) var color_night = Color(1.0, 1.0, 1.0, 1.0)
