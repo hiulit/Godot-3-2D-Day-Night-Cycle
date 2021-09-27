@@ -28,10 +28,10 @@ A 2D ☀️ Day / 🌔 Night cycle using `CanvasModulate` and a moon light effec
 
 ## 📑 Documentation
 
-- [Time](docs/time.md)
-- [DayNightCycle](docs/day_night_cycle.md)
-- [MoonLight](docs/moon_light.md)
-- [DebugOverlay](docs/debug_overlay.md)
+- [Time](docs/src/singletons/time.md)
+- [DayNightCycle](docs/src/day_night_cycle/day_night_cycle.md)
+- [MoonLight](docs/src/moon_light/moon_light.md)
+- [DebugOverlay](docs/src/debug_overlay/debug_overlay.md)
 
 ## 🛠️ Setup
 

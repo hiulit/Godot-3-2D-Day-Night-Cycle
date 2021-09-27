@@ -4,21 +4,25 @@ extends Light2D
 ## The color of the night state.
 export (Color) var color_night = Color(1.0, 1.0, 1.0, 1.0)
 ## The energy value of the night state.
+##
 ## The larger the value, the stronger the light.
 export (float) var energy_night = 1.0
 ## The color of the dawn state.
 export (Color) var color_dawn = Color(1.0, 1.0, 1.0, 1.0)
 ## The energy value of the dawn state.
+##
 ## The larger the value, the stronger the light.
 export (float) var energy_dawn = 0.0
 ## The color of the day state.
 export (Color) var color_day = Color(1.0, 1.0, 1.0, 1.0)
 ## The energy value of the day state.
+##
 ## The larger the value, the stronger the light.
 export (float) var energy_day = 0.0
 ## The color of the dusk state.
 export (Color) var color_dusk = Color(1.0, 1.0, 1.0, 1.0)
 ## The energy value of the dusk state.
+##
 ## The larger the value, the stronger the light.
 export (float) var energy_dusk = 0.0
 ## Enables the `MoonLight` node movement.
@@ -48,7 +52,7 @@ var radius_y: float = window_y / 2.15
 ## The moon light path is a `Curve2D`.
 ##
 ## The default path is like the one in the following image.
-## @link_img {../../example_images/moon_light_path.png}
+## @link_img {../../../example_images/moon_light_path.png}
 ##
 ## A new path can be set by changing the `Curve2D`.
 var path := Curve2D.new()

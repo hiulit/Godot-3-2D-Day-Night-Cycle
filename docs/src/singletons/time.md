@@ -8,58 +8,55 @@
 
 ### Constants
 
-- [IN_GAME_SECONDS_PER_REAL_TIME_SECONDS](#in_game_seconds_per_real_time_seconds)
+|Name|Type|Default|
+|:-|:-|:-|
+|[IN_GAME_SECONDS_PER_REAL_TIME_SECONDS](#in_game_seconds_per_real_time_seconds)|`int`|`5400`|
 
 ### Variables
 
-- [game_start_hour](#game_start_hour)
-- [game_start_day](#game_start_day)
-- [game_start_month](#game_start_month)
-- [game_start_year](#game_start_year)
-- [state_dawn_start_hour](#state_dawn_start_hour)
-- [state_day_start_hour](#state_day_start_hour)
-- [state_dusk_start_hour](#state_dusk_start_hour)
-- [state_night_start_hour](#state_night_start_hour)
-- [state_transition_seconds](#state_transition_seconds)
-- [freeze_time](#freeze_time)
+|Name|Type|Default|
+|:-|:-|:-|
+|[game_start_hour](#game_start_hour)|`int`|`12`|
+|[game_start_day](#game_start_day)|`int`|`1`|
+|[game_start_month](#game_start_month)|`int`|`1`|
+|[game_start_year](#game_start_year)|`int`|`2021`|
+|[state_dawn_start_hour](#state_dawn_start_hour)|`int`|`5`|
+|[state_day_start_hour](#state_day_start_hour)|`int`|`8`|
+|[state_dusk_start_hour](#state_dusk_start_hour)|`int`|`16`|
+|[state_night_start_hour](#state_night_start_hour)|`int`|`19`|
+|[state_transition_seconds](#state_transition_seconds)|`int`|`3600`|
+|[freeze_time](#freeze_time)|`bool`|`true`|
 
 ### Functions
 
-- [get_current_second](#get_current_second)
-- [get_current_minute](#get_current_minute)
-- [get_current_hour](#get_current_hour)
-- [get_current_day](#get_current_day)
-- [get_current_month](#get_current_month)
-- [get_current_year](#get_current_year)
-- [set_current_hour](#set_current_hour)
-- [current_time_string](#current_time_string)
-- [current_date_string](#current_date_string)
-- [current_cycle_to_string](#current_cycle_to_string)
-- [seconds_to_minutes](#seconds_to_minutes)
-- [seconds_to_hours](#seconds_to_hours)
-- [seconds_to_days](#seconds_to_days)
-- [seconds_to_months](#seconds_to_months)
-- [seconds_to_years](#seconds_to_years)
-- [minutes_to_seconds](#minutes_to_seconds)
-- [minutes_to_hours](#minutes_to_hours)
-- [hours_to_seconds](#hours_to_seconds)
-- [hours_to_days](#hours_to_days)
-- [days_to_months](#days_to_months)
-- [months_to_years](#months_to_years)
+|Name|Type|Default|
+|:-|:-|:-|
+|[set_current_hour](#set_current_hour)|`int`|-|
+|[seconds_to_minutes](#seconds_to_minutes)|`float`|-|
+|[seconds_to_hours](#seconds_to_hours)|`float`|-|
+|[seconds_to_days](#seconds_to_days)|`float`|-|
+|[seconds_to_months](#seconds_to_months)|`float`|-|
+|[seconds_to_years](#seconds_to_years)|`float`|-|
+|[minutes_to_seconds](#minutes_to_seconds)|`float`|-|
+|[minutes_to_hours](#minutes_to_hours)|`float`|-|
+|[hours_to_seconds](#hours_to_seconds)|`float`|-|
+|[hours_to_days](#hours_to_days)|`float`|-|
+|[days_to_months](#days_to_months)|`float`|-|
+|[months_to_years](#months_to_years)|`float`|-|
 
 ## Constants
 
 ### IN_GAME_SECONDS_PER_REAL_TIME_SECONDS
 
-The amount of in-game seconds that should elapse for each real-time second.
-
-It has to be at least `60` so that `seconds_elapsed` can be stored as an `int`.
-
-> 90 minutes (5400 seconds) in game == 1 second in real time.
-
 ```gdscript
 const IN_GAME_SECONDS_PER_REAL_TIME_SECONDS: int = 5400
 ```
+
+The amount of in-game seconds that should elapse for each real-time second.
+
+ It has to be at least `60` so that `seconds_elapsed` can be stored as an `int`.
+
+ > 90 minutes (5400 seconds) in game == 1 second in real time.
 
 |Name|Type|Default|
 |:-|:-|:-|
@@ -69,11 +66,11 @@ const IN_GAME_SECONDS_PER_REAL_TIME_SECONDS: int = 5400
 
 ### game_start_hour
 
-The hour of the day at which the game starts (0-23).
-
 ```gdscript
 var game_start_hour: int = 12
 ```
+
+The hour of the day at which the game starts (0-23).
 
 |Name|Type|Default|
 |:-|:-|:-|
@@ -81,11 +78,11 @@ var game_start_hour: int = 12
 
 ### game_start_day
 
-The day of the month at which the game starts (1-30).
-
 ```gdscript
 var game_start_day: int = 1
 ```
+
+The day of the month at which the game starts (1-30).
 
 |Name|Type|Default|
 |:-|:-|:-|
@@ -93,11 +90,11 @@ var game_start_day: int = 1
 
 ### game_start_month
 
-The month at which the game starts (1-12).
-
 ```gdscript
 var game_start_month: int = 1
 ```
+
+The month at which the game starts (1-12).
 
 |Name|Type|Default|
 |:-|:-|:-|
@@ -105,11 +102,11 @@ var game_start_month: int = 1
 
 ### game_start_year
 
-The year at which the game starts (0-INF).
-
 ```gdscript
 var game_start_year: int = 2021
 ```
+
+The year at which the game starts (0-INF).
 
 |Name|Type|Default|
 |:-|:-|:-|
@@ -117,11 +114,11 @@ var game_start_year: int = 2021
 
 ### state_dawn_start_hour
 
-The starting hour of the dawn cycle state (0-23).
-
 ```gdscript
 var state_dawn_start_hour: int = 5
 ```
+
+The starting hour of the dawn cycle state (0-23).
 
 |Name|Type|Default|
 |:-|:-|:-|
@@ -129,11 +126,11 @@ var state_dawn_start_hour: int = 5
 
 ### state_day_start_hour
 
-The starting hour of the day cycle state (0-23).
-
 ```gdscript
 var state_day_start_hour: int = 8
 ```
+
+The starting hour of the day cycle state (0-23).
 
 |Name|Type|Default|
 |:-|:-|:-|
@@ -141,11 +138,11 @@ var state_day_start_hour: int = 8
 
 ### state_dusk_start_hour
 
-The starting hour of the dusk cycle state (0-23).
-
 ```gdscript
 var state_dusk_start_hour: int = 16
 ```
+
+The starting hour of the dusk cycle state (0-23).
 
 |Name|Type|Default|
 |:-|:-|:-|
@@ -153,11 +150,11 @@ var state_dusk_start_hour: int = 16
 
 ### state_night_start_hour
 
-The starting hour of the night cycle state (0-23).
-
 ```gdscript
 var state_night_start_hour: int = 19
 ```
+
+The starting hour of the night cycle state (0-23).
 
 |Name|Type|Default|
 |:-|:-|:-|
@@ -165,11 +162,11 @@ var state_night_start_hour: int = 19
 
 ### state_transition_seconds
 
-The duration, in in-game seconds, of the time it takes to transition from one state to another.
-
 ```gdscript
 var state_transition_seconds: int = 3600
 ```
+
+The duration, in in-game seconds, of the time it takes to transition from one state to another.
 
 |Name|Type|Default|
 |:-|:-|:-|
@@ -177,11 +174,11 @@ var state_transition_seconds: int = 3600
 
 ### freeze_time
 
-Stops the time.
-
 ```gdscript
 var freeze_time: bool = true setget _set_freeze_time
 ```
+
+Stops the time.
 
 |Name|Type|Default|Setter|
 |:-|:-|:-|:-|
@@ -191,71 +188,71 @@ var freeze_time: bool = true setget _set_freeze_time
 
 ### get_current_second
 
-Returns the current second.
-
-**Returns**: `int`
-
 ```gdscript
 func get_current_second() -> int
 ```
 
-### get_current_minute
-
-Returns the current minute.
+Returns the current second.
 
 **Returns**: `int`
+
+### get_current_minute
 
 ```gdscript
 func get_current_minute() -> int
 ```
 
-### get_current_hour
-
-Returns the current hour.
+Returns the current minute.
 
 **Returns**: `int`
+
+### get_current_hour
 
 ```gdscript
 func get_current_hour() -> int
 ```
 
-### get_current_day
-
-Returns the current day.
+Returns the current hour.
 
 **Returns**: `int`
+
+### get_current_day
 
 ```gdscript
 func get_current_day() -> int
 ```
 
-### get_current_month
-
-Returns the current month.
+Returns the current day.
 
 **Returns**: `int`
+
+### get_current_month
 
 ```gdscript
 func get_current_month() -> int
 ```
 
-### get_current_year
-
-Returns the current year.
+Returns the current month.
 
 **Returns**: `int`
+
+### get_current_year
 
 ```gdscript
 func get_current_year() -> int
 ```
 
-### set_current_hour
+Returns the current year.
 
-Sets the current hour.
+**Returns**: `int`
+
+### set_current_hour
 
 ```gdscript
 func set_current_hour(hour: int)
 ```
+
+Sets the current hour.
 
 #### Parameters
 
@@ -265,43 +262,43 @@ func set_current_hour(hour: int)
 
 ### current_time_string
 
-Returns the current time in `H:M:S`.
-
-**Returns**: `String`
-
 ```gdscript
 func current_time_string() -> String
 ```
 
-### current_date_string
-
-Returns the current date in `D/M/Y`.
+Returns the current time in `H:M:S`.
 
 **Returns**: `String`
+
+### current_date_string
 
 ```gdscript
 func current_date_string() -> String
 ```
 
-### current_cycle_to_string
-
-Returns the current cycle state in a `String` format.
+Returns the current date in `D/M/Y`.
 
 **Returns**: `String`
+
+### current_cycle_to_string
 
 ```gdscript
 func current_cycle_to_string() -> String
 ```
 
+Returns the current cycle state in a `String` format.
+
+**Returns**: `String`
+
 ### seconds_to_minutes
-
-Converts seconds into minutes.
-
-**Returns**: `float`
 
 ```gdscript
 func seconds_to_minutes(seconds: float) -> float
 ```
+
+Converts seconds into minutes.
+
+**Returns**: `float`
 
 #### Parameters
 
@@ -311,13 +308,13 @@ func seconds_to_minutes(seconds: float) -> float
 
 ### seconds_to_hours
 
-Converts seconds into hours.
-
-**Returns**: `float`
-
 ```gdscript
 func seconds_to_hours(seconds: float) -> float
 ```
+
+Converts seconds into hours.
+
+**Returns**: `float`
 
 #### Parameters
 
@@ -327,13 +324,13 @@ func seconds_to_hours(seconds: float) -> float
 
 ### seconds_to_days
 
-Converts seconds into days.
-
-**Returns**: `float`
-
 ```gdscript
 func seconds_to_days(seconds: float) -> float
 ```
+
+Converts seconds into days.
+
+**Returns**: `float`
 
 #### Parameters
 
@@ -343,13 +340,13 @@ func seconds_to_days(seconds: float) -> float
 
 ### seconds_to_months
 
-Converts seconds into months.
-
-**Returns**: `float`
-
 ```gdscript
 func seconds_to_months(seconds: float) -> float
 ```
+
+Converts seconds into months.
+
+**Returns**: `float`
 
 #### Parameters
 
@@ -359,13 +356,13 @@ func seconds_to_months(seconds: float) -> float
 
 ### seconds_to_years
 
-Converts seconds into years.
-
-**Returns**: `float`
-
 ```gdscript
 func seconds_to_years(seconds: float) -> float
 ```
+
+Converts seconds into years.
+
+**Returns**: `float`
 
 #### Parameters
 
@@ -375,13 +372,13 @@ func seconds_to_years(seconds: float) -> float
 
 ### minutes_to_seconds
 
-Converts minutes into seconds.
-
-**Returns**: `float`
-
 ```gdscript
 func minutes_to_seconds(minutes: float) -> float
 ```
+
+Converts minutes into seconds.
+
+**Returns**: `float`
 
 #### Parameters
 
@@ -391,13 +388,13 @@ func minutes_to_seconds(minutes: float) -> float
 
 ### minutes_to_hours
 
-Converts minutes into hours.
-
-**Returns**: `float`
-
 ```gdscript
 func minutes_to_hours(minutes: float) -> float
 ```
+
+Converts minutes into hours.
+
+**Returns**: `float`
 
 #### Parameters
 
@@ -407,13 +404,13 @@ func minutes_to_hours(minutes: float) -> float
 
 ### hours_to_seconds
 
-Converts hours into seconds.
-
-**Returns**: `float`
-
 ```gdscript
 func hours_to_seconds(hours: float) -> float
 ```
+
+Converts hours into seconds.
+
+**Returns**: `float`
 
 #### Parameters
 
@@ -423,13 +420,13 @@ func hours_to_seconds(hours: float) -> float
 
 ### hours_to_days
 
-Converts hours into days.
-
-**Returns**: `float`
-
 ```gdscript
 func hours_to_days(hours: float) -> float
 ```
+
+Converts hours into days.
+
+**Returns**: `float`
 
 #### Parameters
 
@@ -439,13 +436,13 @@ func hours_to_days(hours: float) -> float
 
 ### days_to_months
 
-Converts days into months.
-
-**Returns**: `float`
-
 ```gdscript
 func days_to_months(days: float) -> float
 ```
+
+Converts days into months.
+
+**Returns**: `float`
 
 #### Parameters
 
@@ -455,13 +452,13 @@ func days_to_months(days: float) -> float
 
 ### months_to_years
 
-Converts months into years.
-
-**Returns**: `float`
-
 ```gdscript
 func months_to_years(months: float) -> float
 ```
+
+Converts months into years.
+
+**Returns**: `float`
 
 #### Parameters
 

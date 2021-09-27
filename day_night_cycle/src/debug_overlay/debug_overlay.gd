@@ -1,7 +1,7 @@
 class_name DebugOverlay
 extends PopupPanel
 
-## If a `MoonLight` node is assigned, \
+## If a `MoonLight` node is assigned,
 ## a **Show moon** checkbox will appear in the debug overlay to enable/disable the moon.
 export (NodePath) var moon_light_node_path
 ## Enables/disables the debug overlay.

@@ -49,7 +49,8 @@ var state_dusk_start_hour: int = 16
 ## The starting hour of the night cycle state (0-23).
 var state_night_start_hour: int = 19
 
-## The duration, in in-game seconds, of the time it takes to transition from one state to another.
+## The duration, in in-game seconds,
+## of the time it takes to transition from one state to another.
 var state_transition_seconds: int = 3600
 var state_transition_duration: float = (
 	state_transition_seconds
