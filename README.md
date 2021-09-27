@@ -61,7 +61,7 @@ Add the `Time` singleton:
 
 ![Enable the time.gd singleton](example_images/enable_time_singleton.png)
 
-Change the `Time` [parameters](docs/time.md) to your liking.
+Change the `Time` [parameters](docs/src/singletons/time.md) to your liking.
 
 ### Add a simple cycle
 
@@ -75,7 +75,7 @@ Node
 └── DayNightCycle
 ```
 
-Change the `DayNightCycle` [parameters](docs/day_night_cycle.md) to your liking.
+Change the `DayNightCycle` [parameters](docs/src/day_night_cycle/day_night_cycle.md) to your liking.
 
 ### Add a cycle with a moon light
 
@@ -90,18 +90,18 @@ Node
 └── MoonLight
 ```
 
-[Sync](docs/moon_light.md#cycle_sync_node_path) the `MoonLight` with the `DayNightCycle`.
+[Sync](docs/src/moon_light/moon_light.md#cycle_sync_node_path) the `MoonLight` with the `DayNightCycle`.
 
-The `MoonLight` can be [static](docs/moon_light.md#static_moon) or [moving](docs/moon_light.md#move_moon) in sync with a `DayNightCycle`.
+The `MoonLight` can be [static](docs/src/moon_light/moon_light.md#static_moon) or [moving](docs/src/moon_light/moon_light.md#move_moon) in sync with a `DayNightCycle`.
 
-Change the `DayNightCycle` [parameters](docs/day_night_cycle.md) and the `MoonLight` [parameters](docs/moon_light.md) to your liking.
+Change the `DayNightCycle` [parameters](docs/src/day_night_cycle/day_night_cycle.md) and the `MoonLight` [parameters](docs/src/moon_light/moon_light.md) to your liking.
 
 ### Add a delay between cycles
 
 - Create a `CanvasLayer` for the background and set its `layer` to `-1`.
 - Instance the `DayNightCycle` node in the background `CanvasLayer` previously created.
-- Instance another `DayNightCycle` node in the root scene and add a [delay](docs/day_night_cycle.md#delay).
-- Instance the `MoonLight` in the root scene and [sync it](docs/moon_light.md#cycle_sync_node_path) to the `DayNightCycle` node with a delay.
+- Instance another `DayNightCycle` node in the root scene and add a [delay](docs/src/day_night_cycle/day_night_cycle.md#delay).
+- Instance the `MoonLight` in the root scene and [sync it](docs/src/moon_light/moon_light.md#cycle_sync_node_path) to the `DayNightCycle` node with a delay.
 
 Something like this:
 
