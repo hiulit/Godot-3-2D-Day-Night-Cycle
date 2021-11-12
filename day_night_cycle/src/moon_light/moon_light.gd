@@ -33,11 +33,11 @@ export (bool) var move_moon = false
 export (NodePath) var cycle_sync_node_path
 ## Disables the `MoonLight` node movement.
 export (bool) var static_moon = true
-## If `true`, the position of the `MoonLight` node is determined by @link_var {hour_position}.
+## If `true`, the position of the `MoonLight` node is determined by @link_name {hour_position}.
 ##
 ## If `false`, the position of the `MoonLight` node is determined by its position.
 ##
-## It only works when @link_var {static_moon} is enabled.
+## It only works when @link_name {static_moon} is enabled.
 export (bool) var use_hour_position = false
 ## The hour of the day, in a 24-hour clock, to position the `MoonLight` node (0-23).
 export (int, 0, 23) var hour_position = 0
