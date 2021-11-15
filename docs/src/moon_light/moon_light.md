@@ -213,4 +213,4 @@ The moon light path is a `Curve2D`.
 
 ---
 
-Powered by [GDScriptify](https://github.com/hiulit/gdscriptify).
+Powered by [GDScriptify](https://github.com/hiulit/GDScriptify).
