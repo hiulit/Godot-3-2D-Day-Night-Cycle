@@ -1,5 +1,5 @@
-extends CanvasModulate
 class_name DayNightCycle
+extends CanvasModulate
 
 ## The color of the night state.
 export (Color) var color_night = Color(0.07, 0.09, 0.38, 1.0)
@@ -14,12 +14,11 @@ export (int) var delay = 0
 
 onready var color_transition_tween = $ColorTransitionTween
 
+
 func _ready():
 	# Connect signals.
 	var current_cycle_changed_signal = Time.connect(
-		"current_cycle_changed",
-		self,
-		"_on_current_cycle_changed"
+		"current_cycle_changed", self, "_on_current_cycle_changed"
 	)
 
 	# Check if signals are connected correctly.
@@ -43,6 +42,7 @@ func _ready():
 			color = color_day
 		Time.CycleState.DUSK:
 			color = color_dusk
+
 
 # CALLBACKS
 # ---------
