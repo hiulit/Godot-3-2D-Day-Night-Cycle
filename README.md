@@ -1,6 +1,6 @@
 # Godot 3 2D Day/Night Cycle
 
-![Godot v3.x](https://img.shields.io/badge/Godot-v3.x-%23478cbf?logo=godot-engine&logoColor=white&style=flat-square) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/hiulit/Godot-3-2D-Day-Night-Cycle?&style=flat-square) ![GitHub license](https://img.shields.io/github/license/hiulit/Godot-3-2D-Day-Night-Cycle?&style=flat-square)
+![Godot v3.x](https://img.shields.io/badge/Godot-v3.x-%23478cbf?logo=godot-engine&logoColor=white&style=flat-square) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/hiulit/Godot-3-2D-Day-Night-Cycle?&style=flat-square) ![GitHub license](https://img.shields.io/badge/license-MIT-478cbf?style=flat-square)
 
 A 2D ☀️ Day / 🌔 Night cycle using `CanvasModulate` and a moon light effect using `Light2D`.
 
