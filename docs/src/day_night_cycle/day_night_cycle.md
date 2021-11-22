@@ -78,4 +78,4 @@ The amount of in-game seconds of delay.
 
 ---
 
-Powered by [GDScriptify](https://github.com/hiulit/GDScriptify).
+<small>Powered by [GDScriptify](https://github.com/hiulit/GDScriptify)</small>.

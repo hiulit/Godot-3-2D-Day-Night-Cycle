@@ -468,4 +468,4 @@ Converts months into years.
 
 ---
 
-Powered by [GDScriptify](https://github.com/hiulit/GDScriptify).
+<small>Powered by [GDScriptify](https://github.com/hiulit/GDScriptify)</small>.
