@@ -4,3 +4,7 @@
 - [DebugOverlay](./src/debug_overlay/debug_overlay.md)
 - [MoonLight](./src/moon_light/moon_light.md)
 - [Time](./src/singletons/time.md)
+
+---
+
+Powered by [GDScriptify](https://github.com/hiulit/GDScriptify).
