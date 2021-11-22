@@ -7,4 +7,4 @@
 
 ---
 
-<small>Powered by [GDScriptify](https://github.com/hiulit/GDScriptify)</small>.
+<sup><sub>Powered by [GDScriptify](https://github.com/hiulit/GDScriptify)</sup></sub>.
